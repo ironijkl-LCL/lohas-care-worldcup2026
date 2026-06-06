@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>World Cup SVG FINAL</title>
+<title>World Cup FINAL PRO</title>
 
 <style>
 body{
@@ -12,36 +12,71 @@ body{
   padding:20px;
 }
 
-/* ✅ 小組 */
+/* ✅ 分組布局 */
 .groups{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:10px;
 }
+@media(max-width:900px){.groups{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.groups{grid-template-columns:1fr;}}
 
-@media(max-width:900px){
-  .groups{grid-template-columns:repeat(2,1fr);}
+.group{
+  background:#111827;
+  padding:10px;
+  border-radius:8px;
 }
-@media(max-width:500px){
-  .groups{grid-template-columns:1fr;}
+.title{color:#38bdf8;}
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:3px 0;
 }
 
-.group{background:#111827;padding:10px;border-radius:8px;}
-.row{display:flex;align-items:center;gap:5px;}
-.flag{width:40px;height:26px;}
+.flag{
+  width:40px;
+  height:26px;
+}
+
+/* ✅ 分數鍵（升級） */
+button{
+  border:none;
+  border-radius:6px;
+  padding:4px 6px;
+  font-size:11px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.win{ background:#22c55e;}
+.draw{ background:#eab308;}
+.lose{ background:#334155;color:white;}
+
+button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 6px cyan;
+}
+
+button:active{
+  transform:scale(0.9);
+}
+
+/* ✅ 排名 */
 .table-row{
   display:flex;
   justify-content:space-between;
   background:#1e293b;
-  margin:2px 0;
 }
 .first{background:gold;color:black;}
 
-/* ✅ Bracket */
+/* ✅ SVG bracket */
 .stage{
   position:relative;
   height:600px;
-  margin-top:40px;
+  margin-top:30px;
 }
 
 svg{
@@ -53,6 +88,7 @@ svg{
 .node{
   position:absolute;
 }
+
 .node img{
   width:40px;
   cursor:pointer;
@@ -77,7 +113,7 @@ svg{
 
 <script>
 
-// ✅ 32隊
+/* ✅ 32隊 */
 const groups={
 A:["qa","ec","sn","nl"],
 B:["gb-eng","us","gb-wls","ir"],
@@ -92,12 +128,12 @@ H:["pt","uy","kr","gh"]
 const store={};
 const root=document.getElementById("groups");
 
-// ✅ 小組
+/* ✅ 建小組 */
 Object.keys(groups).forEach(g=>{
 
  let box=document.createElement("div");
  box.className="group";
- box.innerHTML="<b>"+g+"</b>";
+ box.innerHTML='<div class="title">Group '+g+'</div>';
 
  let data=[];
 
@@ -115,16 +151,16 @@ Object.keys(groups).forEach(g=>{
   img.className="flag";
 
   let b3=document.createElement("button");
-  b3.innerText="+3";
+  b3.innerText="+3"; b3.className="win";
   b3.onclick=()=>{team.points+=3;update(g);};
 
   let b1=document.createElement("button");
-  b1.innerText="+1";
+  b1.innerText="+1"; b1.className="draw";
   b1.onclick=()=>{team.points+=1;update(g);};
 
   let b0=document.createElement("button");
-  b0.innerText="+0";
-  b0.onclick=()=>{team.points+=0;update(g);};
+  b0.innerText="+0"; b0.className="lose";
+  b0.onclick=()=>{update(g);};
 
   row.append(img,b3,b1,b0);
   box.appendChild(row);
@@ -139,8 +175,9 @@ Object.keys(groups).forEach(g=>{
  update(g);
 });
 
-// ✅ 排名
+/* ✅ 排名 */
 function update(g){
+
  let d=store[g];
  d.data.sort((a,b)=>b.points-a.points);
 
@@ -163,102 +200,101 @@ function update(g){
  });
 }
 
-///////////////////////////////////////////////////////////
-
+/* ✅ SVG bracket */
 const svg=document.getElementById("svg");
 const stage=document.getElementById("stage");
 
-// ✅ 自動對齊位置（核心🔥）
-function getPos(round,index){
- let x=50 + round*180;
- let baseGap=60 * Math.pow(2,round);
- let y=20 + index*baseGap;
- return {x,y};
+/* ✅ 對齊 */
+function pos(round,index){
+ return {
+  x:50+round*180,
+  y:30+index*(60*Math.pow(2,round))
+ };
 }
 
-// ✅ 開始
+/* ✅ 開始 */
 function start(){
 
  stage.querySelectorAll(".node").forEach(n=>n.remove());
  svg.innerHTML="";
 
- let map={};
+ let m={};
 
  Object.keys(groups).forEach(g=>{
-  let arr=[...store[g].data].sort((a,b)=>b.points-a.points);
-  map[g+"1"]=arr[0];
-  map[g+"2"]=arr[1];
+  let a=[...store[g].data].sort((a,b)=>b.points-a.points);
+  m[g+"1"]=a[0];
+  m[g+"2"]=a[1];
  });
 
- let pairs=[
-   [map.A1,map.B2],[map.B1,map.A2],
-   [map.C1,map.D2],[map.D1,map.C2],
-   [map.E1,map.F2],[map.F1,map.E2],
-   [map.G1,map.H2],[map.H1,map.G2]
+ let list=[
+  [m.A1,m.B2],[m.B1,m.A2],
+  [m.C1,m.D2],[m.D1,m.C2],
+  [m.E1,m.F2],[m.F1,m.E2],
+  [m.G1,m.H2],[m.H1,m.G2]
  ];
 
- drawRound(pairs,0);
+ draw(list,0);
 }
 
-// ✅ 畫一輪
-function drawRound(list,round){
+/* ✅ 畫輪 */
+function draw(list,r){
 
- list.forEach((pair,i)=>{
+ list.forEach((p,i)=>{
 
-  let p1=getPos(round,i*2);
-  let p2=getPos(round,i*2+1);
+  let p1=pos(r,i*2);
+  let p2=pos(r,i*2+1);
 
-  let n1=createNode(pair[0],p1.x,p1.y);
-  let n2=createNode(pair[1],p2.x,p2.y);
+  let n1=node(p[0],p1);
+  let n2=node(p[1],p2);
 
-  n1.onclick=()=>advance(pair[0],p1,round,i);
-  n2.onclick=()=>advance(pair[1],p2,round,i);
+  n1.onclick=()=>advance(p[0],p1,r,i);
+  n2.onclick=()=>advance(p[1],p2,r,i);
  });
 }
 
-// ✅ 節點
-function createNode(team,x,y){
+/* ✅ node */
+function node(team,p){
 
- let div=document.createElement("div");
- div.className="node";
- div.style.left=x+"px";
- div.style.top=y+"px";
+ let d=document.createElement("div");
+ d.className="node";
+ d.style.left=p.x+"px";
+ d.style.top=p.y+"px";
 
  let img=document.createElement("img");
  img.src="https://flagcdn.com/w80/"+team.code+".png";
 
- div.appendChild(img);
- stage.appendChild(div);
+ d.appendChild(img);
+ stage.appendChild(d);
 
  return img;
 }
 
-// ✅ 晉級（全輪）🔥
-function advance(team,pos,round,index){
+/* ✅ 晉級 */
+function advance(team,p,r,i){
 
- let nextRound=round+1;
+ let nr=r+1;
 
- let nx=pos.x+180;
- let ny=Math.floor(index/2)*60*Math.pow(2,nextRound) + 40;
+ let np={
+   x:p.x+180,
+   y:Math.floor(i/2)*(60*Math.pow(2,nr))+40
+ };
 
- let newPos={x:nx,y:ny};
+ let n=node(team,np);
 
- let node=createNode(team,newPos.x,newPos.y);
+ line(p,np);
 
- drawLine(pos,newPos);
-
- node.onclick=()=>advance(team,newPos,nextRound,Math.floor(index/2));
+ n.onclick=()=>advance(team,np,nr,Math.floor(i/2));
 }
 
-// ✅ SVG 曲線動畫
-function drawLine(p1,p2){
+/* ✅ 曲線 + 動畫 */
+function line(a,b){
 
  let path=document.createElementNS("http://www.w3.org/2000/svg","path");
 
- let d=`M${p1.x+40},${p1.y+15}
-       C${p1.x+100},${p1.y+15}
-        ${p2.x-80},${p2.y+15}
-        ${p2.x},${p2.y+15}`;
+ let d=`M${a.x+40},${a.y+13}
+        C${a.x+90},${a.y+13}
+         ${b.x-70},${b.y+13}
+         ${b.x},${b.y+13}`;
 
  path.setAttribute("d",d);
  path.setAttribute("stroke","white");
@@ -272,12 +308,9 @@ function drawLine(p1,p2){
  svg.appendChild(path);
 }
 
-// ✅ 動畫
-const style=document.createElement("style");
-style.innerHTML=`
-@keyframes draw{
-  to{stroke-dashoffset:0;}
-}`;
+/* ✅ 動畫 */
+let style=document.createElement("style");
+style.innerHTML="@keyframes draw{to{stroke-dashoffset:0;}}";
 document.head.appendChild(style);
 
 </script>
