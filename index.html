@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>World Cup FINAL WORKING</title>
+<title>World Cup SVG FINAL</title>
 
 <style>
 body{
@@ -12,74 +12,67 @@ body{
   padding:20px;
 }
 
-.group{margin-bottom:20px;}
-.title{color:#38bdf8;}
-
-.row{
-  display:flex;
-  align-items:center;
+/* ✅ 小組 */
+.groups{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
   gap:10px;
-  margin:4px 0;
 }
 
-.flag{
-  width:50px;
-  height:30px;
+@media(max-width:900px){
+  .groups{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:500px){
+  .groups{grid-template-columns:1fr;}
 }
 
+.group{background:#111827;padding:10px;border-radius:8px;}
+.row{display:flex;align-items:center;gap:5px;}
+.flag{width:40px;height:26px;}
 .table-row{
   display:flex;
   justify-content:space-between;
   background:#1e293b;
-  padding:5px;
   margin:2px 0;
 }
-
 .first{background:gold;color:black;}
 
-.bracket{
-  display:flex;
-  gap:15px;
+/* ✅ Bracket */
+.stage{
+  position:relative;
+  height:600px;
+  margin-top:40px;
 }
 
-.round{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+svg{
+  position:absolute;
+  width:100%;
+  height:100%;
 }
 
-.match{
-  background:#1e293b;
-  padding:6px;
+.node{
+  position:absolute;
+}
+.node img{
+  width:40px;
   cursor:pointer;
-  text-align:center;
-}
-
-.match img{
-  width:45px;
-  margin:2px;
 }
 </style>
-
 </head>
 
 <body>
 
-<h1>🏆 世界盃系統（完整）</h1>
+<h1>🏆 WORLD CUP</h1>
 
 <h2>🌍 小組</h2>
-<div id="groups"></div>
+<div id="groups" class="groups"></div>
 
-<button id="genBtn">👉 生成16強</button>
+<button onclick="start()">👉 開始淘汰賽</button>
 
 <h2>🏁 淘汰賽</h2>
 
-<div class="bracket">
-<div class="round"><b>16強</b><div id="r16"></div></div>
-<div class="round"><b>8強</b><div id="qf"></div></div>
-<div class="round"><b>4強</b><div id="sf"></div></div>
-<div class="round"><b>決賽</b><div id="final"></div></div>
-<div class="round"><b>冠軍</b><div id="champion"></div></div>
+<div class="stage" id="stage">
+  <svg id="svg"></svg>
 </div>
 
 <script>
@@ -97,179 +90,195 @@ H:["pt","uy","kr","gh"]
 };
 
 const store={};
-const container=document.getElementById("groups");
+const root=document.getElementById("groups");
 
-// ✅ 建小組
+// ✅ 小組
 Object.keys(groups).forEach(g=>{
 
-  let wrap=document.createElement("div");
-  wrap.className="group";
+ let box=document.createElement("div");
+ box.className="group";
+ box.innerHTML="<b>"+g+"</b>";
 
-  let title=document.createElement("div");
-  title.className="title";
-  title.innerText="Group "+g;
-  wrap.appendChild(title);
+ let data=[];
 
-  let data=[];
+ groups[g].forEach(code=>{
+   data.push({code,points:0});
+ });
 
-  groups[g].forEach(code=>{
-    data.push({code,points:0});
-  });
+ data.forEach(team=>{
 
-  data.forEach(team=>{
+  let row=document.createElement("div");
+  row.className="row";
 
-    let row=document.createElement("div");
-    row.className="row";
+  let img=document.createElement("img");
+  img.src="https://flagcdn.com/w80/"+team.code+".png";
+  img.className="flag";
 
-    let img=document.createElement("img");
-    img.src="https://flagcdn.com/w80/"+team.code+".png";
-    img.className="flag";
+  let b3=document.createElement("button");
+  b3.innerText="+3";
+  b3.onclick=()=>{team.points+=3;update(g);};
 
-    let btn=document.createElement("button");
-    btn.innerText="+3";
+  let b1=document.createElement("button");
+  b1.innerText="+1";
+  b1.onclick=()=>{team.points+=1;update(g);};
 
-    btn.addEventListener("click",()=>{
-      team.points+=3;
-      render(g);
-    });
+  let b0=document.createElement("button");
+  b0.innerText="+0";
+  b0.onclick=()=>{team.points+=0;update(g);};
 
-    row.appendChild(img);
-    row.appendChild(btn);
-    wrap.appendChild(row);
-  });
+  row.append(img,b3,b1,b0);
+  box.appendChild(row);
+ });
 
-  let table=document.createElement("div");
-  wrap.appendChild(table);
+ let table=document.createElement("div");
+ box.appendChild(table);
 
-  store[g]={data,table};
+ store[g]={data,table};
+ root.appendChild(box);
 
-  container.appendChild(wrap);
-
-  render(g);
+ update(g);
 });
 
 // ✅ 排名
-function render(g){
+function update(g){
+ let d=store[g];
+ d.data.sort((a,b)=>b.points-a.points);
 
-  let d=store[g];
-  d.data.sort((a,b)=>b.points-a.points);
+ d.table.innerHTML="";
 
-  d.table.innerHTML="";
+ d.data.forEach((t,i)=>{
 
-  d.data.forEach((t,i)=>{
+  let r=document.createElement("div");
+  r.className="table-row"+(i===0?" first":"");
 
-    let r=document.createElement("div");
-    r.className="table-row"+(i===0?" first":"");
+  let img=document.createElement("img");
+  img.src="https://flagcdn.com/w80/"+t.code+".png";
+  img.className="flag";
 
-    let img=document.createElement("img");
-    img.src="https://flagcdn.com/w80/"+t.code+".png";
-    img.className="flag";
+  let s=document.createElement("span");
+  s.innerText=t.points;
 
-    let score=document.createElement("span");
-    score.innerText=t.points;
-
-    r.appendChild(img);
-    r.appendChild(score);
-
-    d.table.appendChild(r);
-  });
+  r.append(img,s);
+  d.table.appendChild(r);
+ });
 }
 
-// ✅ 生成16強
-document.getElementById("genBtn").addEventListener("click",()=>{
+///////////////////////////////////////////////////////////
 
-  document.getElementById("r16").innerHTML="";
-  document.getElementById("qf").innerHTML="";
-  document.getElementById("sf").innerHTML="";
-  document.getElementById("final").innerHTML="";
-  document.getElementById("champion").innerHTML="";
+const svg=document.getElementById("svg");
+const stage=document.getElementById("stage");
 
-  let map={};
+// ✅ 自動對齊位置（核心🔥）
+function getPos(round,index){
+ let x=50 + round*180;
+ let baseGap=60 * Math.pow(2,round);
+ let y=20 + index*baseGap;
+ return {x,y};
+}
 
-  Object.keys(groups).forEach(g=>{
-    let arr=[...store[g].data].sort((a,b)=>b.points-a.points);
-    map[g+"1"]=arr[0];
-    map[g+"2"]=arr[1];
-  });
+// ✅ 開始
+function start(){
 
-  let pairs=[
+ stage.querySelectorAll(".node").forEach(n=>n.remove());
+ svg.innerHTML="";
+
+ let map={};
+
+ Object.keys(groups).forEach(g=>{
+  let arr=[...store[g].data].sort((a,b)=>b.points-a.points);
+  map[g+"1"]=arr[0];
+  map[g+"2"]=arr[1];
+ });
+
+ let pairs=[
    [map.A1,map.B2],[map.B1,map.A2],
    [map.C1,map.D2],[map.D1,map.C2],
    [map.E1,map.F2],[map.F1,map.E2],
    [map.G1,map.H2],[map.H1,map.G2]
-  ];
+ ];
 
-  buildRound("r16",pairs,"qf");
-});
-
-// ✅ 建比賽（互動）
-function buildRound(stage,list,next){
-
-  let box=document.getElementById(stage);
-
-  list.forEach(pair=>{
-
-    let div=document.createElement("div");
-    div.className="match";
-
-    let left=document.createElement("img");
-    left.src="https://flagcdn.com/w80/"+pair[0].code+".png";
-
-    let right=document.createElement("img");
-    right.src="https://flagcdn.com/w80/"+pair[1].code+".png";
-
-    div.appendChild(left);
-    div.appendChild(right);
-
-    // ✅ 直接點旗選勝方
-    left.onclick=(e)=>{
-      e.stopPropagation();
-      advance(pair[0],next);
-    };
-
-    right.onclick=(e)=>{
-      e.stopPropagation();
-      advance(pair[1],next);
-    };
-
-    box.appendChild(div);
-  });
+ drawRound(pairs,0);
 }
 
-// ✅ 晉級
-function advance(team,next){
+// ✅ 畫一輪
+function drawRound(list,round){
 
-  if(next==="qf") push(team,"qf","sf");
-  else if(next==="sf") push(team,"sf","final");
-  else if(next==="final") push(team,"final","champion");
-  else{
-    let c=document.getElementById("champion");
-    c.innerHTML="";
-    let img=document.createElement("img");
-    img.src="https://flagcdn.com/w80/"+team.code+".png";
-    img.className="flag";
-    c.appendChild(img);
-  }
+ list.forEach((pair,i)=>{
+
+  let p1=getPos(round,i*2);
+  let p2=getPos(round,i*2+1);
+
+  let n1=createNode(pair[0],p1.x,p1.y);
+  let n2=createNode(pair[1],p2.x,p2.y);
+
+  n1.onclick=()=>advance(pair[0],p1,round,i);
+  n2.onclick=()=>advance(pair[1],p2,round,i);
+ });
 }
 
-// ✅ 加入下一輪
-function push(team,stage,next){
+// ✅ 節點
+function createNode(team,x,y){
 
-  let div=document.createElement("div");
-  div.className="match";
+ let div=document.createElement("div");
+ div.className="node";
+ div.style.left=x+"px";
+ div.style.top=y+"px";
 
-  let img=document.createElement("img");
-  img.src="https://flagcdn.com/w80/"+team.code+".png";
+ let img=document.createElement("img");
+ img.src="https://flagcdn.com/w80/"+team.code+".png";
 
-  div.appendChild(img);
+ div.appendChild(img);
+ stage.appendChild(div);
 
-  img.onclick=(e)=>{
-    e.stopPropagation();
-    advance(team,next);
-  };
-
-  document.getElementById(stage).appendChild(div);
+ return img;
 }
+
+// ✅ 晉級（全輪）🔥
+function advance(team,pos,round,index){
+
+ let nextRound=round+1;
+
+ let nx=pos.x+180;
+ let ny=Math.floor(index/2)*60*Math.pow(2,nextRound) + 40;
+
+ let newPos={x:nx,y:ny};
+
+ let node=createNode(team,newPos.x,newPos.y);
+
+ drawLine(pos,newPos);
+
+ node.onclick=()=>advance(team,newPos,nextRound,Math.floor(index/2));
+}
+
+// ✅ SVG 曲線動畫
+function drawLine(p1,p2){
+
+ let path=document.createElementNS("http://www.w3.org/2000/svg","path");
+
+ let d=`M${p1.x+40},${p1.y+15}
+       C${p1.x+100},${p1.y+15}
+        ${p2.x-80},${p2.y+15}
+        ${p2.x},${p2.y+15}`;
+
+ path.setAttribute("d",d);
+ path.setAttribute("stroke","white");
+ path.setAttribute("fill","none");
+ path.setAttribute("stroke-width","2");
+
+ path.style.strokeDasharray="200";
+ path.style.strokeDashoffset="200";
+ path.style.animation="draw 0.5s linear forwards";
+
+ svg.appendChild(path);
+}
+
+// ✅ 動畫
+const style=document.createElement("style");
+style.innerHTML=`
+@keyframes draw{
+  to{stroke-dashoffset:0;}
+}`;
+document.head.appendChild(style);
 
 </script>
 
