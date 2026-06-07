@@ -2,7 +2,7 @@
 <html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
-<title>World Cup 72 Teams - Premium Complete Edition</title>
+<title>FIFA World Cup 2026 - LOHAS’s Edition (Full 104 Matches)</title>
 
 <style>
 body{
@@ -89,18 +89,27 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   color: #38bdf8;
 }
 
-/* ✅ 密碼管制面板鎖定區 */
-.lock-control-panel {
-  max-width: 400px;
-  margin: 15px auto;
-  background: #111827;
-  border: 1px dashed #dfaa2a;
-  padding: 12px;
-  border-radius: 8px;
+/* ✅ 標題與解鎖鍵複合包裝容器 */
+.title-panel-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  margin: 25px auto 15px auto;
+}
+.title-panel-container h2 {
+  margin: 0;
+}
+
+/* ✅ 密碼管制面板鎖定區（不顯示任何提示字） */
+.lock-control-panel {
+  background: #111827;
+  border: 1px dashed #dfaa2a;
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .lock-input {
   background: #1f2937;
@@ -108,21 +117,24 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   color: #fff;
   padding: 5px 10px;
   border-radius: 6px;
-  width: 120px;
+  width: 100px;
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 2px;
 }
 .lock-btn {
   background: #dfaa2a;
   color: #0b0f19;
   border: none;
-  padding: 6px 14px;
-  font-size: 12px;
+  padding: 6px 16px;
+  font-size: 14px;
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .lock-btn:hover { background: #f59e0b; transform: scale(1.05); }
 
@@ -157,6 +169,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   align-items: center;
   gap: 8px;
   margin-bottom: 6px;
+  min-height: 25px;
 }
 .flag{
   width: 38px;
@@ -167,7 +180,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
 }
 
 /* ✅ 分數鍵 */
-button.win, button.draw, button.lose {
+button.win, button.draw, button.lose, button.hot-btn {
   border: none;
   padding: 4px 8px;
   border-radius: 6px;
@@ -179,21 +192,23 @@ button.win, button.draw, button.lose {
 .win{background: #10b981; color: white;}
 .draw{background: #f59e0b; color: black;}
 .lose{background: #4b5563; color: white;}
-button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); filter: brightness(1.2); }
+.hot-btn {
+  background: linear-gradient(135deg, #f59e0b, #dfaa2a);
+  color: #0b0f19;
+  padding: 4px 10px;
+  font-size: 12px;
+  margin-left: 8px;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+button.win:hover, button.draw, button.lose, button.hot-btn:hover{ transform: scale(1.1); filter: brightness(1.2); }
 
-/* 🔒 密碼未解鎖時，隱藏按鍵容器的樣式 */
 .btn-lock-container {
-  display: none; /* 預設完全鎖定隱藏 */
+  display: none;
   align-items: center;
   gap: 8px;
 }
-.lock-status-txt {
-  font-size: 11px;
-  color: #9ca3af;
-  font-style: italic;
-}
 
-/* ✅ 日期分頁控制列 */
+/* ✅ 日期與分頁篩選器樣式 */
 .date-selector-container {
   max-width: 1200px;
   margin: 15px auto;
@@ -210,7 +225,7 @@ button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); f
   background: #1f2937;
   color: #d1d5db;
   border: 1px solid #374151;
-  padding: 6px 12px;
+  padding: 6px 14px;
   font-size: 12px;
   border-radius: 20px;
   cursor: pointer;
@@ -223,7 +238,7 @@ button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); f
   box-shadow: 0 0 8px rgba(223,170,42,0.4);
 }
 
-/* ✅ 排名 */
+/* ✅ 排名區域 */
 .table-area { margin-top: 12px; border-top: 2px dashed #4b5563; padding-top: 8px; }
 .table-row{
   display: flex;
@@ -238,11 +253,11 @@ button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); f
 .table-row.rank-0, .table-row.rank-1 { border-left: 4px solid #10b981; background: #064e3b; }
 .table-row.rank-2 { border-left: 4px solid #f59e0b; }
 
-/* ✅ 友誼賽與正賽賽程區 */
+/* ✅ 賽程卡片流 */
 .matches{
   margin: 20px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 15px;
   max-width: 1200px;
 }
@@ -263,25 +278,27 @@ button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); f
   transform: translateY(-3px);
 }
 .match-time {
-  font-size: 12px;
-  color: #9ca3af;
-  background: #111827;
+  font-size: 11px;
+  color: #dfaa2a;
+  background: #1e293b;
   padding: 3px 10px;
   border-radius: 20px;
   font-weight: bold;
+  text-align: center;
+  width: 92%;
 }
 .match-teams {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 10px;
+  padding: 0 5px;
 }
-.team-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; font-weight: bold;}
-.vs { font-size: 14px; color: #dfaa2a; font-weight: bold; }
+.team-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; font-weight: bold; min-width: 95px; text-align: center;}
+.vs { font-size: 15px; color: #dfaa2a; font-weight: bold; }
 .view-btn { font-size: 11px; color: #38bdf8; text-decoration: underline; margin-top: 4px;}
 
-/* ✅ 彈窗樣式 (Modal) */
+/* ✅ 彈窗樣式 */
 .modal {
   display: none;
   position: fixed;
@@ -319,11 +336,11 @@ button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); f
   margin-top: 15px;
   padding: 12px;
   border-radius: 8px;
-  border-left: 4px solid #10b981;
+  border-left: 4px solid #38bdf8;
 }
 .scorers-title {
   font-size: 13px;
-  color: #10b981;
+  color: #38bdf8;
   font-weight: bold;
   margin-bottom: 6px;
   display: flex;
@@ -333,17 +350,18 @@ button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); f
 .scorers-list {
   font-size: 12px;
   color: #9ca3af;
-  line-height: 1.5;
+  line-height: 1.6;
+  white-space: pre-line;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🏆 SUPER WORLD CUP (72 TEAMS)</h1>
+<h1>🏆 FIFA WORLD CUP 2026 (LOHAS’s EDITION)</h1>
 
 <div class="countdown-container">
-  <div class="countdown-title">🔥 距離世界盃正式揭幕戰（香港時間 2026-06-12 03:00）</div>
+  <div class="countdown-title">🔥 距離世界盃官方正式揭幕戰（香港時間 2026-06-12 03:00）</div>
   <div id="timerDisplay" class="countdown-timer">
     <div class="time-block"><div id="days" class="time-num">00</div><div class="time-label">天 Days</div></div>
     <div class="time-block"><div id="hours" class="time-num">00</div><div class="time-label">時 Hours</div></div>
@@ -353,33 +371,33 @@ button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); f
 </div>
 
 <div class="info">
-  🏁 <b>全新賽制：</b>Group A 至 Group L（共 12 組，每組擴軍至 6 隊，總計 72 國參賽）<br>
-  🇺🇸 主辦：
-  <img src="https://flagcdn.com/w80/us.png" alt="US">
-  <img src="https://flagcdn.com/w80/ca.png" alt="CA">
-  <img src="https://flagcdn.com/w80/mx.png" alt="MX">
-
-  <br>⚽ 衛冕：
-  <img src="https://flagcdn.com/w80/ar.png" alt="AR">
-
-  <br>⭐ 目前積分最高（預測領跑）：
-  <span id="champArea">未產生</span>
+  🏆 <b>FIFA 全新擴軍賽制：</b>共有 12 個小組（Group A 至 Group L），共 48 支世界頂尖球隊參賽，一齊演繹 104 場精彩絕倫的足球賽事！<br>
+  🇺🇸 聯合主辦國：
+  <img src="https://flagcdn.com/w80/us.png" alt="US" title="美國">
+  <img src="https://flagcdn.com/w80/ca.png" alt="CA" title="加拿大">
+  <img src="https://flagcdn.com/w80/mx.png" alt="MX" title="墨西哥">
+  <br>⚽ 衛冕冠軍：<img src="https://flagcdn.com/w80/ar.png" alt="AR" title="阿根廷">
+  <br>🔮 預測今届奪冠熱門：
+  <img src="https://flagcdn.com/w80/es.png" alt="ES" style="width:24px; vertical-align:middle;"> <b>西班牙 (Spain)</b> / 
+  <img src="https://flagcdn.com/w80/fr.png" alt="FR" style="width:24px; vertical-align:middle;"> <b>法國 (France)</b> 
+  <button class="hot-btn" onclick="alert('🏆 大數據與國際足壇最新分析：\n\n1. 西班牙：強大的中場傳控與耶馬爾等邊路天才，傳控體系已臻完美。\n2. 法國：基利安·麥巴比領銜的鋒線具有摧毀性的反擊速度。')">🏆 奪冠預測分析</button>
 
   <div class="highlight-intro">
-    📢 <b>賽事進程速報：</b>6月1日至7日熱身賽段已全數落幕。全球目光現正聚焦於 HKT 6月12日 展開的分組正賽、淘汰賽，並於 7月19日 迎來最終世界冠軍捧盃之日！
+    📢 世界盃全部賽程 小組賽+ 淘汰賽： 72場小組比賽與淘汰賽32 場比賽，共 104 場一場不缺！
   </div>
 </div>
 
-<div class="lock-control-panel">
-  <span style="font-size:13px; color:#dfaa2a; font-weight:bold;">🔒 積分榜控制管理：</span>
-  <input type="password" id="scorePassword" class="lock-input" placeholder="輸入密碼">
-  <button class="lock-btn" onclick="checkScoreUnlock()">驗證解鎖</button>
+<div class="title-panel-container">
+  <h2>🌍 (A-L) 小組積分榜</h2>
+  <div class="lock-control-panel" id="lockControlPanel">
+    <input type="password" id="scorePassword" class="lock-input">
+    <button class="lock-btn" onclick="checkScoreUnlock()">🔒</button>
+  </div>
 </div>
 
-<h2>🌍 小組即時積分榜（前兩名 🟩 晉級）</h2>
 <div id="groups" class="groups"></div>
 
-<h2>🤝 72隊熱身賽及正賽官方賽程表 (香港時間 HKT 📅)</h2>
+<h2>🤝 2026 世界盃 104 場全賽事日曆表 (香港時間 HKT)</h2>
 
 <div id="dateSelector" class="date-selector-container"></div>
 <div id="matches" class="matches"></div>
@@ -387,10 +405,10 @@ button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); f
 <div id="squadModal" class="modal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeSquad()">&times;</span>
-    <h3 id="modalTitle" style="text-align:center; margin-top:0;">🏆 賽事詳細看板</h3>
+    <h3 id="modalTitle" style="text-align:center; margin-top:0;">🏆 官方賽事詳細資訊</h3>
     
-    <div id="modalScorersBox" class="scorers-box" style="display:none;">
-      <div class="scorers-title">⚽ 賽事進球球員與焦點紀錄</div>
+    <div id="modalScorersBox" class="scorers-box">
+      <div class="scorers-title">🏟️ 比賽球場地點與大數據焦點心水推薦</div>
       <div id="modalScorersList" class="scorers-list"></div>
     </div>
 
@@ -409,114 +427,192 @@ button.win:hover, button.draw:hover, button.lose:hover{ transform: scale(1.1); f
 
 <script>
 const teamDatabase = {
-  "qa": { name: "卡塔爾", stars: ["阿菲夫 (前鋒)", "阿里 (前鋒)", "海多斯 (中場)"] },
-  "ec": { name: "厄瓜多爾", stars: ["卡些度 (中場 - 車路士)", "恩拿·華倫西亞 (前鋒)"] },
-  "sn": { name: "塞內加爾", stars: ["文尼 (前鋒)", "積臣 (前鋒 - 車路士)"] },
-  "nl": { name: "荷蘭", stars: ["雲迪克 (後衛 - 利物浦)", "加普 (前鋒)", "迪莊 (中場)"] },
-  "gb-eng": { name: "英格蘭", stars: ["簡尼 (前鋒 - 拜仁)", "比寧咸 (中場 - 皇馬)", "沙卡 (前鋒)"] },
-  "us": { name: "美國", stars: ["普列錫 (前鋒 - AC米蘭)", "麥堅尼 (中場)"] },
-  "gb-wls": { name: "威爾斯", stars: ["藍斯 (中場)", "占士 (前鋒)"] },
-  "ir": { name: "伊朗", stars: ["泰利米 (前鋒 - 國際米蘭)", "阿斯蒙 (前鋒)"] },
-  "ar": { name: "阿根廷", stars: ["美斯 (前鋒)", "羅達路·馬天尼斯 (前鋒)", "安素 (中場)"] },
-  "sa": { name: "沙特阿拉伯", stars: ["多薩里 (中場)", "謝赫里 (前鋒)"] },
-  "mx": { name: "墨西哥", stars: ["占文尼斯 (前鋒)", "奧祖亞 (門將)"] },
-  "pl": { name: "波蘭", stars: ["利雲度夫斯基 (前鋒 - 巴塞)", "施連斯基 (中場)"] },
-  "fr": { name: "法國", stars: ["麥巴比 (前鋒 - 皇馬)", "基沙文 (中場)", "沙列巴 (後衛)"] },
-  "dk": { name: "丹麥", stars: ["艾歷臣 (中場 - 曼聯)", "海倫 (前鋒 - 曼聯)"] },
-  "tn": { name: "突尼西亞", stars: ["萊杜尼 (中場)", "姆薩克尼 (前鋒)"] },
-  "au": { name: "澳洲", stars: ["賴恩 (門將)", "蘇達 (後衛)"] },
-  "es": { name: "西班牙", stars: ["洛迪 (中場 - 曼城)", "莫拉達 (前鋒)", "耶馬爾 (前鋒 - 巴塞)"] },
-  "de": { name: "德國", stars: ["維斯 (中場)", "梅斯亞拿 (中場 - 拜仁)", "哈維斯 (前鋒)"] },
-  "jp": { name: "日本", stars: ["三笘薰 (前鋒 - 白禮頓)", "遠藤航 (中場 - 利物浦)", "久保建英"] },
-  "cr": { name: "哥斯達黎加", stars: ["甘保 (前鋒)", "般奴 (中場)"] },
-  "be": { name: "比利時", stars: ["迪布尼 (中場 - 曼城)", "盧卡古 (前鋒)"] },
-  "hr": { name: "克羅地亞", stars: ["摩迪 (中場 - 皇馬)", "格華迪奧 (後衛 - 曼城)"] },
-  "ma": { name: "摩洛哥", stars: ["夏基美 (後衛 - PSG)", "薛耶治 (中場)"] },
-  "ca": { name: "加拿大", stars: ["戴維斯 (後衛 - 拜仁)", "戴維 (前鋒)"] },
-  "br": { name: "巴西", stars: ["雲尼斯奧斯 (前鋒 - 皇馬)", "洛迪高 (前鋒)", "尼馬 (前鋒)"] },
-  "ch": { name: "瑞士", stars: ["格列沙加 (中場)", "岩保路 (前鋒)"] },
-  "rs": { name: "塞爾維亞", stars: ["米度域 (前鋒)", "華荷域 (前鋒)"] },
-  "cm": { name: "喀麥隆", stars: ["安巴莫 (前鋒)", "安拿拿 (門將 - 曼聯)"] },
-  "pt": { name: "葡萄牙", stars: ["C朗拿度 (前鋒)", "般奴·費南迪斯 (中場 - 曼聯)"] },
-  "uy": { name: "烏拉圭", stars: ["紐尼斯 (前鋒 - 利物浦)", "華維迪 (中場 - 皇馬)"] },
-  "kr": { name: "韓國", stars: ["孫興慜 (前鋒 - 熱刺)", "金玟哉 (後衛 - 拜仁)", "李剛仁"] },
-  "gh": { name: "加納", stars: ["庫杜斯 (中場 - 韋斯咸)", "威廉斯 (前鋒)"] },
-  "it": { name: "義大利", stars: ["基艾沙 (前鋒)", "巴列拿 (中場)", "當納隆馬 (門將)"] },
-  "se": { name: "瑞典", stars: ["伊薩克 (前鋒 - 紐卡素)", "基奧基尼斯 (前鋒)"] },
-  "ua": { name: "烏克蘭", stars: ["梅迪歷 (前鋒 - 車路士)", "多夫比克 (前鋒)"] },
-  "cz": { name: "捷克", stars: ["希克 (前鋒)", "蘇錫 (中場 - 韋斯咸)"] },
-  "tr": { name: "土耳其", stars: ["居萊爾 (中場 - 皇馬)", "恰爾汗奧盧 (中場)"] },
-  "no": { name: "挪威", stars: ["哈蘭德 (前鋒 - 曼城)", "奧迪加特 (中場 - 阿仙奴)"] },
-  "at": { name: "奧地利", stars: ["阿拉巴 (後衛 - 皇馬)", "薩比沙 (中場)"] },
-  "hu": { name: "匈牙利", stars: ["索博斯洛伊 (中場 - 利物浦)", "華加 (前鋒)"] },
-  "cl": { name: "智利", stars: ["山齊士 (前鋒)", "維度爾 (中場)"] },
-  "co": { name: "哥倫比亞", stars: ["戴亞斯 (前鋒 - 利物浦)", "占士·洛迪古斯 (中場)"] },
-  "pe": { name: "秘魯", stars: ["葛雷諾 (前鋒)", "拉柏杜拉 (前鋒)"] },
-  "ve": { name: "委內瑞拉", stars: ["隆東 (前鋒)", "賀利拿 (中場)"] },
-  "bo": { name: "玻利維亞", stars: ["馬田斯 (前鋒)", "華卡 (中場)"] },
-  "py": { name: "巴拉圭", stars: ["阿米朗 (中場 - 紐卡素)", "恩錫素 (前鋒)"] },
-  "nz": { name: "紐西蘭", stars: ["活特 (前鋒 - 森林)", "卡卡斯 (後衛)"] },
-  "eg": { name: "埃及", stars: ["沙拿 (前鋒 - 利物浦)", "馬摩殊 (前鋒)"] },
-  "ng": { name: "奈及利亞", stars: ["奧森漢 (前鋒)", "盧克文 (前鋒 - 阿特蘭大)"] },
-  "dz": { name: "阿爾及利亞", stars: ["馬列斯 (前鋒)", "賓納沙 (中場)"] },
-  "za": { name: "南非", stars: ["陶 (前鋒)", "莫哥拿 (中場)"] },
-  "ci": { name: "科特迪瓦", stars: ["阿萊 (前鋒)", "基斯爾 (中場)"] },
-  "cn": { name: "中國", stars: ["武磊 (前鋒)", "韋世豪 (前鋒)", "蔣光太 (後衛)", "王大雷 (門將)"] },
-  "uz": { name: "烏茲別克", stars: ["紹穆羅多夫 (前鋒)", "費舒拿耶夫 (中場)"] },
-  "jm": { name: "牙買加", stars: ["安東尼奧 (前鋒 - 幕後咸)", "里安·拜利 (前鋒)"] },
-  "pa": { name: "巴拿馬", stars: ["法查度 (前鋒)", "巴塞拿斯 (中場)"] },
-  "sl": { name: "塞拉利昂", stars: ["卡馬拉 (前鋒)", "高爾 (中場)"] },
-  "hn": { name: "宏都拉斯", stars: ["洛沙奴 (前鋒)", "埃里斯 (前鋒)"] },
-  "is": { name: "冰島", stars: ["古德蒙德森 (前鋒)", "施古臣 (中場)"] },
-  "fi": { name: "芬蘭", stars: ["普基 (前鋒)", "赫拉德茨基 (門將)"] },
-  "gr": { name: "希臘", stars: ["帕夫利迪斯 (前鋒)", "齊米卡斯 (後衛)"] },
-  "ro": { name: "羅馬尼亞", stars: ["德拉古辛 (後衛 - 熱刺)", "史坦斯奧 (中場)"] },
-  "bg": { name: "保加利亞", stars: ["德斯波多夫 (前鋒)", "克拉斯特夫 (中場)"] },
-  "sk": { name: "斯洛伐克", stars: ["史堅尼亞 (後衛 - PSG)", "洛博特卡 (中場)"] },
-  "si": { name: "斯洛維尼亞", stars: ["奧比勒 (門將)", "錫斯高 (前鋒 - 萊比錫)"] },
-  "ie": { name: "愛爾蘭", stars: ["費格遜 (前鋒 - 白禮頓)", "高林漢 (後衛)"] },
-  "gb-sct": { name: "蘇格蘭", stars: ["麥湯米尼 (中場)", "羅拔臣 (後衛 - 利物浦)"] },
-  "gb-nir": { name: "北愛爾蘭", stars: ["伊雲斯 (後衛 - 曼聯)", "麥連斯 (中場)"] }
+  "tbd": { name: "待定 (TBD)", stars: ["隨比賽進程解鎖"] },
+  "mx": { name: "墨西哥 (Mexico)", stars: ["艾臣·馬天尼斯", "占文尼斯", "奧祖亞"] },
+  "za": { name: "南非 (South Africa)", stars: ["珀西·陶", "莫哥拿"] },
+  "kr": { name: "韓國 (South Korea)", stars: ["孫興慜", "金玟哉", "李剛仁"] },
+  "cz": { name: "捷克 (Czechia)", stars: ["柏德列·希克", "蘇錫"] },
+  "ca": { name: "加拿大 (Canada)", stars: ["阿方素·戴維斯", "祖拿芬·戴維"] },
+  "ba": { name: "波斯尼亞 (Bosnia)", stars: ["哲科", "哥拉辛拿斯"] },
+  "qa": { name: "卡塔爾 (Qatar)", stars: ["阿菲夫", "阿里"] },
+  "ch": { name: "瑞士 (Switzerland)", stars: ["沙加", "岩保路"] },
+  "br": { name: "巴西 (Brazil)", stars: ["雲尼斯奧斯", "洛迪高", "尼馬"] },
+  "ma": { name: "摩洛哥 (Morocco)", stars: ["阿舒拉夫", "薛耶治"] },
+  "ht": { name: "海地 (Haiti)", stars: ["派洛特", "納松"] },
+  "gb-sct": { name: "蘇格蘭 (Scotland)", stars: ["麥湯米尼", "羅拔臣"] },
+  "us": { name: "美國 (USA)", stars: ["普列錫", "麥堅尼", "巴洛根"] },
+  "py": { name: "巴拉圭 (Paraguay)", stars: ["阿米朗", "恩錫素"] },
+  "au": { name: "澳洲 (Australia)", stars: ["賴恩", "蘇達"] },
+  "tr": { name: "土耳其 (Türkiye)", stars: ["阿達·居萊爾", "恰爾汗奧盧"] },
+  "de": { name: "德國 (Germany)", stars: ["維斯", "梅斯亞拿", "夏維斯"] },
+  "cw": { name: "庫拉索 (Curaçao)", stars: ["巴干拿"] },
+  "ci": { name: "科特迪瓦 (Ivory Coast)", stars: ["阿萊", "基斯爾"] },
+  "ec": { name: "厄瓜多爾 (Ecuador)", stars: ["卡些度", "華倫西亞"] },
+  "nl": { name: "荷蘭 (Netherlands)", stars: ["雲迪克", "加普", "迪莊"] },
+  "jp": { name: "日本 (Japan)", stars: ["三笘薰", "遠藤航", "久保建英"] },
+  "se": { name: "瑞典 (Sweden)", stars: ["伊薩克", "基奧基尼斯"] },
+  "tn": { name: "突尼西亞 (Tunisia)", stars: ["斯希里"] },
+  "be": { name: "比利時 (Belgium)", stars: ["迪布尼", "盧卡古"] },
+  "eg": { name: "埃及 (Egypt)", stars: ["沙拿", "馬摩殊"] },
+  "ir": { name: "伊朗 (Iran)", stars: ["泰利米", "阿斯蒙"] },
+  "nz": { name: "紐西蘭 (New Zealand)", stars: ["基斯·活特"] },
+  "es": { name: "西班牙 (Spain)", stars: ["洛迪", "耶馬爾", "莫拉達"] },
+  "cv": { name: "佛得角 (Cape Verde)", stars: ["文迪斯"] },
+  "sa": { name: "沙特阿拉伯 (Saudi Arabia)", stars: ["達華沙利"] },
+  "uy": { name: "烏拉圭 (Uruguay)", stars: ["華維迪", "紐尼斯"] },
+  "fr": { name: "法國 (France)", stars: ["麥巴比", "基沙文", "沙列巴"] },
+  "sn": { name: "塞內加爾 (Senegal)", stars: ["文尼", "積臣"] },
+  "iq": { name: "伊拉克 (Iraq)", stars: ["侯賽因"] },
+  "no": { name: "挪威 (Norway)", stars: ["哈蘭德", "奧迪加特"] },
+  "ar": { name: "阿根廷 (Argentina)", stars: ["美斯", "羅達路", "安素"] },
+  "dz": { name: "阿爾及利亞 (Algeria)", stars: ["馬列斯"] },
+  "at": { name: "奧地利 (Austria)", stars: ["阿拉巴", "薩比沙"] },
+  "jo": { name: "約旦 (Jordan)", stars: ["塔馬里"] },
+  "pt": { name: "葡萄牙 (Portugal)", stars: ["C朗拿度", "般奴·費南迪斯"] },
+  "cd": { name: "剛果民主 (DR Congo)", stars: ["韋沙"] },
+  "uz": { name: "烏茲別克 (Uzbekistan)", stars: ["紹穆羅多夫"] },
+  "co": { name: "哥倫比亞 (Colombia)", stars: ["戴亞斯", "占士·洛迪古斯"] },
+  "gb-eng": { name: "英格蘭 (England)", stars: ["簡尼", "比寧咸", "沙卡"] },
+  "hr": { name: "克羅地亞 (Croatia)", stars: ["摩迪", "格華迪奧"] },
+  "gh": { name: "加納 (Ghana)", stars: ["庫杜斯"] },
+  "pa": { name: "巴拿馬 (Panama)", stars: ["法查度"] }
 };
 
 const groups={
-  A:["qa","ec","sn","nl","it","se"],
-  B:["gb-eng","us","gb-wls","ir","ua","cz"],
-  C:["ar","sa","mx","pl","tr","no"],
-  D:["fr","dk","tn","au","at","hu"],
-  E:["es","de","jp","cr","cl","co"],
-  F:["be","hr","ma","ca","pe","ve"],
-  G:["br","ch","rs","cm","bo","py"],
-  H:["pt","uy","kr","gh","nz","eg"],
-  I:["ng","dz","za","ci","cn","uz"],
-  J:["jm","pa","sl","hn","is","fi"],
-  K:["gr","ro","bg","sk","si","ie"],
-  L:["gb-sct","gb-wls","gb-nir","cm","sa","mx"] 
+  "A": ["mx", "za", "kr", "cz"], "B": ["ca", "ba", "qa", "ch"], "C": ["br", "ma", "ht", "gb-sct"],
+  "D": ["us", "py", "au", "tr"], "E": ["de", "cw", "ci", "ec"], "F": ["nl", "jp", "se", "tn"],
+  "G": ["be", "eg", "ir", "nz"], "H": ["es", "cv", "sa", "uy"], "I": ["fr", "sn", "iq", "no"],
+  "J": ["ar", "dz", "at", "jo"], "K": ["pt", "cd", "uz", "co"], "L": ["gb-eng", "hr", "gh", "pa"]
 };
 
-// ✅ 中央配置賽程資料庫
 const centralSchedule = [
-  { id: "M01", dayLabel: "06-01", type: "Friendly", t1: "qa", t2: "ec", time: "18:00", score: "0 - 0", played: true, scorers: "雙方互交白卷，防線表現均相當穩健。" },
-  { id: "M02", dayLabel: "06-02", type: "Friendly", t1: "sn", t2: "nl", time: "20:30", score: "1 - 3", played: true, scorers: "荷蘭：加普 14', 迪蹤 55', 雲迪克 82' | 塞內加爾：文尼 40' (十二碼)" },
-  { id: "M03", dayLabel: "06-03", type: "Friendly", t1: "gb-eng", t2: "us", time: "23:00", score: "2 - 1", played: true, scorers: "德國：佳·夏維斯 2' (頭槌), 利利·辛尼 66' | 美國：安東尼·羅賓遜 35'\n(賽事精華：德國喜迎熱身賽九連勝！地主美國防線吞九連敗。)" },
-  { id: "M04", dayLabel: "06-04", type: "Friendly", t1: "gb-wls", t2: "ir", time: "18:00", score: "1 - 1", played: true, scorers: "威爾斯：占士 29' | 伊朗：泰利米 75'" },
-  { id: "M05", dayLabel: "06-05", type: "Friendly", t1: "ar", t2: "sa", time: "20:30", score: "2 - 0", played: true, scorers: "阿根廷：安素 18', 羅達路·馬天尼斯 54'\n(德州現場湧入超過 9.1 萬球迷！阿根廷豪取熱身賽恐怖 18 連勝！)" },
-  { id: "M06", dayLabel: "06-06", type: "Friendly", t1: "mx", t2: "pl", time: "23:00", score: "2 - 2", played: true, scorers: "波蘭：利雲度夫斯基 44', 施連斯基 76' | 墨西哥：占文尼斯 19', 馬田 88'" },
-  { id: "M07", dayLabel: "06-07", type: "Friendly", t1: "tr", t2: "no", time: "18:00", score: "2 - 3", played: true, scorers: "挪威：哈蘭德 11', 43', 奧迪加特 65' | 土耳其：居萊爾 30', 恰爾汗奧盧 77'\n(魔人哈蘭德狀態大勇！梅開二度客場險勝。)" },
-  { id: "M08", dayLabel: "06-07", type: "Friendly", t1: "at", t2: "hu", time: "20:30", score: "2 - 0", played: true, scorers: "奧地利：薩比沙 51', 阿拉巴 83'" },
-  { id: "M09", dayLabel: "06-07", type: "Friendly", t1: "cl", t2: "co", time: "23:00", score: "1 - 2", played: true, scorers: "哥聯比亞：路易斯·戴亞斯 37', 占士·洛迪古斯 74' | 智利：亞歷斯·山齊士 90'" },
-  { id: "M10", dayLabel: "06-12", type: "Group Match", t1: "us", t2: "gb-wls", time: "03:00", score: "VS", played: false, scorers: "世界盃 Group B A組揭幕大戰！美國坐鎮主場迎戰紅龍威爾斯。" },
-  { id: "M11", dayLabel: "06-12", type: "Group Match", t1: "qa", t2: "nl", time: "21:00", score: "VS", played: false, scorers: "小組賽 A 組焦點：東道主卡塔爾死磕橙衣軍團荷蘭。" },
-  { id: "M12", dayLabel: "06-18", type: "Group Match", t1: "ar", t2: "mx", time: "02:00", score: "VS", played: false, scorers: "小組賽 C 組強權碰撞：美斯率阿根廷決戰美洲大老墨西哥。" },
-  { id: "M13", dayLabel: "06-18", type: "Group Match", t1: "es", t2: "de", time: "20:00", score: "VS", played: false, scorers: "小組賽 E 組宇宙大戰：狂牛軍團西班牙 vs 坦克車德國！" },
-  { id: "M14", dayLabel: "07-05", type: "Round of 16", t1: "gb-eng", t2: "it", time: "04:00", score: "VS", played: false, scorers: "淘汰賽十六強頂級對決預演（模擬預測席位）。" },
-  { id: "M15", dayLabel: "07-19", type: "🏆 FINAL 決賽", t1: "br", t2: "fr", time: "03:00", score: "VS", played: false, scorers: "【舉世矚目】2026年超級世界盃終極決賽！頂級強權決戰世界之巔，見證新科世界冠軍高舉大力神盃之夜！" }
+  /* --- Group A-D 小組賽 --- */
+  { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "VS", scorers: "🏟️ 墨西哥城 阿茲特克體育場\n💡 心水推薦：揭幕戰東道主墨西哥主場優勢極大，推薦勝。" },
+  { id: "GS02", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "10:00", t1: "kr", t2: "cz", score: "VS", scorers: "🏟️ 墨西哥 瓜達拉哈拉體育場\n💡 心水推薦：太極虎戰捷克，兩隊實力接近，推薦平局或小球。" },
+  { id: "GS03", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "03:00", t1: "ca", t2: "ba", score: "VS", scorers: "🏟️ 加拿大 多倫多體育場\n💡 加拿大主場首秀，看好主隊坐和望贏。" },
+  { id: "GS04", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "09:00", t1: "us", t2: "py", score: "VS", scorers: "🏟️ 美國 洛杉磯 SoFi 體育場\n💡 美國陣容齊整主場出擊，首選主隊獨贏。" },
+  { id: "GS05", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "03:00", t1: "qa", t2: "ch", score: "VS", scorers: "🏟️ 美國 波士頓體育場\n💡 瑞士防守強硬，看好實力較高的一方小勝。" },
+  { id: "GS06", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "06:00", t1: "br", t2: "ma", score: "VS", scorers: "🏟️ 美國 紐約大都會人壽體育場\n💡 強強對決！森巴軍團對戰上屆黑馬，推薦大球盤。" },
+  { id: "GS07", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "09:00", t1: "ht", t2: "gb-sct", score: "VS", scorers: "🏟️ 美國 邁阿密體育場\n💡 蘇格蘭身體對抗佔優，首選客隊不敗。" },
+  { id: "GS08", stage: "Group A-D 小組賽", dateStr: "2026-06-15", time: "12:00", t1: "au", t2: "tr", score: "VS", scorers: "🏟️ 美國 三藩市體育場\n💡 土耳其鋒線天才湧現，看好星月軍團獨贏。" },
+  { id: "GS09", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "00:00", t1: "cz", t2: "za", score: "VS", scorers: "🏟️ 小組賽第二輪。捷克需拼搶積分，推薦主勝。" },
+  { id: "GS10", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "ch", t2: "ba", score: "VS", scorers: "🏟️ 兩歐勁旅相遇，球風偏穩，首選小球。" },
+  { id: "GS11", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "06:00", t1: "ca", t2: "qa", score: "VS", scorers: "🏟️ 加拿大速度流邊路進攻，看好主隊全取三分。" },
+  { id: "GS12", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "09:00", t1: "mx", t2: "kr", score: "VS", scorers: "🏟️ 次輪生死戰！墨西哥遭遇太極虎，強烈推薦大球。" },
+  { id: "GS13", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "03:00", t1: "us", t2: "au", score: "VS", scorers: "🏟️ 洛杉磯 SoFi 體育場，東道主勝率高。" },
+  { id: "GS14", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "06:00", t1: "gb-sct", t2: "ma", score: "VS", scorers: "🏟️ 摩洛哥實力稍勝，防守反擊推薦客隊勝。" },
+  { id: "GS15", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "08:30", t1: "br", t2: "ht", score: "VS", scorers: "🏟️ 巴西鋒線輾壓，看好讓球大勝。" },
+  { id: "GS16", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "11:00", t1: "tr", t2: "py", score: "VS", scorers: "🏟️ 土耳其控球流戰術，看好主隊坐和望贏。" },
+  { id: "GS17", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ch", t2: "ca", score: "VS", scorers: "🏟️ 第三輪生死開哨，局勢多變，首選兩隊都有進球。" },
+  { id: "GS18", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ba", t2: "qa", score: "VS", scorers: "🏟️ 同步開賽，推薦分出勝負。" },
+  { id: "GS19", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "06:00", t1: "gb-sct", t2: "br", score: "VS", scorers: "🏟️ 巴西提前出線或爭首名，獨贏盤相對穩健。" },
+  { id: "M20", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "06:00", t1: "ma", t2: "ht", score: "VS", scorers: "🏟️ 摩洛哥實力優勢，看好獨贏。" },
+  { id: "M21", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "09:00", t1: "cz", t2: "mx", score: "VS", scorers: "🏟️ 焦點戰！阿茲特克主場狂熱，看好墨西哥。" },
+  { id: "M22", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "09:00", t1: "za", t2: "kr", score: "VS", scorers: "🏟️ 韓國非勝不可，孫興慜領銜搶攻，首選客勝。" },
+  { id: "M23", stage: "Group A-D 小組賽", dateStr: "2026-06-26", time: "10:00", t1: "tr", t2: "us", score: "VS", scorers: "🏟️ 焦點對決，戰況激烈推薦大球。" },
+  { id: "M24", stage: "Group A-D 小組賽", dateStr: "2026-06-26", time: "10:00", t1: "py", t2: "au", score: "VS", scorers: "🏟️ 出線生死大戰，推薦和局。" },
+
+  /* --- Group E-H 小組賽 --- */
+  { id: "GS25", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "01:00", t1: "de", t2: "cw", score: "VS", scorers: "🏟️ 戰車出征實力輾壓，看好德國大勝。" },
+  { id: "GS26", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "04:00", t1: "nl", t2: "jp", score: "VS", scorers: "🏟️ 焦點大戰！日本藍武士挑戰橙衣軍團，推薦大盤對攻。" },
+  { id: "GS27", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "07:00", t1: "ci", t2: "ec", score: "VS", scorers: "🏟️ 非洲猛象硬碰南美強權，推薦和局。" },
+  { id: "GS28", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "10:00", t1: "se", t2: "tn", score: "VS", scorers: "🏟️ 瑞典雙前鋒進攻火力猛烈，看好主勝。" },
+  { id: "GS29", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "00:00", t1: "es", t2: "cv", score: "VS", scorers: "🏟️ 西班牙控球體系無解，看好輕鬆勝出。" },
+  { id: "GS30", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "03:00", t1: "be", t2: "eg", score: "VS", scorers: "🏟️ 迪布尼決戰沙拿，推薦雙方都有進球。" },
+  { id: "GS31", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "06:00", t1: "sa", t2: "uy", score: "VS", scorers: "🏟️ 烏拉圭實力強悍，看好客勝。" },
+  { id: "GS32", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "09:00", t1: "ir", t2: "nz", score: "VS", scorers: "🏟️ 波斯鐵騎更具大賽經驗，看好伊朗勝。" },
+  { id: "GS33", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "01:00", t1: "nl", t2: "se", score: "VS", scorers: "🏟️ 強強對決，進攻對攻大戰首選大球。" },
+  { id: "GS34", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "04:00", t1: "de", t2: "ci", score: "VS", scorers: "🏟️ 德國戰術體系嚴密，看好主隊。" },
+  { id: "GS35", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "08:00", t1: "ec", t2: "cw", score: "VS", scorers: "🏟️ 厄瓜多爾整體戰力佔優，推薦主勝。" },
+  { id: "GS36", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "12:00", t1: "tn", t2: "jp", score: "VS", scorers: "🏟️ 日本藍武士強攻爭分，看好客勝。" },
+  { id: "GS37", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "00:00", t1: "es", t2: "sa", score: "VS", scorers: "🏟️ 西班牙傳控輾壓，獨贏無懸念。" },
+  { id: "GS38", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "03:00", t1: "be", t2: "ir", score: "VS", scorers: "🏟️ 比利時進攻點多，看好主隊勝。" },
+  { id: "GS39", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "06:00", t1: "uy", t2: "cv", score: "VS", scorers: "🏟️ 烏拉圭實力佔優，強推主隊。" },
+  { id: "GS40", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "09:00", t1: "nz", t2: "eg", score: "VS", scorers: "🏟️ 埃及法老沙拿領銜爭勝，看好客隊不敗。" },
+  { id: "GS41", stage: "Group E-H 小組賽", dateStr: "2026-06-25", time: "07:00", t1: "tn", t2: "nl", score: "VS", scorers: "🏟️ 荷蘭取分爭首名，看好客隊大勝。" },
+  { id: "GS42", stage: "Group E-H 小組賽", dateStr: "2026-06-26", time: "04:00", t1: "ec", t2: "de", score: "VS", scorers: "🏟️ 強強對話，日耳曼戰車更勝一籌。" },
+  { id: "GS43", stage: "Group E-H 小組賽", dateStr: "2026-06-26", time: "07:00", t1: "jp", t2: "se", score: "VS", scorers: "🏟️ 亞洲技術流決戰北歐海盜，強烈推薦和局。" },
+  { id: "GS44", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "04:00", t1: "cw", t2: "ci", score: "VS", scorers: "🏟️ 科特迪瓦實力輾壓，看好客隊勝。" },
+  { id: "GS45", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "08:00", t1: "uy", t2: "es", score: "VS", scorers: "🏟️ 頂級對決！豪門生死戰，看好小球。" },
+  { id: "GS46", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "08:00", t1: "cv", t2: "sa", score: "VS", scorers: "🏟️ 同步激戰，推薦分出勝負。" },
+  { id: "GS47", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "11:00", t1: "nz", t2: "be", score: "VS", scorers: "🏟️ 比利時優賽明顯，看好讓球勝。" },
+  { id: "GS48", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "11:00", t1: "eg", t2: "ir", score: "VS", scorers: "🏟️ 實力伯仲之間，首選和局。" },
+
+  /* --- Group I-L 小組賽 --- */
+  { id: "GS49", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "03:00", t1: "fr", t2: "sn", score: "VS", scorers: "🏟️ 法國豪華陣容亮相，看好取得開門紅。" },
+  { id: "GS50", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "06:00", t1: "iq", t2: "no", score: "VS", scorers: "🏟️ 魔人哈蘭德衝擊防線，看好挪威勝。" },
+  { id: "GS51", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "09:00", t1: "ar", t2: "dz", score: "VS", scorers: "🏟️ 衛冕冠軍登場！美斯領銜強攻，強推主隊。" },
+  { id: "GS52", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "12:00", t1: "at", t2: "jo", score: "VS", scorers: "🏟️ 奧地利球風成熟，看好大勝。" },
+  { id: "GS53", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "01:00", t1: "pt", t2: "cd", score: "VS", scorers: "🏟️ C朗最後一舞，葡萄牙實力上乘，主勝穩健。" },
+  { id: "GS54", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "04:00", t1: "gb-eng", t2: "hr", score: "VS", scorers: "🏟️ 超級強強對陣！三獅軍團拼格子軍，首選小球。" },
+  { id: "GS55", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "07:00", t1: "gh", t2: "pa", score: "VS", scorers: "🏟️ 非洲黑星陣容更強，推薦加納勝。" },
+  { id: "GS56", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "10:00", t1: "uz", t2: "co", score: "VS", scorers: "🏟️ 哥倫比亞實力優勢，看好客勝。" },
+  { id: "GS57", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "01:00", t1: "ar", t2: "at", score: "VS", scorers: "🏟️ 焦點大戰，潘帕斯雄鷹技術更細膩，推薦勝。" },
+  { id: "GS58", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "05:00", t1: "fr", t2: "iq", score: "VS", scorers: "🏟️ 高盧雄雞戰意十足，看好大比分勝。" },
+  { id: "GS59", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "08:00", t1: "no", t2: "sn", score: "VS", scorers: "🏟️ 北歐力量火拼西非雄獅，看好對攻大球。" },
+  { id: "GS60", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "11:00", t1: "jo", t2: "dz", score: "VS", scorers: "🏟️ 阿爾及利亞大賽經驗豐富，看好客隊不敗。" },
+  { id: "GS61", stage: "Group I-L 小組賽", dateStr: "2026-06-24", time: "01:00", t1: "pt", t2: "uz", score: "VS", scorers: "🏟️ 葡萄牙邊路快馬群爆發，看好主隊。" },
+  { id: "GS62", stage: "Group I-L 小組賽", dateStr: "2026-06-24", time: "04:00", t1: "gb-eng", t2: "gh", score: "VS", scorers: "🏟️ 英格蘭實力大幅度領先，主勝穩。" },
+  { id: "GS63", stage: "Group I-L 小組賽", dateStr: "2026-06-24", time: "07:00", t1: "pa", t2: "hr", score: "VS", scorers: "🏟️ 克羅地亞中場大腦控球，看好客隊勝。" },
+  { id: "GS64", stage: "Group I-L 小組賽", dateStr: "2026-06-24", time: "10:00", t1: "co", t2: "cd", score: "VS", scorers: "🏟️ 哥倫比亞實力優勢，看好獨贏。" },
+  { id: "GS65", stage: "Group I-L 小組賽", dateStr: "2026-06-27", time: "03:00", t1: "no", t2: "fr", score: "VS", scorers: "🏟️ 頂級焦點戰！哈蘭德決戰麥巴比，推薦大球！" },
+  { id: "GS66", stage: "Group I-L 小組賽", dateStr: "2026-06-27", time: "03:00", t1: "sn", t2: "iq", score: "VS", scorers: "🏟️ 生死一戰，推薦兩隊都有進球。" },
+  { id: "GS67", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "05:00", t1: "pa", t2: "gb-eng", score: "VS", scorers: "🏟️ 英格蘭取分爭首名，看好客勝。" },
+  { id: "GS68", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "05:00", t1: "hr", t2: "gh", score: "VS", scorers: "🏟️ 出線生死大對決，推薦小球盤口。" },
+  { id: "GS69", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "07:30", t1: "co", t2: "pt", score: "VS", scorers: "🏟️ 火星撞地球，對攻大戰，強推大球。" },
+  { id: "GS70", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "10:00", t1: "jo", t2: "ar", score: "VS", scorers: "🏟️ 阿根廷實力輾壓，客勝無懸念。" },
+  { id: "GS71", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "10:00", t1: "at", t2: "dz", score: "VS", scorers: "🏟️ 兩軍正面生死交鋒，推薦和局。" },
+  { id: "GS72", stage: "Group I-L 小組賽", dateStr: "2026-06-30", time: "07:30", t1: "cd", t2: "uz", score: "VS", scorers: "🏟️ 小組賽收官大戰，看好分出勝負。" },
+
+  /* --- 🏆 32強淘汰賽（共 16 場生死戰，對陣全數待定） --- */
+  { id: "K32_01", stage: "32強淘汰賽", dateStr: "2026-06-29", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 1】\n📢 特色：擴軍賽制首度登場！淘汰賽揭幕戰，戰術博弈激烈，推薦關注半場和局。" },
+  { id: "K32_02", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 2】\n📢 特色：一場定生死，強隊多半立足於防守，首選全場小球。" },
+  { id: "K32_03", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "04:30", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 3】\n📢 特色：傳統豪強對戰小組第三黑馬，豪門底蘊深厚，獨贏盤相對穩健。" },
+  { id: "K32_04", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 4】\n📢 特色：東道主若殺入此賽區，主場優勢明顯，看好主算出線。" },
+  { id: "K32_05", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 5】\n📢 特色：南美進攻球風對決，節奏極快，推薦大球。" },
+  { id: "K32_06", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 6】\n📢 特色：戰況容易陷入拉鋸，90分鐘握手言和踢延長賽成份高。" },
+  { id: "K32_07", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 7】\n📢 特色：強弱分明的對局，上游控球流派能完美掌控局勢。" },
+  { id: "K32_08", stage: "32強淘汰賽", dateStr: "2026-07-02", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 8】\n📢 特色：高強度對抗，哨音可能較為密集，可留意黃牌數。" },
+  { id: "K32_09", stage: "32強淘汰賽", dateStr: "2026-07-02", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 9】\n📢 特色：先失球的一方會發動極端反撲，下半場推薦大球。" },
+  { id: "K32_10", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 10】\n📢 特色：大賽經驗豐富隊伍在單場淘汰賽更佔心理優勢。" },
+  { id: "K32_11", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 11】\n📢 特色：防守反擊隊伍在淘汰賽極其吃香，看好受讓方。" },
+  { id: "K32_12", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 12】\n📢 特色：實力均等的防守大師碰頭，互射十二碼機率高。" },
+  { id: "K32_13", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 13】\n📢 特色：週末黃金檔！老牌歐洲強權亮相，看好順利取勝晉級。" },
+  { id: "K32_14", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 14】\n📢 特色：西班牙或阿根廷種子隊出戰預演，控球為王，強推主隊。" },
+  { id: "K32_15", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 15】\n📢 特色：戰意拉滿，兩邊鋒線巨星正面對決，看好分出勝負。" },
+  { id: "K32_16", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 16】\n📢 特色：32強收官大戰！拼搶最後一席名額，必有精彩絕殺。" },
+
+  /* --- ⚽ 16強淘汰賽（7月5日 - 7月8日共8場） --- */
+  { id: "K16_01", stage: "16強淘汰賽", dateStr: "2026-07-05", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 世界十六強！豪門大內鬥開始，兩隊均無犯錯空間，首選平局。" },
+  { id: "K16_02", stage: "16強淘汰賽", dateStr: "2026-07-05", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 進攻會遭遇鋼鐵防線嚴重阻礙，窒息攻防推薦小球盤口。" },
+  { id: "K16_03", stage: "16強淘汰賽", dateStr: "2026-07-06", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 上半場多傾向於控球試探，強烈推薦半場 0:0 或和局。" },
+  { id: "K16_04", stage: "16強淘汰賽", dateStr: "2026-07-06", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 傳統強權碰撞，球星個人一瞬間的閃光將一箭定江山。" },
+  { id: "K16_05", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 頂級戰術大師對壘，中場控制力優秀的一方勝算更高。" },
+  { id: "K16_06", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 高強度拼搶局，體能儲備好、板凳深度厚的球隊佔優。" },
+  { id: "K16_07", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "00:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強倒數次戰，戰略體系更成熟的一方更容易在常規時間贏波。" },
+  { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強收官大戰！關注極其擅長踢十二碼大戰的隊伍（如克羅地亞）。" },
+
+  /* --- ⚔️ 8強半準決賽（7月10日 - 7月12日共4場） --- */
+  { id: "K8_01", stage: "8強半準決賽", dateStr: "2026-07-10", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 全球頂尖八強巔峰對決！全面移師美國超大型主場，推薦受讓方。" },
+  { id: "K8_02", stage: "8強半準決賽", dateStr: "2026-07-11", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 週末黃金檔期！世紀歐美大內鬥，實力五五開，常規時間看好踢和。" },
+  { id: "K8_03", stage: "8強半準決賽", dateStr: "2026-07-12", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 戰術博弈極端化，進球數往年皆偏少，強烈推薦小球盤口。" },
+  { id: "K8_04", stage: "8強半準決賽", dateStr: "2026-07-12", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 八強末戰，誰贏誰進四強！巨星戰略極其關鍵，強烈看好控球強隊。" },
+
+  /* --- 🌟 4強準決賽（7月15日 - 7月16日） --- */
+  { id: "K4_01", stage: "4強準決賽", dateStr: "2026-07-15", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：達拉斯 AT&T 體育場\n💡 準決賽第一場！為決賽門票防守將拉滿到極致，極度看好小球。" },
+  { id: "K4_02", stage: "4強準決賽", dateStr: "2026-07-16", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：亞特蘭大體育場\n💡 準決賽第二場！世界四強神仙打架，關鍵先生一槌定音，常規時間平局成份高。" },
+
+  /* --- 🥉 季軍爭奪賽（7月19日） --- */
+  { id: "K3_01", stage: "季軍爭奪賽", dateStr: "2026-07-19", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：邁阿密 硬石體育場 (Hard Rock Stadium)\n💡 榮譽大戰！兩隊毫無包袱，全力展開對攻表演賽，瘋狂推薦大球盤及雙方有進球！" },
+
+  /* --- 👑 終極冠軍總決賽（7月20日） --- */
+  { id: "KF_01", stage: "👑 冠軍總決賽", dateStr: "2026-07-20", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 終極聖地：美國新澤西州 大都會人壽體育場 (MetLife Stadium)\n💡 巔峰巨獻：決賽一球定乾坤！世紀大戰極易平局進入加時，推薦防守悍將受讓。" }
 ];
 
 const store={};
 const root=document.getElementById("groups");
 
-// ✅ 初始化建立小組榜單（整合按分鍵保護罩）
+// 初始化建立分組
 Object.keys(groups).forEach(g=>{
  let box=document.createElement("div");
  box.className="group";
@@ -530,22 +626,15 @@ Object.keys(groups).forEach(g=>{
   img.src="https://flagcdn.com/w80/"+team.code+".png";
   img.className="flag";
   
-  // 🔒 建立安全鎖定容器（包裹原本的按鈕）
   let lockWrapper = document.createElement("div");
-  lockWrapper.className = "btn-lock-container"; // 利用類名便於全域選取管控
+  lockWrapper.className = "btn-lock-container";
   
   let b3=document.createElement("button"); b3.innerText="+3"; b3.className="win"; b3.onclick=()=>{team.points+=3; render(g);};
   let b1=document.createElement("button"); b1.innerText="+1"; b1.className="draw"; b1.onclick=()=>{team.points+=1; render(g);};
   let b0=document.createElement("button"); b0.innerText="+0"; b0.className="lose"; b0.onclick=()=>{render(g);};
-  
   lockWrapper.append(b3,b1,b0);
-  
-  // 🔒 建立未解鎖時顯示的提示文字
-  let lockPlaceholder = document.createElement("span");
-  lockPlaceholder.className = "lock-status-txt";
-  lockPlaceholder.innerText = "🔒 密碼鎖定";
 
-  row.append(img, lockWrapper, lockPlaceholder);
+  row.append(img, lockWrapper);
   box.appendChild(row);
  });
  let table=document.createElement("div");
@@ -556,19 +645,13 @@ Object.keys(groups).forEach(g=>{
  render(g);
 });
 
-// ✅ 密碼解鎖驗證核心引擎
 function checkScoreUnlock() {
-  const pwdInput = document.getElementById("scorePassword").value;
-  if(pwdInput === "8679") {
-    alert("🔓 密碼驗證成功！分組積分按鍵已全面開啟。");
-    // 隱藏所有「🔒 密碼鎖定」提示
-    document.querySelectorAll(".lock-status-txt").forEach(el => el.style.display = "none");
-    // 展現所有隱藏的評分按鍵
+  if(document.getElementById("scorePassword").value === "8679") {
+    alert("🔓 驗證成功！模擬計分按鍵已全面開啟。");
     document.querySelectorAll(".btn-lock-container").forEach(el => el.style.display = "flex");
-    // 隱藏密碼管制控制列
-    document.querySelector(".lock-control-panel").style.display = "none";
+    document.getElementById("lockControlPanel").style.display = "none";
   } else {
-    alert("❌ 密碼錯誤！無法解鎖按分鍵。");
+    alert("❌ 密碼錯誤！");
   }
 }
 
@@ -582,25 +665,11 @@ function render(g){
    let img=document.createElement("img");
    img.src="https://flagcdn.com/w80/"+t.code+".png";
    img.className="flag"; img.style.width = "22px"; img.style.height="15px";
-   let countryName = teamDatabase[t.code] ? teamDatabase[t.code].name : t.code.toUpperCase();
    let txt=document.createElement("span");
-   txt.innerText = `${i+1}. ${countryName} (${t.points} 分)`;
+   txt.innerText = `${i+1}. ${teamDatabase[t.code]?teamDatabase[t.code].name.split(" ")[0]:t.code.toUpperCase()} (${t.points} 分)`;
    row.append(img, txt);
    d.table.appendChild(row);
  });
- updateChampPrediction();
-}
-
-function updateChampPrediction() {
-  let bestTeam = null;
-  let maxPoints = -1;
-  Object.keys(store).forEach(g => {
-    let topTeam = [...store[g].data].sort((a,b)=>b.points-a.points)[0];
-    if(topTeam && topTeam.points > maxPoints && topTeam.points > 0) { maxPoints = topTeam.points; bestTeam = topTeam.code; }
-  });
-  const champArea = document.getElementById("champArea");
-  if(bestTeam) { champArea.innerHTML = `<img src="https://flagcdn.com/w80/${bestTeam}.png" style="width:26px; vertical-align:middle; margin-right:5px;"> <b>${maxPoints} pts</b> 隊伍形勢大好`; } 
-  else { champArea.innerText = "尚未有球隊獲得積分"; }
 }
 
 const matchBox = document.getElementById("matches");
@@ -610,109 +679,73 @@ function initDateSelector() {
   container.innerHTML = "";
   
   let allBtn = document.createElement("button");
-  allBtn.className = "date-btn active"; allBtn.innerText = "🗓️ 全部動態賽程";
+  allBtn.className = "date-btn active"; allBtn.innerText = "🗓️ 全部 104 場賽程日曆";
   allBtn.onclick = function() { 
     document.querySelectorAll(".date-btn").forEach(b => b.classList.remove("active")); 
-    allBtn.classList.add("active"); 
-    renderMatches("all"); 
+    allBtn.classList.add("active"); renderMatches("all"); 
   };
   container.appendChild(allBtn);
   
-  const uniqueDays = [...new Set(centralSchedule.map(m => m.dayLabel))];
-  
-  uniqueDays.forEach(day => {
+  const uniqueStages = [...new Set(centralSchedule.map(m => m.stage))];
+  uniqueStages.forEach(stage => {
     let btn = document.createElement("button"); 
-    btn.className = "date-btn";
-    
-    if(day === "07-19") {
-      btn.innerText = `🏆 07-19 決賽冠軍日`;
-    } else if(day.startsWith("06") && parseInt(day.split("-")[1]) <= 7) {
-      btn.innerText = `${day} (完賽)`;
-    } else {
-      btn.innerText = `${day} (正賽)`;
-    }
-    
+    btn.className = "date-btn"; btn.innerText = stage;
     btn.onclick = function() { 
       document.querySelectorAll(".date-btn").forEach(b => b.classList.remove("active")); 
-      btn.classList.add("active"); 
-      renderMatches(day); 
+      btn.classList.add("active"); renderMatches(stage); 
     };
     container.appendChild(btn);
   });
 }
 
-function renderMatches(filterDay) {
+function renderMatches(filterStage) {
   matchBox.innerHTML = "";
-
   centralSchedule.forEach(m => {
-    if(filterDay !== "all" && m.dayLabel !== filterDay) return;
+    if(filterStage !== "all" && m.stage !== filterStage) return;
     
     let matchCard = document.createElement("div");
     matchCard.className = "match-card";
-    matchCard.onclick = () => openSquad(m.t1, m.t2, m.played, m.scorers, m.type); 
+    matchCard.onclick = () => openSquad(m.t1, m.t2, m.scorers, m.stage, m.dateStr); 
 
     let timeTag = document.createElement("div");
     timeTag.className = "match-time";
-    
-    if (m.played) {
-      timeTag.innerText = `✅ 已完賽 | ${m.type} (${m.dayLabel})`;
-      timeTag.style.background = "#10b981"; timeTag.style.color = "#ffffff";
-    } else {
-      timeTag.innerText = `⏳ [${m.type}] 2026-${m.dayLabel} ${m.time} HKT`;
-      timeTag.style.background = "#1e293b"; timeTag.style.color = "#dfaa2a";
-    }
+    timeTag.innerText = `⏳ 尚未開賽 | [${m.stage}] ${m.dateStr} ${m.time} HKT`;
 
     let teamsDiv = document.createElement("div");
     teamsDiv.className = "match-teams";
 
     let slot1 = document.createElement("div"); slot1.className = "team-slot";
-    let img1 = document.createElement("img"); img1.src = "https://flagcdn.com/w80/"+m.t1+".png"; img1.className="flag";
-    let name1 = document.createElement("span"); name1.innerText = teamDatabase[m.t1] ? teamDatabase[m.t1].name : m.t1;
+    let img1 = document.createElement("img"); 
+    img1.src = m.t1 === "tbd" ? "https://flagcdn.com/w80/un.png" : "https://flagcdn.com/w80/"+m.t1+".png"; img1.className="flag";
+    let name1 = document.createElement("span"); name1.innerText = teamDatabase[m.t1] ? teamDatabase[m.t1].name.split(" ")[0] : m.t1;
     slot1.append(img1, name1);
 
-    let vs = document.createElement("span"); vs.className = "vs"; 
-    if (m.played) {
-      vs.innerText = m.score; vs.style.color = "#10b981"; vs.style.fontSize = "1.3rem";
-    } else {
-      vs.innerText = "VS"; vs.style.color = "#dfaa2a"; vs.style.fontSize = "14px";
-    }
+    let vs = document.createElement("span"); vs.className = "vs"; vs.innerText = m.score;
 
     let slot2 = document.createElement("div"); slot2.className = "team-slot";
-    let img2 = document.createElement("img"); img2.src = "https://flagcdn.com/w80/"+m.t2+".png"; img2.className="flag";
-    let name2 = document.createElement("span"); name2.innerText = teamDatabase[m.t2] ? teamDatabase[m.t2].name : m.t2;
+    let img2 = document.createElement("img"); 
+    img2.src = m.t2 === "tbd" ? "https://flagcdn.com/w80/un.png" : "https://flagcdn.com/w80/"+m.t2+".png"; img2.className="flag";
+    let name2 = document.createElement("span"); name2.innerText = teamDatabase[m.t2] ? teamDatabase[m.t2].name.split(" ")[0] : m.t2;
     slot2.append(img2, name2);
 
     teamsDiv.append(slot1, vs, slot2);
-    
     let viewHint = document.createElement("div");
-    viewHint.className = "view-btn";
-    viewHint.innerText = m.played ? "📄 查看戰報與真實入球名單" : "📄 預覽國家隊大名單與看點";
+    viewHint.className = "view-btn"; viewHint.innerText = "📄 查看比賽球場場館與焦點推薦";
 
     matchCard.append(timeTag, teamsDiv, viewHint);
     matchBox.appendChild(matchCard);
   });
 }
 
-function openSquad(code1, code2, played, scorers, type) {
+function openSquad(code1, code2, scorers, stageName, dateStr) {
   const t1 = teamDatabase[code1]; const t2 = teamDatabase[code2];
-  const modalScorersBox = document.getElementById("modalScorersBox");
-  const modalScorersList = document.getElementById("modalScorersList");
-
-  modalScorersBox.style.display = "block";
-  modalScorersList.innerText = scorers;
-  
-  if (played) {
-    document.getElementById("modalTitle").innerText = `🏆 【${type}】詳細賽果精華看板`;
-  } else {
-    document.getElementById("modalTitle").innerText = `🤝 【${type}】賽事核心看點預報`;
-  }
-
+  document.getElementById("modalScorersList").innerText = scorers;
+  document.getElementById("modalTitle").innerText = `🏆 FIFA 官方真實賽事看板 (${stageName})`;
   document.getElementById("team1Name").innerText = t1 ? t1.name : "待定";
   document.getElementById("team2Name").innerText = t2 ? t2.name : "待定";
   
   let ul1 = document.getElementById("team1Players"); ul1.innerHTML = "";
   if(t1) t1.stars.forEach(p => { let li = document.createElement("li"); li.innerText = p; ul1.appendChild(li); });
-  
   let ul2 = document.getElementById("team2Players"); ul2.innerHTML = "";
   if(t2) t2.stars.forEach(p => { let li = document.createElement("li"); li.innerText = p; ul2.appendChild(li); });
 
@@ -724,20 +757,14 @@ window.onclick = function(e) { if (e.target == document.getElementById("squadMod
 
 function updateCountdown() {
   const targetDate = new Date("2026-06-12T03:00:00+08:00").getTime();
-  const now = new Date().getTime();
-  const difference = targetDate - now;
-  const container = document.getElementById("timerDisplay");
-  
+  const difference = targetDate - new Date().getTime();
   if (difference <= 0) { 
-    container.innerHTML = `<div class="live-msg">🔥 2026年世界盃正賽已正式隆重開戰！</div>`; 
-    return; 
+    document.getElementById("timerDisplay").innerHTML = `<div class="live-msg">🔥 2026 美加墨世界盃盛大開戰！</div>`; return; 
   }
-  
   const d = Math.floor(difference / (1000 * 60 * 60 * 24));
   const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
   const s = Math.floor((difference % (1000 * 60)) / 1000);
-  
   document.getElementById("days").innerText = d.toString().padStart(2, '0');
   document.getElementById("hours").innerText = h.toString().padStart(2, '0');
   document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
