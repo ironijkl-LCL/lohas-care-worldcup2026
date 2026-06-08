@@ -89,7 +89,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   color: #38bdf8;
 }
 
-/* ✅ 全新友誼賽資訊區區塊樣式 */
+/* ✅ 最新友誼賽資訊區區塊樣式 */
 .friendly-section {
   background: #111827;
   padding: 20px;
@@ -155,7 +155,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   margin: 0;
 }
 
-/* ✅ 密碼管制面板鎖定區（不顯示任何提示字） */
+/* ✅ 密碼管制面板鎖定區 */
 .lock-control-panel {
   background: #111827;
   border: 1px dashed #dfaa2a;
@@ -169,7 +169,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   background: #1f2937;
   border: 1px solid #4b5563;
   color: #fff;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: 6px;
   width: 100px;
   text-align: center;
@@ -180,8 +180,8 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   background: #dfaa2a;
   color: #0b0f19;
   border: none;
-  padding: 5px 12px;
-  font-size: 13px;
+  padding: 6px 16px;
+  font-size: 14px;
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
@@ -204,7 +204,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
 @media(max-width:900px){.groups{grid-template-columns: repeat(2, 1fr);}}
 @media(max-width:600px){.groups{grid-template-columns: 1fr;}}
 
-.group{
+.group {
   background: #1f2937;
   padding: 12px;
   border-radius: 8px;
@@ -407,6 +407,52 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
   line-height: 1.6;
   white-space: pre-line;
 }
+
+/* 🏆 奪冠預測專屬自訂表單樣式 */
+.predict-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.form-group label {
+  font-size: 13px;
+  color: #dfaa2a;
+  font-weight: bold;
+}
+.form-input {
+  background: #111827;
+  border: 1px solid #4b5563;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.form-input:focus {
+  border-color: #dfaa2a;
+  outline: none;
+}
+.submit-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 10px;
+}
+.submit-btn:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
 </style>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -437,7 +483,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
   <br>🔮 預測今届奪冠熱門：
   <img src="https://flagcdn.com/w80/es.png" alt="ES" style="width:24px; vertical-align:middle;"> <b>西班牙 (Spain)</b> / 
   <img src="https://flagcdn.com/w80/fr.png" alt="FR" style="width:24px; vertical-align:middle;"> <b>法國 (France)</b> 
-  <button class="hot-btn" onclick="alert('🏆 大數據與國際足壇最新分析：\n\n1. 西班牙：強大的中場傳控與耶馬爾等邊路天才，傳控體系已臻完美。\n2. 法國：基利安·麥巴比領銜的鋒線具有摧毀性的反擊速度。')">🏆 奪冠預測分析</button>
+  <button class="hot-btn" onclick="openPredictModal()">🏆 誰會是冠軍隊伍, 睇你有幾準🧐!</button>
 
   <div class="highlight-intro">
     📢 世界盃全部賽程 小組賽+ 淘汰賽： 72場小組比賽與淘汰賽32 場比賽，共 104 場一場不缺！
@@ -447,7 +493,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
 <div class="friendly-section">
   <div class="friendly-title">⚽ 最新友誼賽資訊</div>
   <p style="margin: 0 0 10px 0; color: #d1d5db;">
-    隨着2026年美加墨世界盃即將在數天后（6月11日）正式揭幕，各支參賽國家隊在過去兩天（6月7日至8日）進行了最後階段的國際友誼賽（熱身賽）以調整陣容。以下為最新完成的男子國際友誼賽焦點賽果：
+    隨着2026年美加墨世界盃即將在數天后正式揭幕，各支參賽國家隊進行了最後階段的國際友誼賽（熱身賽）以調整陣容。以下為最新完成的男子國際友誼賽焦點賽果：
   </p>
   
   <div class="friendly-subtitle">📊 焦點賽果速報</div>
@@ -471,7 +517,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
       <tr><td>6月7日</td><td>巴西</td><td>2 - 1</td><td>埃及</td><td>傳統勁旅巴西順利擊敗對手</td></tr>
       <tr><td>6月7日</td><td>英格蘭</td><td>1 - 0</td><td>新西蘭</td><td>三獅軍團小勝一球</td></tr>
       <tr><td>6月7日</td><td>玻利維亞</td><td>0 - 4</td><td>蘇格蘭</td><td>蘇格蘭反客為主大勝四球</td></tr>
-      <tr><td>6月7日</td><td>委內瑞拉</td><td>1 - 2</td><td>土耳其</td><td>土耳其作客全取三分</td></tr>
+      <tr><td>6月7日</td><td>委內嫌瑞拉</td><td>1 - 2</td><td>土耳其</td><td>土耳其作客全取三分</td></tr>
       <tr><td>6月7日</td><td>阿根廷</td><td>2 - 0</td><td>洪都拉斯</td><td>衛冕冠軍阿根廷兩球輕取對手</td></tr>
     </tbody>
   </table>
@@ -483,9 +529,6 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
     <li><b>6月9日 03:10</b> 法國 vs 北愛爾蘭</li>
     <li><b>6月9日 10:00</b> 西班牙 vs 秘魯</li>
   </ul>
-  <p style="margin: 10px 0 0 0; color: #a3a3a3; font-style: italic; font-size: 12px;">
-    💡 這些友誼賽主要是各隊在世界盃正賽前的最後閱兵，目的是測試戰術及讓主力球員尋找比賽節奏。
-  </p>
 </div>
 
 <div class="title-panel-container">
@@ -526,8 +569,32 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
   </div>
 </div>
 
+<div id="predictModal" class="modal">
+  <div class="modal-content" style="max-width: 450px;">
+    <span class="close-modal" onclick="closePredictModal()">&times;</span>
+    <h3 style="text-align:center; margin-top:0; color: #dfaa2a;">🔮 2026世界盃奪冠大預測</h3>
+    <p style="font-size: 13px; color: #10b981; text-align: center; font-weight: bold; margin-bottom: 15px;">🎁 估中者可以贏取夏日消暑獎品！</p>
+    
+    <form class="predict-form" onsubmit="submitPrediction(event)">
+      <div class="form-group">
+        <label>電話尾數 (例如: 1234 或 xxxx1234)</label>
+        <input type="text" id="userPhone" class="form-input" required placeholder="請填寫電話尾數">
+      </div>
+      <div class="form-group">
+        <label>名稱</label>
+        <input type="text" id="userName" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label>心水冠軍隊伍</label>
+        <input type="text" id="userChampTeam" class="form-input" required placeholder="例如: 西班牙 / 法國">
+      </div>
+      <button type="submit" class="submit-btn">提交預測</button>
+    </form>
+  </div>
+</div>
+
 <script>
-// 🌐 1. 初始化 Firebase 連接配置
+// 🌐 1. 初始化 Firebase 連接配置 (管理積分看板)
 const firebaseConfig = {
   databaseURL: "https://lohas-worldcupgamedata-default-rtdb.firebaseio.com/"
 };
@@ -594,7 +661,7 @@ const groups={
 };
 
 const centralSchedule = [
-  /* --- Group A-D 小組賽 --- */
+  /* --- 小組賽數據 --- */
   { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "VS", scorers: "🏟️ 墨西哥城 阿茲特克體育場\n💡 心水推薦：揭幕戰東道主墨西哥主場優勢極大，推薦勝。" },
   { id: "GS02", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "10:00", t1: "kr", t2: "cz", score: "VS", scorers: "🏟️ 墨西哥 瓜達拉哈拉體育場\n💡 心水推薦：太極虎戰捷克，兩隊實力接近，推薦平局或小球。" },
   { id: "GS03", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "03:00", t1: "ca", t2: "ba", score: "VS", scorers: "🏟️ 加拿大 多倫多體育場\n💡 加拿大主場首秀，看好主隊坐和望贏。" },
@@ -606,7 +673,7 @@ const centralSchedule = [
   { id: "GS09", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "00:00", t1: "cz", t2: "za", score: "VS", scorers: "🏟️ 小組賽第二輪。捷克需拼搶積分，推薦主勝。" },
   { id: "GS10", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "ch", t2: "ba", score: "VS", scorers: "🏟️ 兩歐勁旅相遇，球風偏穩，首選小球。" },
   { id: "GS11", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "06:00", t1: "ca", t2: "qa", score: "VS", scorers: "🏟️ 加拿大速度流邊路進攻，看好主隊全取三分。" },
-  { id: "GS12", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "09:00", t1: "mx", t2: "kr", score: "VS", scorers: "🏟️ 次輪生死戰！墨西哥遭遇太極虎，強烈推薦大球。" },
+  { id: "GS12", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "mx", t2: "kr", score: "VS", scorers: "🏟️ 次輪生死戰！墨西哥遭遇太極虎，強烈推薦大球。" },
   { id: "GS13", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "03:00", t1: "us", t2: "au", score: "VS", scorers: "🏟️ 洛杉磯 SoFi 體育場，東道主勝率高。" },
   { id: "GS14", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "06:00", t1: "gb-sct", t2: "ma", score: "VS", scorers: "🏟️ 摩洛哥實力稍勝，防守反擊推薦客隊勝。" },
   { id: "GS15", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "08:30", t1: "br", t2: "ht", score: "VS", scorers: "🏟️ 巴西鋒線輾壓，看好讓球大勝。" },
@@ -775,6 +842,7 @@ function updateFirebasePoints(groupName, teamCode, currentPoints) {
   db.ref(`groups_data/${groupName}/${teamCode}`).set(currentPoints);
 }
 
+// 密碼驗證解鎖控制
 function checkScoreUnlock() {
   if(document.getElementById("scorePassword").value === "8679") {
     alert("🔓 驗證成功！模擬計分按鍵已全面開啟。");
@@ -883,7 +951,72 @@ function openSquad(code1, code2, scorers, stageName, dateStr) {
 }
 
 function closeSquad() { document.getElementById("squadModal").style.display = "none"; }
-window.onclick = function(e) { if (e.target == document.getElementById("squadModal")) closeSquad(); }
+
+function openPredictModal() {
+  document.getElementById("predictModal").style.display = "flex";
+}
+function closePredictModal() {
+  document.getElementById("predictModal").style.display = "none";
+}
+
+// 🚀 前端與新版安全傳輸格式 (URLSearchParams) 完美對齊控制代碼
+function submitPrediction(event) {
+  event.preventDefault();
+  const phone = document.getElementById("userPhone").value.trim();
+  const name = document.getElementById("userName").value.trim();
+  const champTeam = document.getElementById("userChampTeam").value.trim();
+
+  // 🔗 你的最新 Google Apps Script Web App 部署網址
+  const gasWebAppUrl = "https://script.google.com/macros/s/AKfycbwCi6xmPfFRDuy12wlzlhWoM6BoRC8mBoZ2iZ8b1ZRBDXEN4Etu8mq-vCUVTEIESRvq/exec"; 
+
+  // 將提交按鈕狀態更改為讀取中，防止重複點擊
+  const submitBtn = event.target.querySelector(".submit-btn");
+  const originalBtnText = submitBtn.innerText;
+  submitBtn.innerText = "正在傳輸預測...";
+  submitBtn.disabled = true;
+
+  // 使用標準表單編碼格式封裝，配合無 setHeaders 的新後端進行無障礙通信
+  const formData = new URLSearchParams();
+  formData.append("phone", phone);
+  formData.append("name", name);
+  formData.append("predicted_champion", champTeam);
+
+  // 發送 POST 請求至 Google Apps Script
+  fetch(gasWebAppUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: formData.toString(),
+    redirect: "follow" // 允許跟隨重定向處理
+  })
+  .then(res => {
+    if (res.ok) {
+      alert(`🎉 預測提交成功！\n\n感謝 ${name} 參與！預測數據已成功發送並記錄至指定的指定試算表中。\n如果估中，我們將透過電話尾數通知你贏取夏日消暑獎品！`);
+      closePredictModal();
+      // 清空表單欄位
+      document.getElementById("userPhone").value = "";
+      document.getElementById("userName").value = "";
+      document.getElementById("userChampTeam").value = "";
+    } else {
+      alert("❌ 傳輸失敗，伺服器響應錯誤碼：" + res.status);
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert("❌ 網路連線錯誤！\n請確保你的 GAS 已經使用最新程式碼重新發布為「新版本」，且「具有存取權的人員」設定為「所有人 (Anyone)」。");
+  })
+  .finally(() => {
+    // 恢復按鈕可點擊狀態
+    submitBtn.innerText = originalBtnText;
+    submitBtn.disabled = false;
+  });
+}
+
+window.onclick = function(e) { 
+  if (e.target == document.getElementById("squadModal")) closeSquad();
+  if (e.target == document.getElementById("predictModal")) closePredictModal();
+}
 
 function updateCountdown() {
   const targetDate = new Date("2026-06-12T03:00:00+08:00").getTime();
