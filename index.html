@@ -89,6 +89,60 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   color: #38bdf8;
 }
 
+/* ✅ 全新友誼賽資訊區區塊樣式 */
+.friendly-section {
+  background: #111827;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 1200px;
+  border: 1px solid #1f2937;
+  border-left: 5px solid #38bdf8;
+  font-size: 14px;
+  line-height: 1.8;
+  box-sizing: border-box;
+}
+.friendly-title {
+  font-size: 1.2rem;
+  color: #38bdf8;
+  font-weight: bold;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.friendly-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 13px;
+}
+.friendly-table th, .friendly-table td {
+  border: 1px solid #374151;
+  padding: 10px;
+  text-align: center;
+}
+.friendly-table th {
+  background-color: #1f2937;
+  color: #dfaa2a;
+  font-weight: bold;
+}
+.friendly-table tr:hover {
+  background-color: #1a2333;
+}
+.friendly-subtitle {
+  font-size: 14px;
+  color: #dfaa2a;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 6px;
+}
+.friendly-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #d1d5db;
+}
+
 /* ✅ 標題與解鎖鍵複合包裝容器 */
 .title-panel-container {
   display: flex;
@@ -115,7 +169,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   background: #1f2937;
   border: 1px solid #4b5563;
   color: #fff;
-  padding: 5px 10px;
+  padding: 4px 8px;
   border-radius: 6px;
   width: 100px;
   text-align: center;
@@ -126,8 +180,8 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   background: #dfaa2a;
   color: #0b0f19;
   border: none;
-  padding: 6px 16px;
-  font-size: 14px;
+  padding: 5px 12px;
+  font-size: 13px;
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
@@ -200,7 +254,7 @@ button.win, button.draw, button.lose, button.hot-btn {
   margin-left: 8px;
   box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
 }
-button.win:hover, button.draw, button.lose, button.hot-btn:hover{ transform: scale(1.1); filter: brightness(1.2); }
+button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transform: scale(1.1); filter: brightness(1.2); }
 
 .btn-lock-container {
   display: none;
@@ -354,6 +408,9 @@ button.win:hover, button.draw, button.lose, button.hot-btn:hover{ transform: sca
   white-space: pre-line;
 }
 </style>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 
 <body>
@@ -385,6 +442,50 @@ button.win:hover, button.draw, button.lose, button.hot-btn:hover{ transform: sca
   <div class="highlight-intro">
     📢 世界盃全部賽程 小組賽+ 淘汰賽： 72場小組比賽與淘汰賽32 場比賽，共 104 場一場不缺！
   </div>
+</div>
+
+<div class="friendly-section">
+  <div class="friendly-title">⚽ 最新友誼賽資訊</div>
+  <p style="margin: 0 0 10px 0; color: #d1d5db;">
+    隨着2026年美加墨世界盃即將在數天后（6月11日）正式揭幕，各支參賽國家隊在過去兩天（6月7日至8日）進行了最後階段的國際友誼賽（熱身賽）以調整陣容。以下為最新完成的男子國際友誼賽焦點賽果：
+  </p>
+  
+  <div class="friendly-subtitle">📊 焦點賽果速報</div>
+  <table class="friendly-table">
+    <thead>
+      <tr>
+        <th>比賽日期 (香港時間)</th>
+        <th>主隊</th>
+        <th>比數</th>
+        <th>客隊</th>
+        <th>備註</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>6月8日</td><td>哥倫比亞</td><td>2 - 0</td><td>約旦</td><td>哥倫比亞憑藉 Jhon Arias 梅開二度取勝</td></tr>
+      <tr><td>6月8日</td><td>厄瓜多爾</td><td>3 - 0</td><td>危地馬拉</td><td>厄瓜多爾輕鬆大勝</td></tr>
+      <tr><td>6月8日</td><td>摩洛哥</td><td>1 - 1</td><td>挪威</td><td>雙方握手言和</td></tr>
+      <tr><td>6月8日</td><td>希臘</td><td>0 - 1</td><td>意大利</td><td>意大利作客小勝</td></tr>
+      <tr><td>6月8日</td><td>克羅地亞</td><td>2 - 1</td><td>斯洛文尼亞</td><td>克羅地亞主場險勝</td></tr>
+      <tr><td>6月8日</td><td>科索沃</td><td>3 - 0</td><td>安道爾</td><td>科索沃主場大勝</td></tr>
+      <tr><td>6月7日</td><td>巴西</td><td>2 - 1</td><td>埃及</td><td>傳統勁旅巴西順利擊敗對手</td></tr>
+      <tr><td>6月7日</td><td>英格蘭</td><td>1 - 0</td><td>新西蘭</td><td>三獅軍團小勝一球</td></tr>
+      <tr><td>6月7日</td><td>玻利維亞</td><td>0 - 4</td><td>蘇格蘭</td><td>蘇格蘭反客為主大勝四球</td></tr>
+      <tr><td>6月7日</td><td>委內瑞拉</td><td>1 - 2</td><td>土耳其</td><td>土耳其作客全取三分</td></tr>
+      <tr><td>6月7日</td><td>阿根廷</td><td>2 - 0</td><td>洪都拉斯</td><td>衛冕冠軍阿根廷兩球輕取對手</td></tr>
+    </tbody>
+  </table>
+
+  <div class="friendly-subtitle">⏳ 接下來的熱身賽預告</div>
+  <p style="margin: 0 0 8px 0; color: #9ca3af;">在未來一兩天，仍有少數球隊會進行最後的閉門或公開熱身，隨後便會全心投入世界盃分組賽：</p>
+  <ul class="friendly-list">
+    <li><b>6月9日 02:45</b> 荷蘭 vs 烏茲別克</li>
+    <li><b>6月9日 03:10</b> 法國 vs 北愛爾蘭</li>
+    <li><b>6月9日 10:00</b> 西班牙 vs 秘魯</li>
+  </ul>
+  <p style="margin: 10px 0 0 0; color: #a3a3a3; font-style: italic; font-size: 12px;">
+    💡 這些友誼賽主要是各隊在世界盃正賽前的最後閱兵，目的是測試戰術及讓主力球員尋找比賽節奏。
+  </p>
 </div>
 
 <div class="title-panel-container">
@@ -426,6 +527,13 @@ button.win:hover, button.draw, button.lose, button.hot-btn:hover{ transform: sca
 </div>
 
 <script>
+// 🌐 1. 初始化 Firebase 連接配置
+const firebaseConfig = {
+  databaseURL: "https://lohas-worldcupgamedata-default-rtdb.firebaseio.com/"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 const teamDatabase = {
   "tbd": { name: "待定 (TBD)", stars: ["隨比賽進程解鎖"] },
   "mx": { name: "墨西哥 (Mexico)", stars: ["艾臣·馬天尼斯", "占文尼斯", "奧祖亞"] },
@@ -564,7 +672,7 @@ const centralSchedule = [
   { id: "GS71", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "10:00", t1: "at", t2: "dz", score: "VS", scorers: "🏟️ 兩軍正面生死交鋒，推薦和局。" },
   { id: "GS72", stage: "Group I-L 小組賽", dateStr: "2026-06-30", time: "07:30", t1: "cd", t2: "uz", score: "VS", scorers: "🏟️ 小組賽收官大戰，看好分出勝負。" },
 
-  /* --- 🏆 32強淘汰賽（共 16 場生死戰，對陣全數待定） --- */
+  /* --- 🏆 32強淘汰賽 --- */
   { id: "K32_01", stage: "32強淘汰賽", dateStr: "2026-06-29", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 1】\n📢 特色：擴軍賽制首度登場！淘汰賽揭幕戰，戰術博弈激烈，推薦關注半場和局。" },
   { id: "K32_02", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 2】\n📢 特色：一場定生死，強隊多半立足於防守，首選全場小球。" },
   { id: "K32_03", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "04:30", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 3】\n📢 特色：傳統豪強對戰小組第三黑馬，豪門底蘊深厚，獨贏盤相對穩健。" },
@@ -582,7 +690,7 @@ const centralSchedule = [
   { id: "K32_15", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 15】\n📢 特色：戰意拉滿，兩邊鋒線巨星正面對決，看好分出勝負。" },
   { id: "K32_16", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 16】\n📢 特色：32強收官大戰！拼搶最後一席名額，必有精彩絕殺。" },
 
-  /* --- ⚽ 16強淘汰賽（7月5日 - 7月8日共8場） --- */
+  /* --- ⚽ 16強淘汰賽 --- */
   { id: "K16_01", stage: "16強淘汰賽", dateStr: "2026-07-05", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 世界十六強！豪門大內鬥開始，兩隊均無犯錯空間，首選平局。" },
   { id: "K16_02", stage: "16強淘汰賽", dateStr: "2026-07-05", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 進攻會遭遇鋼鐵防線嚴重阻礙，窒息攻防推薦小球盤口。" },
   { id: "K16_03", stage: "16強淘汰賽", dateStr: "2026-07-06", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 上半場多傾向於控球試探，強烈推薦半場 0:0 或和局。" },
@@ -592,27 +700,27 @@ const centralSchedule = [
   { id: "K16_07", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "00:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強倒數次戰，戰略體系更成熟的一方更容易在常規時間贏波。" },
   { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強收官大戰！關注極其擅長踢十二碼大戰的隊伍（如克羅地亞）。" },
 
-  /* --- ⚔️ 8強半準決賽（7月10日 - 7月12日共4場） --- */
+  /* --- ⚔️ 8強半準決賽 --- */
   { id: "K8_01", stage: "8強半準決賽", dateStr: "2026-07-10", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 全球頂尖八強巔峰對決！全面移師美國超大型主場，推薦受讓方。" },
   { id: "K8_02", stage: "8強半準決賽", dateStr: "2026-07-11", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 週末黃金檔期！世紀歐美大內鬥，實力五五開，常規時間看好踢和。" },
   { id: "K8_03", stage: "8強半準決賽", dateStr: "2026-07-12", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 戰術博弈極端化，進球數往年皆偏少，強烈推薦小球盤口。" },
   { id: "K8_04", stage: "8強半準決賽", dateStr: "2026-07-12", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 八強末戰，誰贏誰進四強！巨星戰略極其關鍵，強烈看好控球強隊。" },
 
-  /* --- 🌟 4強準決賽（7月15日 - 7月16日） --- */
+  /* --- 🌟 4強準決賽 --- */
   { id: "K4_01", stage: "4強準決賽", dateStr: "2026-07-15", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：達拉斯 AT&T 體育場\n💡 準決賽第一場！為決賽門票防守將拉滿到極致，極度看好小球。" },
   { id: "K4_02", stage: "4強準決賽", dateStr: "2026-07-16", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：亞特蘭大體育場\n💡 準決賽第二場！世界四強神仙打架，關鍵先生一槌定音，常規時間平局成份高。" },
 
-  /* --- 🥉 季軍爭奪賽（7月19日） --- */
+  /* --- 🥉 季軍爭奪賽 --- */
   { id: "K3_01", stage: "季軍爭奪賽", dateStr: "2026-07-19", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：邁阿密 硬石體育場 (Hard Rock Stadium)\n💡 榮譽大戰！兩隊毫無包袱，全力展開對攻表演賽，瘋狂推薦大球盤及雙方有進球！" },
 
-  /* --- 👑 終極冠軍總決賽（7月20日） --- */
+  /* --- 👑 終極冠軍總決賽 --- */
   { id: "KF_01", stage: "👑 冠軍總決賽", dateStr: "2026-07-20", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 終極聖地：美國新澤西州 大都會人壽體育場 (MetLife Stadium)\n💡 巔峰巨獻：決賽一球定乾坤！世紀大戰極易平局進入加時，推薦防守悍將受讓。" }
 ];
 
 const store={};
 const root=document.getElementById("groups");
 
-// 初始化建立分組
+// 初始化建立小組並設定 Firebase 即時監聽與自動同步
 Object.keys(groups).forEach(g=>{
  let box=document.createElement("div");
  box.className="group";
@@ -629,9 +737,15 @@ Object.keys(groups).forEach(g=>{
   let lockWrapper = document.createElement("div");
   lockWrapper.className = "btn-lock-container";
   
-  let b3=document.createElement("button"); b3.innerText="+3"; b3.className="win"; b3.onclick=()=>{team.points+=3; render(g);};
-  let b1=document.createElement("button"); b1.innerText="+1"; b1.className="draw"; b1.onclick=()=>{team.points+=1; render(g);};
-  let b0=document.createElement("button"); b0.innerText="+0"; b0.className="lose"; b0.onclick=()=>{render(g);};
+  let b3=document.createElement("button"); b3.innerText="+3"; b3.className="win"; 
+  b3.onclick=()=>{ team.points+=3; updateFirebasePoints(g, team.code, team.points); };
+  
+  let b1=document.createElement("button"); b1.innerText="+1"; b1.className="draw"; 
+  b1.onclick=()=>{ team.points+=1; updateFirebasePoints(g, team.code, team.points); };
+  
+  let b0=document.createElement("button"); b0.innerText="+0"; b0.className="lose"; 
+  b0.onclick=()=>{ updateFirebasePoints(g, team.code, team.points); };
+  
   lockWrapper.append(b3,b1,b0);
 
   row.append(img, lockWrapper);
@@ -642,8 +756,24 @@ Object.keys(groups).forEach(g=>{
  box.appendChild(table);
  store[g]={data, table};
  root.appendChild(box);
- render(g);
 });
+
+// 實時從 Firebase 讀取雲端積分數據並渲染到畫面上
+db.ref("groups_data").on("value", (snapshot) => {
+  const cloudData = snapshot.val() || {};
+  Object.keys(store).forEach(g => {
+    store[g].data.forEach(team => {
+      if (cloudData[g] && cloudData[g][team.code] !== undefined) {
+        team.points = cloudData[g][team.code];
+      }
+    });
+    render(g); 
+  });
+});
+
+function updateFirebasePoints(groupName, teamCode, currentPoints) {
+  db.ref(`groups_data/${groupName}/${teamCode}`).set(currentPoints);
+}
 
 function checkScoreUnlock() {
   if(document.getElementById("scorePassword").value === "8679") {
@@ -772,7 +902,6 @@ function updateCountdown() {
 }
 
 initDateSelector();
-renderMatches("all");
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
