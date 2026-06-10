@@ -89,7 +89,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   color: #38bdf8;
 }
 
-/* 📊 方向一：奪冠預測熱度榜樣式區塊 */
+/* 📊 方向一：奪冠預測熱度榜專屬樣式區塊 */
 .predict-rank-container {
   background: #111827;
   border: 1px solid #dfaa2a;
@@ -121,7 +121,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   border-left: 3px solid #10b981;
 }
 
-/* ✅ 最新友誼賽資訊區 */
+/* ✅ 最新友誼賽資訊區區塊樣式 */
 .friendly-section {
   background: #111827;
   padding: 20px;
@@ -175,7 +175,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   color: #d1d5db;
 }
 
-/* ✅ 標題與解鎖鍵複合包裝容器（左右撐開，對齊積分榜） */
+/* ✅ 標題與解鎖鍵複合包裝容器（左右撐開，對齊兩側線條） */
 .title-panel-container {
   display: flex;
   justify-content: space-between;
@@ -267,7 +267,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* ⚡ 死忠集氣點讚按鈕專屬樣式 */
+/* ⚡ 方向三：死忠集氣點讚按鈕專屬樣式 */
 .cheer-btn-inline {
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: #fff;
@@ -565,21 +565,21 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
         <th>主隊</th>
         <th>比數</th>
         <th>客隊</th>
-        <th>備註</th>
+        <th>戰況簡報</th>
       </tr>
     </thead>
     <tbody id="friendlyResultsBody"></tbody>
   </table>
 
-  <div class="friendly-subtitle">⏳ 接下來的熱身賽預告</div>
-  <p id="friendlyUpcomingHint" style="margin: 0 0 8px 0; color: #9ca3af;"></p>
+  <div class="friendly-subtitle">⏳ 接下來的熱身賽預告（最後閱兵）</div>
+  <p id="friendlyUpcomingHint" style="margin: 0 0 8px 0; color: #9ca3af; white-space: pre-line;"></p>
   <ul class="friendly-list" id="friendlyUpcomingList"></ul>
 </div>
 
 <div class="title-panel-container">
   <h2>🌍 (A-L) 小組積分榜</h2>
   <div class="lock-control-panel" id="lockControlPanel">
-    <input type="password" id="scorePassword" class="lock-input" placeholder="密碼">
+    <input type="password" id="scorePassword" class="lock-input">
     <button class="lock-btn" onclick="checkScoreUnlock()">🔒</button>
   </div>
 </div>
@@ -711,8 +711,8 @@ const centralSchedule = [
   { id: "GS03", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "03:00", t1: "ca", t2: "ba", score: "VS", scorers: "🏟️ 加拿大 多倫多體育場\n💡 加拿大主場首秀，看好主隊坐和望贏。" },
   { id: "GS04", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "09:00", t1: "us", t2: "py", score: "VS", scorers: "🏟️ 美國 洛杉磯 SoFi 體育場\n💡 美國陣容齊整主場出擊，首選主隊獨贏。" },
   { id: "GS05", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "03:00", t1: "qa", t2: "ch", score: "VS", scorers: "🏟️ 美國 波士頓體育場\n💡 瑞士防守強硬，看好實力較高的一方小勝。" },
-  { id: "GS06", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "06:00", t1: "br", t2: "ma", score: "VS", scorers: "🏟️ 美國 紐約大都會人壽體育場\n💡 強強對決！森巴軍團對戰上屆黑馬，推薦大球盤。" },
-  { id: "GS07", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "06:00", t1: "ht", t2: "gb-sct", score: "VS", scorers: "🏟️ 美國 邁阿密體育場\n💡 蘇格蘭身體對抗佔優，首選客隊不敗。" },
+  { id: "GS06", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "06:00", t1: "br", t2: "ma", score: "VS", scorers: "🏟️ 美國 紐約大門戶人壽體育場\n💡 強強對決！森巴軍團對戰上屆黑馬，推薦大球盤。" },
+  { id: "GS07", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "09:00", t1: "ht", t2: "gb-sct", score: "VS", scorers: "🏟️ 美國 邁阿密體育場\n💡 蘇格蘭身體對抗佔優，首選客隊不敗。" },
   { id: "GS08", stage: "Group A-D 小組賽", dateStr: "2026-06-15", time: "12:00", t1: "au", t2: "tr", score: "VS", scorers: "🏟️ 美國 三藩市體育場\n💡 土耳其鋒線天才湧現，看好星月軍團獨贏。" },
   { id: "GS09", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "00:00", t1: "cz", t2: "za", score: "VS", scorers: "🏟️ 小組賽第二輪。捷克需拼搶積分，推薦主勝。" },
   { id: "GS10", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "ch", t2: "ba", score: "VS", scorers: "🏟️ 兩歐勁旅相遇，球風偏穩，首選小球。" },
@@ -798,7 +798,7 @@ const centralSchedule = [
   { id: "K32_12", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 12】\n📢 特色：實力均等的防守大師碰頭，互射十二碼機率高。" },
   { id: "K32_13", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 13】\n📢 特色：週末黃金檔！老牌歐洲強權亮相，看好順利取勝晉級。" },
   { id: "K32_14", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 14】\n📢 特色：西班牙或阿根廷種子隊出戰預演，控球為王，強推主隊。" },
-  { id: "K32_15", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 15】\n📢 特色：戰意拉滿，兩邊鋒線巨星正面對決，看好分出勝負。" },
+  { id: "K32_15", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 15】\n📢 特色：戰意拉滿，邊路快馬群爆發，看好分出勝負。" },
   { id: "K32_16", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 16】\n📢 特色：32強收官大戰！拼搶最後一席名額，必有精彩絕殺。" },
 
   /* --- ⚽ 16強淘汰賽 --- */
@@ -831,7 +831,7 @@ const centralSchedule = [
 const store={};
 const root=document.getElementById("groups");
 
-// 初始化建立小組並設定 Firebase 即時積分同步與【方向三】一鍵集氣機制
+// 初始化建立小組並設定 Firebase 即時積分同步與一鍵集氣機制
 Object.keys(groups).forEach(g=>{
  let box=document.createElement("div");
  box.className="group";
@@ -847,7 +847,7 @@ Object.keys(groups).forEach(g=>{
   img.src="https://flagcdn.com/w80/"+team.code+".png";
   img.className="flag";
   
-  // ⚡【方向三】：一鍵點讚集氣包裝器
+  // ⚡【方向三】：一鍵點讚集氣
   let cheerContainer = document.createElement("span");
   cheerContainer.style.display = "flex"; cheerContainer.style.alignItems = "center"; cheerContainer.style.gap = "4px"; cheerContainer.style.marginLeft = "auto";
   let cheerCount = document.createElement("span"); cheerCount.className = "cheer-count-text"; cheerCount.id = `cheerCount_${team.code}`; cheerCount.innerText = "0";
@@ -889,7 +889,7 @@ db.ref("groups_data").on("value", (snapshot) => {
   });
 });
 
-// ⚡【方向三】：實時監聽球隊死忠集氣數值
+// 實時監聽球隊死忠集氣數值
 db.ref("cheer_stats").on("value", (snapshot) => {
   const cheerData = snapshot.val() || {};
   Object.keys(cheerData).forEach(code => {
@@ -928,10 +928,35 @@ db.ref("predict_stats").on("value", (snapshot) => {
   });
 });
 
-// 實時從 Firebase 讀取雲端友誼賽戰報
+// 實時從 Firebase 讀取並校準雲端友誼賽戰報
 db.ref("friendly_news").on("value", (snapshot) => {
   const data = snapshot.val();
-  if (!data) return;
+  
+  // 🛠️ 【自動重置刷新核心】：如果雲端數據結構老舊或為空，前端會立刻主動推送最新的 6月10日 戰報至雲端
+  if (!data || !data.results || data.results[0].home !== "剛果民主共和國") {
+    const freshFriendlyData = {
+      description: "隨着2026年美加墨世界盃（香港時間6月12日凌晨開幕）進入最後兩天倒數，各支男足國家隊在過去24小時內（6月9日至10日凌晨）完成了世界盃開賽前的最後一波焦點熱身賽。以下為最新男子國際友誼賽的完賽比分與最新資訊：",
+      results: [
+        { date: "6月10日 凌晨", home: "剛果民主共和國", score: "1 - 2", away: "智利", note: "智利下半場發力攻入兩球，客場反超取勝。" },
+        { date: "6月9日 晚上", home: "印度尼西亞", score: "1 - 0", away: "莫桑比克", note: "印尼主場一球小勝，為世界盃前累積信心。" },
+        { date: "6月9日 晚上", home: "柬埔寨", score: "2 - 0", away: "香港", note: "香港隊作客未能破門，最終兩球不敵東道主。" },
+        { date: "6月9日 晚上", home: "中國", score: "0 - 0", away: "泰國", note: "兩隊互有攻守但均無建樹，最終互交白卷。" },
+        { date: "6月9日 晚上", home: "菲律賓", score: "5 - 1", away: "緬甸", note: "菲律賓火力全開，主場大勝緬甸。" },
+        { date: "6月9日 上午", home: "西班牙", score: "3 - 1", away: "秘魯", note: "奧耶沙巴開賽2分鐘閃擊，柏德里推射空門，強權西班牙輕鬆取勝。" },
+        { date: "6月9日 凌晨", home: "法國", score: "3 - 1", away: "北愛爾蘭", note: "高盧雄雞展現爭冠熱門實力，兩球優勢擊敗對手。" },
+        { date: "6月9日 凌晨", home: "荷蘭", score: "2 - 1", away: "烏茲別克", note: "荷蘭雖有球員染紅，仍以2-1險勝頑強的烏茲別克。" }
+      ],
+      upcoming_hint: "備註：部分歐美強權（如阿根廷、英格蘭等）於美國本土進行的閉門或深夜熱身賽，官方正陸續結算最終統計。\n\n今日（6月10日）深夜至明日凌晨，將是世界盃正賽開打前的最後一波國際友誼賽，各隊隨即會進駐官方大本營：",
+      upcoming_list: [
+        "<b>6月11日 凌晨</b> 葡萄牙 vs 尼日利亞",
+        "<b>6月11日 凌晨</b> 英格蘭 vs 哥斯達黎加",
+        "<b>6月11日 凌晨</b> 危地馬拉 vs 奧地利"
+      ]
+    };
+    db.ref("friendly_news").set(freshFriendlyData);
+    return;
+  }
+
   document.getElementById("friendlyDesc").innerText = data.description || "";
   document.getElementById("friendlyUpcomingHint").innerText = data.upcoming_hint || "";
   const resultsBody = document.getElementById("friendlyResultsBody");
@@ -1068,14 +1093,13 @@ function closeSquad() { document.getElementById("squadModal").style.display = "n
 function openPredictModal() { document.getElementById("predictModal").style.display = "flex"; }
 function closePredictModal() { document.getElementById("predictModal").style.display = "none"; }
 
-// 🚀 提交預測表單至新 GAS 試算表儲存點，並同步增加 Firebase 熱度得票
+// 提交預測表單至後端 GAS 試算表，並同步增加 Firebase 熱度得票
 function submitPrediction(event) {
   event.preventDefault();
   const phone = document.getElementById("userPhone").value.trim();
   const name = document.getElementById("userName").value.trim();
   const champTeam = document.getElementById("userChampTeam").value.trim();
 
-  // ✅ 已將通訊網址成功更新為最新的儲存點
   const gasWebAppUrl = "https://script.google.com/macros/s/AKfycbwCi6xmPfFRDuy12wlzlhWoM6BoRC8mBoZ2iZ8b1ZRBDXEN4Etu8mq-vCUVTEIESRvq/exec"; 
 
   const submitBtn = event.target.querySelector(".submit-btn");
@@ -1083,15 +1107,21 @@ function submitPrediction(event) {
   submitBtn.innerText = "正在同步數據...";
   submitBtn.disabled = true;
 
+  const formData = new URLSearchParams();
+  formData.append("phone", phone);
+  formData.append("name", name);
+  formData.append("predicted_champion", champTeam);
+
   fetch(gasWebAppUrl, {
     method: "POST",
     mode: "cors",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify({ phone: phone, name: name, predicted_champion: champTeam })
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: formData.toString(),
+    redirect: "follow"
   })
-  .then(res => res.json())
-  .then(data => {
-    if (data.status === "success") {
+  .then(res => {
+    if (res.ok) {
+      // GAS 寫入成功後，立刻同步增加 Firebase 內該球隊的投票熱度計數
       const statsRef = db.ref(`predict_stats/${champTeam}`);
       statsRef.transaction((currentVotes) => {
         return (currentVotes || 0) + 1;
@@ -1103,7 +1133,7 @@ function submitPrediction(event) {
       document.getElementById("userName").value = "";
       document.getElementById("userChampTeam").value = "";
     } else {
-      alert("❌ 儲存失敗：" + data.message);
+      alert("❌ 傳輸失敗，伺服器響應錯誤碼：" + res.status);
     }
   })
   .catch(err => {
