@@ -2,1179 +2,883 @@
 <html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
-<title>FIFA World Cup 2026 - LOHAS’s Edition (Full 104 Matches)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📅 麟李互助家庭日誌</title>
 
 <style>
-body{
-  background: #0b0f19;
-  color: #f3f4f6;
-  font-family: Arial, sans-serif;
-  padding: 20px;
+body { font-family: Arial, sans-serif; margin:0; font-size:18px; background:#f5f5f5; }
+
+header {
+    background:#25D366;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
 }
 
-h1, h2 { color: #ffffff; text-align: center; }
-h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.3); margin-bottom: 5px; }
+.container { padding:10px; }
 
-/* ✅ 正式賽事倒數時計樣式（金黃色主題） */
-.countdown-container {
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  border: 2px solid #dfaa2a;
-  box-shadow: 0 0 15px rgba(223,170,42,0.2);
-  border-radius: 12px;
-  max-width: 600px;
-  margin: 15px auto;
-  padding: 15px;
-  text-align: center;
-}
-.countdown-title {
-  font-size: 14px;
-  color: #d1d5db;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-.countdown-timer {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-.time-block {
-  background: #111827;
-  padding: 10px 15px;
-  border-radius: 8px;
-  min-width: 70px;
-  border: 1px solid #374151;
-}
-.time-num {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #dfaa2a;
-  font-family: monospace;
-}
-.time-label {
-  font-size: 11px;
-  color: #9ca3af;
-  margin-top: 2px;
-}
-.live-msg {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #10b981;
-  text-shadow: 0 0 10px rgba(16,185,129,0.3);
-  padding: 10px;
+/* ─── 🛠️ 頂部操作按鈕 5 鍵平排外觀 ─── */
+.top-action-card {
+    background: white;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: row; 
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* ✅ 資訊區 */
-.info{
-  background: #111827;
-  padding: 15px;
-  border-radius: 12px;
-  margin: 20px auto;
-  max-width: 1200px;
-  border: 1px solid #1f2937;
-  border-left: 5px solid #dfaa2a;
-  font-size: 14px;
-  line-height: 1.8;
+.top-action-card button.action-btn {
+    flex: 1;
+    margin: 0 !important; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    padding: 12px 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
 }
-.info img{
-  width: 26px;
-  margin: 0 4px;
-  vertical-align: middle;
-}
-.highlight-intro {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed #374151;
-  color: #38bdf8;
+.top-action-card button.action-btn:hover { opacity: 0.9; }
+
+@media (max-width: 650px) {
+    .top-action-card { flex-wrap: wrap; gap: 6px; }
+    .top-action-card button.action-btn {
+        flex: 1 1 calc(33.33% - 6px); 
+        font-size: 13px !important;
+        padding: 10px 4px !important;
+    }
 }
 
-/* 📊 方向一：奪冠預測熱度榜專屬樣式區塊 */
-.predict-rank-container {
-  background: #111827;
-  border: 1px solid #dfaa2a;
-  border-radius: 8px;
-  padding: 12px 15px;
-  margin-top: 12px;
-  font-size: 13px;
-}
-.predict-rank-title {
-  color: #dfaa2a;
-  font-weight: bold;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.predict-rank-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 8px;
-}
-.predict-rank-item {
-  background: #1f2937;
-  padding: 6px 10px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-left: 3px solid #10b981;
+.card {
+    background:white;
+    padding:15px;
+    margin-bottom:12px;
+    border-radius:12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* ✅ 最新友誼賽資訊區區塊樣式 */
-.friendly-section {
-  background: #111827;
-  padding: 20px;
-  border-radius: 12px;
-  margin: 20px auto;
-  max-width: 1200px;
-  border: 1px solid #1f2937;
-  border-left: 5px solid #38bdf8;
-  font-size: 14px;
-  line-height: 1.8;
-  box-sizing: border-box;
-}
-.friendly-title {
-  font-size: 1.2rem;
-  color: #38bdf8;
-  font-weight: bold;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.friendly-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0;
-  font-size: 13px;
-}
-.friendly-table th, .friendly-table td {
-  border: 1px solid #374151;
-  padding: 10px;
-  text-align: center;
-}
-.friendly-table th {
-  background-color: #1f2937;
-  color: #dfaa2a;
-  font-weight: bold;
-}
-.friendly-table tr:hover {
-  background-color: #1a2333;
-}
-.friendly-subtitle {
-  font-size: 14px;
-  color: #dfaa2a;
-  font-weight: bold;
-  margin-top: 15px;
-  margin-bottom: 6px;
-}
-.friendly-list {
-  margin: 0;
-  padding-left: 20px;
-  color: #d1d5db;
+.calendar-header {
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom: 15px;
 }
 
-/* ✅ 標題與解鎖鍵複合包裝容器（左右撐開，對齊兩側線條） */
-.title-panel-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 30px auto 15px auto;
-  padding: 0 5px;
-}
-.title-panel-container h2 {
-  margin: 0;
-  font-size: 1.5rem;
+.nav-btn {
+    width:25%;
+    padding:10px;
+    font-size:16px;
+    background:#25D366;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
 }
 
-/* ✅ 密碼管制面板鎖定區 */
-.lock-control-panel {
-  background: #111827;
-  border: 1px dashed #dfaa2a;
-  padding: 6px 10px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.lock-input {
-  background: #1f2937;
-  border: 1px solid #4b5563;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 6px;
-  width: 100px;
-  text-align: center;
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-.lock-btn {
-  background: #dfaa2a;
-  color: #0b0f19;
-  border: none;
-  padding: 6px 16px;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.lock-btn:hover { background: #f59e0b; transform: scale(1.05); }
+.month-title { font-size:22px; font-weight:bold; }
+.weekdays-container { display: flex; width: 100%; margin-bottom: 5px; }
+.weekday { flex: 1; text-align:center; color:gray; font-weight:bold; font-size:16px; }
 
-/* ✅ 小組與按鈕管制區 */
-.groups{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  max-width: 1200px;
-  margin: 0 auto;
+.calendar { display: flex; flex-wrap: wrap; width: 100%; }
+.calendar-day {
+    display: inline-block;
+    width: 14.2857%;
+    padding:6px 2px;
+    text-align:center;
+    background:white;
+    border-radius:10px;
+    margin-bottom:6px;
+    min-height:115px;
+    font-size:18px;
+    vertical-align: top;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    position: relative;
 }
-@media(max-width:1200px){.groups{grid-template-columns: repeat(3, 1fr);}}
-@media(max-width:900px){.groups{grid-template-columns: repeat(2, 1fr);}}
-@media(max-width:600px){.groups{grid-template-columns: 1fr;}}
+.calendar-day:hover { background: #e8f9ed; }
+.empty { background:transparent; border: none; cursor: default; }
 
-.group {
-  background: #1f2937;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #374151;
-}
-.group-title {
-  display: block; 
-  margin-bottom: 10px; 
-  font-size: 1.1rem; 
-  color: #dfaa2a;
-  border-bottom: 1px solid #4b5563;
-  padding-bottom: 4px;
-}
-.row{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-  min-height: 25px;
-}
-.flag{
-  width: 38px;
-  height: 25px;
-  object-fit: cover;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+.today { border:3px solid orange; }
+.selected-day { background: #d0f5db !important; border: 2px solid #25D366; }
+.multiday-pass-range { background: rgba(37, 211, 102, 0.12) !important; }
+.hk-holiday-pass-range { background: rgba(255, 77, 79, 0.1) !important; }
+.hk-holiday-pass-range strong { color: #ff4d4f !important; }
+
+.lunar { font-size:12px; color:#666; margin-top: 2px; }
+.holiday { font-size:11px; color:#ff4d4f; font-weight:bold; margin-top: 2px; }
+
+.day-event-badge {
+    font-size: 11px;
+    background: #e6f7ff;
+    color: #1890ff;
+    border-left: 3px solid #1890ff;
+    padding: 2px 4px;
+    margin-top: 3px;
+    text-align: left;
+    border-radius: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
 }
 
-/* ⚡ 方向三：死忠集氣點讚按鈕專屬樣式 */
-.cheer-btn-inline {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: #fff;
-  border: none;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.1s;
-  margin-left: auto;
+/* 發送通知及刪除/修改按鍵樣式 */
+button.pretty-whatsapp-btn {
+    background: linear-gradient(135deg, #25D366, #20ba59);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(37,211,102,0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
-.cheer-btn-inline:hover { transform: scale(1.1); }
-.cheer-count-text {
-  font-size: 11px;
-  color: #f3f4f6;
-  font-weight: bold;
-  background: #111827;
-  padding: 1px 5px;
-  border-radius: 3px;
-  border: 1px solid #374151;
+.action-btn-group-row { display: flex; gap: 6px; }
+button.pretty-delete-btn {
+    background: linear-gradient(135deg, #ff4d4f, #ff7875);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
 }
-
-/* ✅ 分數鍵 */
-button.win, button.draw, button.lose, button.hot-btn {
-  border: none;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.win{background: #10b981; color: white;}
-.draw{background: #f59e0b; color: black;}
-.lose{background: #4b5563; color: white;}
-.hot-btn {
-  background: linear-gradient(135deg, #f59e0b, #dfaa2a);
-  color: #0b0f19;
-  padding: 4px 10px;
-  font-size: 12px;
-  margin-left: 8px;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
-}
-button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transform: scale(1.1); filter: brightness(1.2); }
-
-.btn-lock-container {
-  display: none;
-  align-items: center;
-  gap: 8px;
+button.pretty-edit-btn {
+    background: linear-gradient(135deg, #1890ff, #40a9ff);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-/* ✅ 日期與分頁篩選器樣式 */
-.date-selector-container {
-  max-width: 1200px;
-  margin: 15px auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  background: #111827;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #1f2937;
+/* 📸 實體拍照上傳專用按鈕樣式 */
+.camera-upload-row { display: flex; gap: 8px; margin: 8px 0; }
+.camera-btn {
+    flex: 1;
+    background: linear-gradient(135deg, #e67e22, #d35400);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
-.date-btn {
-  background: #1f2937;
-  color: #d1d5db;
-  border: 1px solid #374151;
-  padding: 6px 14px;
-  font-size: 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.date-btn.active, .date-btn:hover {
-  background: #dfaa2a;
-  color: #0b0f19;
-  border-color: #dfaa2a;
-  box-shadow: 0 0 8px rgba(223,170,42,0.4);
-}
+.camera-btn.video-mode { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+.upload-preview-box { max-width: 100%; height: auto; max-height: 120px; border-radius: 8px; margin: 8px 0; display: none; object-fit: cover; border: 2px dashed #ccc; }
 
-/* ✅ 排名區域 */
-.table-area { margin-top: 12px; border-top: 2px dashed #4b5563; padding-top: 8px; }
-.table-row{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #111827;
-  padding: 4px 8px;
-  margin: 3px 0;
-  border-radius: 4px;
-  font-size: 13px;
-}
-.table-row.rank-0, .table-row.rank-1 { border-left: 4px solid #10b981; background: #064e3b; }
-.table-row.rank-2 { border-left: 4px solid #f59e0b; }
+/* 智慧型雙向輸入列排版樣式（解鎖滾輪核心） */
+.twin-input-wrapper { display: flex; align-items: center; position: relative; width: 100%; }
+.twin-input-wrapper input[type="text"] { flex: 1; cursor: pointer; background: #fff; }
+.wheel-trigger-box { position: absolute; right: 0; top: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: flex-end; pointer-events: none; }
+.wheel-btn { background: transparent !important; border: none !important; width: 44px; height: 100%; position: relative; pointer-events: auto; }
+.picker-overlay-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0 !important; cursor: pointer; z-index: 5; }
 
-/* ✅ 賽程卡片流 */
-.matches{
-  margin: 20px auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 15px;
-  max-width: 1200px;
-}
-.match-card{
-  background: #1f2937;
-  border-radius: 10px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid #374151;
-  cursor: pointer;
-  transition: border-color 0.3s, transform 0.2s;
-}
-.match-card:hover {
-  border-color: #dfaa2a;
-  transform: translateY(-3px);
-}
-.match-time {
-  font-size: 11px;
-  color: #dfaa2a;
-  background: #1e293b;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: bold;
-  text-align: center;
-  width: 92%;
-}
-.match-teams {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 5px;
-}
-.team-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; font-weight: bold; min-width: 95px; text-align: center;}
-.vs { font-size: 15px; color: #dfaa2a; font-weight: bold; }
-.view-btn { font-size: 11px; color: #38bdf8; text-decoration: underline; margin-top: 4px;}
+/* 彈窗樣式 */
+.popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 1000; overflow-y: auto; }
+.popup-content-card { position: relative; background: white; width: 90%; max-width: 550px; margin: 50px auto; padding: 20px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.popup-close-x { position: absolute; top: 15px; right: 18px; font-size: 24px; color: #8c8c8c; cursor: pointer; font-weight: bold; }
+.password-lock-section { background: #fffbe6; border: 1px solid #ffe58f; padding: 15px; border-radius: 10px; margin-top: 10px; text-align: center; }
+.secure-form-fields { display: none; margin-top: 15px; }
 
-/* ✅ 彈窗樣式 */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-}
-.modal-content {
-  background: #1f2937;
-  padding: 25px;
-  border-radius: 15px;
-  max-width: 600px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  border: 1px solid #dfaa2a;
-  position: relative;
-}
-.close-modal {
-  position: absolute;
-  top: 15px; right: 20px;
-  font-size: 28px; color: #9ca3af; cursor: pointer;
-}
-.close-modal:hover { color: #fff; }
-.squad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
-.squad-box { background: #111827; padding: 12px; border-radius: 8px; }
-.squad-box h4 { margin-top: 0; color: #dfaa2a; border-bottom: 1px solid #374151; padding-bottom: 4px;}
-.player-list { list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 1.6;}
-.player-list li { color: #d1d5db; border-bottom: 1px dashed #1f2937; padding: 2px 0;}
+button.action-btn-block { width:100%; padding:12px; margin-top:8px; background:#25D366; color:white; border:none; border-radius:10px; font-size:16px; font-weight:bold; cursor:pointer; }
+input, textarea, select { width:100%; padding:12px; margin:6px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
 
-.scorers-box {
-  background: #111827;
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 8px;
-  border-left: 4px solid #38bdf8;
-}
-.scorers-title {
-  font-size: 13px;
-  color: #38bdf8;
-  font-weight: bold;
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.scorers-list {
-  font-size: 12px;
-  color: #9ca3af;
-  line-height: 1.6;
-  white-space: pre-line;
-}
+.event-item { background: #f9f9f9; padding: 12px; border-left: 4px solid #25D366; margin-bottom: 8px; border-radius: 0 8px 8px 0; }
+.event-time { font-weight: bold; color: #333; }
+.event-desc { margin-top: 4px; color: #555; }
 
-/* 🏆 奪冠預測專屬自訂表單樣式 */
-.predict-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 15px;
-}
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.form-group label {
-  font-size: 13px;
-  color: #dfaa2a;
-  font-weight: bold;
-}
-.form-input {
-  background: #111827;
-  border: 1px solid #4b5563;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-.form-input:focus {
-  border-color: #dfaa2a;
-  outline: none;
-}
-.submit-btn {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: #fff;
-  border: none;
-  padding: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 10px;
-}
-.submit-btn:hover {
-  filter: brightness(1.1);
-  transform: scale(1.02);
-}
+/* 📸 互助相簿牆排版樣式 */
+.album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 15px; }
+.album-item { background: white; border-radius: 10px; overflow: hidden; padding: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); text-align: center; position: relative; border: 1px solid #eee; }
+.album-item img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; }
+.album-item video { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; background: #000; }
+.album-title { font-size: 13px; font-weight: bold; margin-top: 6px; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.album-date-badge { font-size: 11px; color: #1890ff; background: #e6f7ff; padding: 1px 4px; border-radius: 4px; display: inline-block; margin-top: 2px; }
+.album-delete-tag { position: absolute; top: 4px; right: 4px; background: rgba(255,47,47,0.9); color: white; border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 14px; font-weight: bold; cursor: pointer; z-index: 10; }
+
+/* 視圖樣式 */
+.view-精簡 .day-event-badge { display: none !important; }
+.view-詳細資料 .calendar-day { min-height: 140px !important; }
+.view-詳細資料 .day-event-badge { white-space: normal !important; word-break: break-all !important; }
+.view-option-group { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+.view-radio-label { display: flex; align-items: center; background: #f5f5f5; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.view-radio-label input { width: auto; margin: 0 10px 0 0; transform: scale(1.3); }
 </style>
-
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 
-<body>
+<body class="view-列表" id="bodyNode">
 
-<h1>🏆 FIFA WORLD CUP 2026 (LOHAS’s EDITION)</h1>
+<header>📅 麟李互助家庭日誌</header>
 
-<div class="countdown-container">
-  <div class="countdown-title">🔥 距離世界盃官方正式揭幕戰（香港時間 2026-06-12 03:00）</div>
-  <div id="timerDisplay" class="countdown-timer">
-    <div class="time-block"><div id="days" class="time-num">00</div><div class="time-label">天 Days</div></div>
-    <div class="time-block"><div id="hours" class="time-num">00</div><div class="time-label">時 Hours</div></div>
-    <div class="time-block"><div id="minutes" class="time-num">00</div><div class="time-label">分 Mins</div></div>
-    <div class="time-block"><div id="seconds" class="time-num">00</div><div class="time-label">秒 Secs</div></div>
-  </div>
-</div>
+<div class="container">
 
-<div class="info">
-  🏆 <b>FIFA 全新擴軍賽制：</b>共有 12 個小組（Group A 至 Group L），共 48 支世界頂尖球隊參賽，一齊演繹 104 場精彩絕倫的足球賽事！<br>
-  🇺🇸 聯合主辦國：
-  <img src="https://flagcdn.com/w80/us.png" alt="US" title="美國">
-  <img src="https://flagcdn.com/w80/ca.png" alt="CA" title="加拿大">
-  <img src="https://flagcdn.com/w80/mx.png" alt="MX" title="墨西哥">
-  <br>⚽ 衛冕冠軍：<img src="https://flagcdn.com/w80/ar.png" alt="AR" title="阿根廷">
-  <br>🔮 預測今届奪冠熱門：
-  <img src="https://flagcdn.com/w80/es.png" alt="ES" style="width:24px; vertical-align:middle;"> <b>西班牙 (Spain)</b> / 
-  <img src="https://flagcdn.com/w80/fr.png" alt="FR" style="width:24px; vertical-align:middle;"> <b>法國 (France)</b> 
-  <button class="hot-btn" onclick="openPredictModal()">🏆 誰會是冠軍隊伍, 睇你有幾準🧐!</button>
-
-  <div class="predict-rank-container">
-    <div class="predict-rank-title">🔥 全網奪冠預測熱度榜</div>
-    <div class="predict-rank-grid" id="predictRankGrid"></div>
-  </div>
-
-  <div class="highlight-intro">
-    📢 世界盃全部賽程 小組賽+ 淘汰賽： 72場小組比賽與淘汰賽32 場比賽，共 104 場一場不缺！
-  </div>
-</div>
-
-<div class="friendly-section">
-  <div class="friendly-title">⚽ 最新友誼賽資訊</div>
-  <p id="friendlyDesc" style="margin: 0 0 10px 0; color: #d1d5db;">最新友誼賽戰報與賽程動態載入中...</p>
-  
-  <div class="friendly-subtitle">📊 焦點賽果速報</div>
-  <table class="friendly-table">
-    <thead>
-      <tr>
-        <th>比賽日期 (香港時間)</th>
-        <th>主隊</th>
-        <th>比數</th>
-        <th>客隊</th>
-        <th>戰況簡報</th>
-      </tr>
-    </thead>
-    <tbody id="friendlyResultsBody"></tbody>
-  </table>
-
-  <div class="friendly-subtitle">⏳ 接下來的熱身賽預告（最後閱兵）</div>
-  <p id="friendlyUpcomingHint" style="margin: 0 0 8px 0; color: #9ca3af; white-space: pre-line;"></p>
-  <ul class="friendly-list" id="friendlyUpcomingList"></ul>
-</div>
-
-<div class="title-panel-container">
-  <h2>🌍 (A-L) 小組積分榜</h2>
-  <div class="lock-control-panel" id="lockControlPanel">
-    <input type="password" id="scorePassword" class="lock-input">
-    <button class="lock-btn" onclick="checkScoreUnlock()">🔒</button>
-  </div>
-</div>
-
-<div id="groups" class="groups"></div>
-
-<h2>🤝 2026 世界盃 104 場全賽事日曆表 (香港時間 HKT)</h2>
-
-<div id="dateSelector" class="date-selector-container"></div>
-<div id="matches" class="matches"></div>
-
-<div id="squadModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeSquad()">&times;</span>
-    <h3 id="modalTitle" style="text-align:center; margin-top:0;">🏆 官方賽事詳細資訊</h3>
-    
-    <div id="modalScorersBox" class="scorers-box">
-      <div class="scorers-title">🏟️ 比賽球場地點與大數據焦點心水推薦</div>
-      <div id="modalScorersList" class="scorers-list"></div>
+    <div class="top-action-card">
+        <button class="action-btn" style="background: #25D366;" onclick="openAddFormPopup('ADD')">➕ 活動</button>
+        <button class="action-btn" style="background: #1890ff;" onclick="openAddFormPopup('MANAGE')">⚙️ 修改/刪除</button>
+        <button class="action-btn" style="background: #f39c12;" onclick="openAddFormPopup('ALBUM')">🏡 互助相簿</button>
+        <button class="action-btn" style="background: #00c642;" onclick="openAddFormPopup('WHATSAPP')">💬 WHATSAPP 通知</button>
+        <button class="action-btn" style="background: #722ed1;" onclick="openAddFormPopup('SWITCH_VIEW')">👁️ 視覺</button>
     </div>
 
-    <div class="squad-grid">
-      <div class="squad-box">
-        <h4 id="team1Name">球隊 1</h4>
-        <ul id="team1Players" class="player-list"></ul>
-      </div>
-      <div class="squad-box">
-        <h4 id="team2Name">球隊 2</h4>
-        <ul id="team2Players" class="player-list"></ul>
-      </div>
+    <div class="card">
+        <div class="calendar-header">
+            <button class="nav-btn" onclick="changeMonth(-1)">⬅ 上一月</button>
+            <div id="monthLabel" class="month-title"></div>
+            <button class="nav-btn" onclick="changeMonth(1)">下一月 ➡</button>
+        </div>
+        <div class="weekdays-container">
+            <div class="weekday">日</div><div class="weekday">一</div><div class="weekday">二</div><div class="weekday">三</div><div class="weekday">四</div><div class="weekday">五</div><div class="weekday">六</div>
+        </div>
+        <div id="calendar" class="calendar"></div>
     </div>
-  </div>
-</div>
 
-<div id="predictModal" class="modal">
-  <div class="modal-content" style="max-width: 450px;">
-    <span class="close-modal" onclick="closePredictModal()">&times;</span>
-    <h3 style="text-align:center; margin-top:0; color: #dfaa2a;">🔮 2026世界盃奪冠大預測</h3>
-    <p style="font-size: 13px; color: #10b981; text-align: center; font-weight: bold; margin-bottom: 15px;">🎁 估中者可以贏取夏日消暑獎品！</p>
-    
-    <form class="predict-form" onsubmit="submitPrediction(event)">
-      <div class="form-group">
-        <label>電話尾數 (例如: 1234 或 xxxx1234)</label>
-        <input type="text" id="userPhone" class="form-input" required placeholder="請填寫電話尾數">
-      </div>
-      <div class="form-group">
-        <label>名稱</label>
-        <input type="text" id="userName" class="form-input" required>
-      </div>
-      <div class="form-group">
-        <label>心水冠軍隊伍</label>
-        <input type="text" id="userChampTeam" class="form-input" required placeholder="例如: 西班牙 / 法國 / 阿根廷">
-      </div>
-      
-      <button type="submit" class="submit-btn">提交預測</button>
-      <div style="font-size: 0.8rem; color: #a1a1aa; margin-top: 10px; text-align: left; line-height: 1.4;">
-        📌 聲明：本次活動收集的名稱及電話尾數，僅用作熱度榜顯示及得獎資格核對用途，主辦方無法藉此識辨或追蹤您的個人身份，資料亦不會用作任何推廣或轉售，請放心參與。
-      </div>
-    </form>
-  </div>
+    <div class="card">
+        <h3 style="margin-top:0; color:#333;">📋 <span id="selectedDateLabel"></span> 活動日程</h3>
+        <div id="dayEvents"></div>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-top:0; color:#f39c12;">🖼️ <span id="albumDateLabel"></span> 麟李家庭互助相簿 / 短片牆</h3>
+        <div id="mainAlbumGrid" class="album-grid"></div>
+    </div>
+
+    <div class="popup-overlay" id="addEventPopupOverlay" onclick="closePopupOverlayOutside(event)">
+        <div class="popup-content-card">
+            <span class="popup-close-x" onclick="closeEventPopup()">&times;</span>
+            <h3 id="formTitle">➕ 新增家庭活動</h3>
+            <input type="hidden" id="editKey" value="">
+
+            <div class="password-lock-section" id="lockSection">
+                <div style="display:flex; gap:8px;">
+                    <input type="password" id="popupPassword" placeholder="輸入密碼進入面板..." style="margin:0; flex:1; padding:10px;">
+                    <button type="button" class="action-btn" style="margin:0; width:auto; padding:10px 20px; background:#1890ff; border:none; border-radius:8px; color:white; font-weight:bold; cursor:pointer;" onclick="verifyGatePassword()">確認進入</button>
+                </div>
+            </div>
+
+            <div class="secure-form-fields" id="secureFormPanel">
+                <label for="eventTitle">活動名稱 / 地點：</label>
+                <input type="text" id="eventTitle" placeholder="例如：蓓 8:30 放學、二胡課">
+                
+                <label for="eventTime">📅 開始日期時間：</label>
+                <div class="twin-input-wrapper">
+                    <input type="text" id="eventTime" placeholder="點擊選取開始日期與時間" readOnly onclick="document.getElementById('nativeStartPicker').showPicker()">
+                    <div class="wheel-trigger-box">
+                        <div class="wheel-btn">
+                            <input type="datetime-local" id="nativeStartPicker" class="picker-overlay-input" onchange="syncFormComboPicker(this, 'eventTime')">
+                        </div>
+                    </div>
+                </div>
+
+                <label for="eventEndTime">📆 結束日期時間：</label>
+                <div class="twin-input-wrapper">
+                    <input type="text" id="eventEndTime" placeholder="點擊選取結束日期與時間 (選填)" readOnly onclick="document.getElementById('nativeEndPicker').showPicker()">
+                    <div class="wheel-trigger-box">
+                        <div class="wheel-btn">
+                            <input type="datetime-local" id="nativeEndPicker" class="picker-overlay-input" onchange="syncFormComboPicker(this, 'eventEndTime')">
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: #fffdf6; border: 1px dashed #f39c12; padding: 12px; border-radius: 8px; margin: 12px 0;">
+                    <label style="font-weight:bold; color:#e67e22; display:block; margin-bottom:4px;">🖼️ 隨附相片或短片 (選填)：</label>
+                    <div class="camera-upload-row">
+                        <button type="button" class="camera-btn" onclick="triggerFileInput('FormImage')">📷 拍照 / 選擇相片</button>
+                        <button type="button" class="camera-btn video-mode" onclick="triggerFileInput('FormVideo')">🎥 錄影 / 選擇短片</button>
+                    </div>
+                    <input type="file" id="formImageInput" accept="image/*" capture="environment" style="display:none;" onchange="handleFormFileLoad(this, 'image')">
+                    <input type="file" id="formVideoInput" accept="video/*" capture="environment" style="display:none;" onchange="handleFormFileLoad(this, 'video')">
+                    
+                    <img id="formImagePreview" class="upload-preview-box">
+                    <video id="formVideoPreview" class="upload-preview-box" controls></video>
+                    
+                    <input type="text" id="formMediaURL" placeholder="或貼上現有的網路媒體網址 URL" style="margin-top:6px;">
+                    <select id="formMediaType">
+                        <option value="image">🖼️ 圖片/相片模式</option>
+                        <option value="video">🎥 短片模式 (.mp4)</option>
+                    </select>
+                </div>
+
+                <button id="formSubmitBtn" class="action-btn-block" style="background:#25D366;" onclick="addFamilyEvent()">儲存至此日期</button>
+            </div>
+
+            <div class="secure-form-fields" id="secureManagePanel">
+                <label style="font-weight:bold; color:#1890ff; display:block; margin-bottom:12px;">🛠️ 當日可操作的行程：</label>
+                <div id="popupManageList"></div>
+            </div>
+
+            <div class="secure-form-fields" id="secureWhatsAppPanel">
+                <label style="font-weight:bold; color:#00c642; display:block; margin-bottom:12px;">💬 請選取欲發送 WhatsApp 通知的行程：</label>
+                <div id="popupWhatsAppList"></div>
+            </div>
+
+            <div class="secure-form-fields" id="secureAlbumPanel">
+                <label style="font-weight:bold; color:#f39c12;">➕ 添加新相片或短片至家庭相簿</label>
+                <input type="text" id="mediaTitle" placeholder="輸入相片描述或活動名稱">
+                
+                <div class="camera-upload-row">
+                    <button type="button" class="camera-btn" onclick="triggerFileInput('image')">📷 拍照 / 選擇相片</button>
+                    <button type="button" class="camera-btn video-mode" onclick="triggerFileInput('video')">🎥 錄影 / 選擇短片</button>
+                </div>
+                
+                <input type="file" id="nativeImageInput" accept="image/*" capture="environment" style="display:none;" onchange="handleNativeFileLoad(this, 'image')">
+                <input type="file" id="nativeVideoInput" accept="video/*" capture="environment" style="display:none;" onchange="handleNativeFileLoad(this, 'video')">
+                
+                <img id="imageUploadPreview" class="upload-preview-box">
+                <video id="videoUploadPreview" class="upload-preview-box" controls></video>
+
+                <div style="text-align: center; margin: 5px 0; color: #8c8c8c; font-size: 14px;">─ 或手動輸入網路 URL ─</div>
+                <input type="text" id="mediaURL" placeholder="請貼上現有的相片或影片網址 (選填)">
+                
+                <select id="mediaType">
+                    <option value="image">🖼️ 圖片/相片模式</option>
+                    <option value="video">🎥 短片模式 (.mp4)</option>
+                </select>
+                <p style="font-size:14px; color:#666; margin: 4px 0;">* 系統會自動將相片綁定在您當前選取的日期 (<span id="albumBindDateLabel" style="color:#1890ff; font-weight:bold;"></span>)！</p>
+                <button class="action-btn-block" style="background:#f39c12;" onclick="uploadMediaToAlbum()">確認上傳添加至相簿</button>
+                
+                <hr style="border:0; border-top:1px solid #eee; margin:15px 0;">
+                <label style="font-weight:bold; color:#555;">🗑️ 管理/刪除當日相簿內容：</label>
+                <div id="popupAlbumManageList" class="album-grid"></div>
+            </div>
+
+            <div class="secure-form-fields" id="secureViewSwitchPanel">
+                <div class="view-option-group">
+                    <label class="view-radio-label"><input type="radio" name="viewMode" value="精簡" onclick="changeGlobalViewMode('精簡')"> ▤ 精簡</label>
+                    <label class="view-radio-label"><input type="radio" name="viewMode" value="開展" onclick="changeGlobalViewMode('開展')"> ⪢ 疊放開展</label>
+                    <label class="view-radio-label"><input type="radio" name="viewMode" value="詳細資料" onclick="changeGlobalViewMode('詳細資料')"> 📋 詳細資料</label>
+                    <label class="view-radio-label"><input type="radio" name="viewMode" value="列表" onclick="changeGlobalViewMode('列表')"> ✓ ☰ 列表</label>
+                </div>
+            </div>
+            
+            <button class="action-btn-block" style="background:#8c8c8c; margin-top:15px;" onclick="closeEventPopup()">關閉面板</button>
+        </div>
+    </div>
+
 </div>
 
 <script>
-// 🌐 1. 初始化 Firebase 連接配置
-const firebaseConfig = {
-  databaseURL: "https://lohas-worldcupgamedata-default-rtdb.firebaseio.com/"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+const dbURL = "https://familycalender-a62ae-default-rtdb.firebaseio.com/family_calendar_activities";
+const albumURL = "https://familycalender-a62ae-default-rtdb.firebaseio.com/family_mutual_album";
 
-const teamDatabase = {
-  "tbd": { name: "待定 (TBD)", stars: ["隨比賽進程解鎖"] },
-  "mx": { name: "墨西哥 (Mexico)", stars: ["艾臣·馬天尼斯", "占文尼斯", "奧祖亞"] },
-  "za": { name: "南非 (South Africa)", stars: ["珀西·陶", "莫哥拿"] },
-  "kr": { name: "韓國 (South Korea)", stars: ["孫興慜", "金玟哉", "李剛仁"] },
-  "cz": { name: "捷克 (Czechia)", stars: ["柏德列·希克", "蘇錫"] },
-  "ca": { name: "加拿大 (Canada)", stars: ["阿方素·戴維斯", "祖拿芬·戴維"] },
-  "ba": { name: "波斯尼亞 (Bosnia)", stars: ["哲科", "哥拉辛拿斯"] },
-  "qa": { name: "卡塔爾 (Qatar)", stars: ["阿菲夫", "阿里"] },
-  "ch": { name: "瑞士 (Switzerland)", stars: ["沙加", "岩保路"] },
-  "br": { name: "巴西 (Brazil)", stars: ["雲尼斯奧斯", "洛迪高", "尼馬"] },
-  "ma": { name: "摩洛哥 (Morocco)", stars: ["阿舒拉夫", "薛耶治"] },
-  "ht": { name: "海地 (Haiti)", stars: ["派洛特", "納松"] },
-  "gb-sct": { name: "蘇格蘭 (Scotland)", stars: ["麥湯米尼", "羅拔臣"] },
-  "us": { name: "美國 (USA)", stars: ["普列錫", "麥堅尼", "巴洛根"] },
-  "py": { name: "巴拉圭 (Paraguay)", stars: ["阿米朗", "恩錫素"] },
-  "au": { name: "澳洲 (Australia)", stars: ["賴恩", "蘇達"] },
-  "tr": { name: "土耳其 (Türkiye)", stars: ["阿達·居萊爾", "恰爾汗奧盧"] },
-  "de": { name: "德國 (Germany)", stars: ["維斯", "梅斯亞拿", "夏維斯"] },
-  "cw": { name: "庫拉索 (Curaçao)", stars: ["巴干拿"] },
-  "ci": { name: "科特迪瓦 (Ivory Coast)", stars: ["阿萊", "基斯爾"] },
-  "ec": { name: "厄瓜多爾 (Ecuador)", stars: ["卡些度", "華倫西亞"] },
-  "nl": { name: "荷蘭 (Netherlands)", stars: ["雲迪克", "加普", "迪莊"] },
-  "jp": { name: "日本 (Japan)", stars: ["三笘薰", "遠藤航", "久保建英"] },
-  "se": { name: "瑞典 (Sweden)", stars: ["伊薩克", "基奧基尼斯"] },
-  "tn": { name: "突尼西亞 (Tunisia)", stars: ["斯希里"] },
-  "be": { name: "比利時 (Belgium)", stars: ["迪布尼", "盧卡古"] },
-  "eg": { name: "埃及 (Egypt)", stars: ["沙拿", "馬摩殊"] },
-  "ir": { name: "伊朗 (Iran)", stars: ["泰利米", "阿斯蒙"] },
-  "nz": { name: "紐西蘭 (New Zealand)", stars: ["基斯·活特"] },
-  "es": { name: "西班牙 (Spain)", stars: ["洛迪", "耶馬爾", "莫拉達"] },
-  "cv": { name: "佛得角 (Cape Verde)", stars: ["文迪斯"] },
-  "sa": { name: "沙特阿拉伯 (Saudi Arabia)", stars: ["達華沙利"] },
-  "uy": { name: "烏拉圭 (Uruguay)", stars: ["華維迪", "紐尼斯"] },
-  "fr": { name: "法國 (France)", stars: ["麥巴比", "基沙文", "沙列巴"] },
-  "sn": { name: "塞內加爾 (Senegal)", stars: ["文尼", "積臣"] },
-  "iq": { name: "伊拉克 (Iraq)", stars: ["侯賽因"] },
-  "no": { name: "挪威 (Norway)", stars: ["哈蘭德", "奧迪加特"] },
-  "ar": { name: "阿根廷 (Argentina)", stars: ["美斯", "羅達路", "安素"] },
-  "dz": { name: "阿爾及利亞 (Algeria)", stars: ["馬列斯"] },
-  "at": { name: "奧地利 (Austria)", stars: ["阿拉巴", "薩比沙"] },
-  "jo": { name: "約旦 (Jordan)", stars: ["塔馬里"] },
-  "pt": { name: "葡萄牙 (Portugal)", stars: ["C朗拿度", "般奴·費南迪斯"] },
-  "cd": { name: "剛果民主 (DR Congo)", stars: ["韋沙"] },
-  "uz": { name: "烏茲別克 (Uzbekistan)", stars: ["紹穆羅多夫"] },
-  "co": { name: "哥倫比亞 (Colombia)", stars: ["戴亞斯", "占士·洛迪古斯"] },
-  "gb-eng": { name: "英格蘭 (England)", stars: ["簡尼", "比寧咸", "沙卡"] },
-  "hr": { name: "克羅地亞 (Croatia)", stars: ["摩迪", "格華迪奧"] },
-  "gh": { name: "加納 (Ghana)", stars: ["庫杜斯"] },
-  "pa": { name: "巴拿馬 (Panama)", stars: ["法查度"] }
-};
+let activities = [];
+let albumItems = [];
+let current = new Date(); 
+let selectedDateStr = new Date().toISOString().slice(0, 10); 
+let currentPopupMode = "ADD";
+let currentGlobalMode = localStorage.getItem('family_日誌_view_mode') || "列表";
+let uploadedBase64Cache = ""; 
+let formUploadedBase64Cache = "";
 
-const groups={
-  "A": ["mx", "za", "kr", "cz"], "B": ["ca", "ba", "qa", "ch"], "C": ["br", "ma", "ht", "gb-sct"],
-  "D": ["us", "py", "au", "tr"], "E": ["de", "cw", "ci", "ec"], "F": ["nl", "jp", "se", "tn"],
-  "G": ["be", "eg", "ir", "nz"], "H": ["es", "cv", "sa", "uy"], "I": ["fr", "sn", "iq", "no"],
-  "J": ["ar", "dz", "at", "jo"], "K": ["pt", "cd", "uz", "co"], "L": ["gb-eng", "hr", "gh", "pa"]
-};
-
-const centralSchedule = [
-  { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "VS", scorers: "🏟️ 墨西哥城 阿茲特克體育場\n💡 心水推薦：揭幕戰東道主墨西哥主場優勢極大，推薦勝。" },
-  { id: "GS02", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "10:00", t1: "kr", t2: "cz", score: "VS", scorers: "🏟️ 墨西哥 瓜達拉哈拉體育場\n💡 心水推薦：太極虎戰捷克，兩隊實力接近，推薦平局或小球。" },
-  { id: "GS03", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "03:00", t1: "ca", t2: "ba", score: "VS", scorers: "🏟️ 加拿大 多倫多體育場\n💡 加拿大主場首秀，看好主隊坐和望贏。" },
-  { id: "GS04", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "09:00", t1: "us", t2: "py", score: "VS", scorers: "🏟️ 美國 洛杉磯 SoFi 體育場\n💡 美國陣容齊整主場出擊，首選主隊獨贏。" },
-  { id: "GS05", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "03:00", t1: "qa", t2: "ch", score: "VS", scorers: "🏟️ 美國 波士頓體育場\n💡 瑞士防守強硬，看好實力較高的一方小勝。" },
-  { id: "GS06", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "06:00", t1: "br", t2: "ma", score: "VS", scorers: "🏟️ 美國 紐約大門戶人壽體育場\n💡 強強對決！森巴軍團對戰上屆黑馬，推薦大球盤。" },
-  { id: "GS07", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "09:00", t1: "ht", t2: "gb-sct", score: "VS", scorers: "🏟️ 美國 邁阿密體育場\n💡 蘇格蘭身體對抗佔優，首選客隊不敗。" },
-  { id: "GS08", stage: "Group A-D 小組賽", dateStr: "2026-06-15", time: "12:00", t1: "au", t2: "tr", score: "VS", scorers: "🏟️ 美國 三藩市體育場\n💡 土耳其鋒線天才湧現，看好星月軍團獨贏。" },
-  { id: "GS09", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "00:00", t1: "cz", t2: "za", score: "VS", scorers: "🏟️ 小組賽第二輪。捷克需拼搶積分，推薦主勝。" },
-  { id: "GS10", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "ch", t2: "ba", score: "VS", scorers: "🏟️ 兩歐勁旅相遇，球風偏穩，首選小球。" },
-  { id: "GS11", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "06:00", t1: "ca", t2: "qa", score: "VS", scorers: "🏟️ 加拿大速度流邊路進攻，看好主隊全取三分。" },
-  { id: "GS12", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "mx", t2: "kr", score: "VS", scorers: "🏟️ 次輪生死戰！墨西哥遭遇太極虎，強烈推薦大球。" },
-  { id: "GS13", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "03:00", t1: "us", t2: "au", score: "VS", scorers: "🏟️ 洛杉磯 SoFi 體育場，東道主勝率高。" },
-  { id: "GS14", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "06:00", t1: "gb-sct", t2: "ma", score: "VS", scorers: "🏟️ 摩洛哥實力稍勝，防守反擊推薦客隊勝。" },
-  { id: "GS15", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "08:30", t1: "br", t2: "ht", score: "VS", scorers: "🏟️ 巴西鋒線輾壓，看好讓球大勝。" },
-  { id: "GS16", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "11:00", t1: "tr", t2: "py", score: "VS", scorers: "🏟️ 土耳其控球流戰術，看好主隊坐和望贏。" },
-  { id: "GS17", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ch", t2: "ca", score: "VS", scorers: "🏟️ 第三輪生死開哨，局勢多變，首選雙方都有進球。" },
-  { id: "GS18", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ba", t2: "qa", score: "VS", scorers: "🏟️ 同步開賽，推薦分出勝負。" },
-  { id: "GS19", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "06:00", t1: "gb-sct", t2: "br", score: "VS", scorers: "🏟️ 巴西提前出線或爭首名，獨贏盤相對穩健。" },
-  { id: "M20", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "06:00", t1: "ma", t2: "ht", score: "VS", scorers: "🏟️ 摩洛哥實力優勢，看好獨贏。" },
-  { id: "M21", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "09:00", t1: "cz", t2: "mx", score: "VS", scorers: "🏟️ 焦點戰！阿茲特克主場狂熱，看好墨西哥。" },
-  { id: "M22", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "09:00", t1: "za", t2: "kr", score: "VS", scorers: "🏟️ 韓國非勝不可，孫興慜領銜搶攻，首選客勝。" },
-  { id: "M23", stage: "Group A-D 小組賽", dateStr: "2026-06-26", time: "10:00", t1: "tr", t2: "us", score: "VS", scorers: "🏟️ 焦點對決，戰況激烈推薦大球。" },
-  { id: "M24", stage: "Group A-D 小組賽", dateStr: "2026-06-26", time: "10:00", t1: "py", t2: "au", score: "VS", scorers: "🏟️ 出線生死大戰，推薦和局。" },
-
-  /* --- Group E-H 小組賽 --- */
-  { id: "GS25", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "01:00", t1: "de", t2: "cw", score: "VS", scorers: "🏟️ 戰車出征實力輾壓，看好德國大勝。" },
-  { id: "GS26", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "04:00", t1: "nl", t2: "jp", score: "VS", scorers: "🏟️ 焦點大戰！日本藍武士挑戰橙衣軍團，推薦大盤對攻。" },
-  { id: "GS27", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "07:00", t1: "ci", t2: "ec", score: "VS", scorers: "🏟️ 非洲猛象硬碰南美強權，推薦和局。" },
-  { id: "GS28", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "10:00", t1: "se", t2: "tn", score: "VS", scorers: "🏟️ 瑞典雙前鋒進攻火力猛烈，看好主勝。" },
-  { id: "GS29", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "00:00", t1: "es", t2: "cv", score: "VS", scorers: "🏟️ 西班牙控球體系無解，看好輕鬆勝出。" },
-  { id: "GS30", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "03:00", t1: "be", t2: "eg", score: "VS", scorers: "🏟️ 迪布尼決戰沙拿，推薦雙方都有進球。" },
-  { id: "GS31", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "06:00", t1: "sa", t2: "uy", score: "VS", scorers: "🏟️ 烏拉圭實力強悍，看好客勝。" },
-  { id: "GS32", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "09:00", t1: "ir", t2: "nz", score: "VS", scorers: "🏟️ 波斯鐵騎更具大賽經驗，看好伊朗勝。" },
-  { id: "GS33", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "01:00", t1: "nl", t2: "se", score: "VS", scorers: "🏟️ 強強對決，進攻對攻大戰首選大球。" },
-  { id: "GS34", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "04:00", t1: "de", t2: "ci", score: "VS", scorers: "🏟️ 德國戰術體系嚴密，看好主隊。" },
-  { id: "GS35", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "08:00", t1: "ec", t2: "cw", score: "VS", scorers: "🏟️ 厄瓜多爾整體戰力佔優，推薦主勝。" },
-  { id: "GS36", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "12:00", t1: "tn", t2: "jp", score: "VS", scorers: "🏟️ 日本藍武士強攻爭分，看好客勝。" },
-  { id: "GS37", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "00:00", t1: "es", t2: "sa", score: "VS", scorers: "🏟️ 西班牙傳控輾壓，獨贏無懸念。" },
-  { id: "GS38", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "03:00", t1: "be", t2: "ir", score: "VS", scorers: "🏟️ 比利時進攻點多，看好主隊勝。" },
-  { id: "GS39", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "06:00", t1: "uy", t2: "cv", score: "VS", scorers: "🏟️ 烏拉圭實力佔優，強推主隊。" },
-  { id: "GS40", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "09:00", t1: "nz", t2: "eg", score: "VS", scorers: "🏟️ 埃及法老沙拿領銜爭勝，看好客隊不敗。" },
-  { id: "GS41", stage: "Group E-H 小組賽", dateStr: "2026-06-25", time: "07:00", t1: "tn", t2: "nl", score: "VS", scorers: "🏟️ 荷蘭取分爭首名，看好客隊大勝。" },
-  { id: "GS42", stage: "Group E-H 小組賽", dateStr: "2026-06-26", time: "04:00", t1: "ec", t2: "de", score: "VS", scorers: "🏟️ 強強對話，日耳曼戰車更勝一籌。" },
-  { id: "GS43", stage: "Group E-H 小組賽", dateStr: "2026-06-26", time: "07:00", t1: "jp", t2: "se", score: "VS", scorers: "🏟️ 亞洲技術流決戰北歐海盜，強烈推薦和局。" },
-  { id: "GS44", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "04:00", t1: "cw", t2: "ci", score: "VS", scorers: "🏟️ 科特迪瓦實力輾壓，看好客隊勝。" },
-  { id: "GS45", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "08:00", t1: "uy", t2: "es", score: "VS", scorers: "🏟️ 頂級對決！豪門生死戰，看好小球。" },
-  { id: "GS46", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "08:00", t1: "cv", t2: "sa", score: "VS", scorers: "🏟️ 同步激戰，推薦分出勝負。" },
-  { id: "GS47", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "11:00", t1: "nz", t2: "be", score: "VS", scorers: "🏟️ 比利時優賽明顯，看好讓球勝。" },
-  { id: "GS48", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "11:00", t1: "eg", t2: "ir", score: "VS", scorers: "🏟️ 實力伯仲之間，首選和局。" },
-
-  /* --- Group I-L 小組賽 --- */
-  { id: "GS49", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "03:00", t1: "fr", t2: "sn", score: "VS", scorers: "🏟️ 法國豪華陣容亮相，看好取得開門紅。" },
-  { id: "GS50", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "06:00", t1: "iq", t2: "no", score: "VS", scorers: "🏟️ 魔人哈蘭德衝擊防線，看好挪威勝。" },
-  { id: "GS51", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "09:00", t1: "ar", t2: "dz", score: "VS", scorers: "🏟️ 衛冕冠軍登場！美斯領銜強攻，強推主隊。" },
-  { id: "GS52", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "12:00", t1: "at", t2: "jo", score: "VS", scorers: "🏟️ 奧地利球風成熟，看好大勝。" },
-  { id: "GS53", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "01:00", t1: "pt", t2: "cd", score: "VS", scorers: "🏟️ C朗最後一舞，葡萄牙實力上乘，主勝穩健。" },
-  { id: "GS54", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "04:00", t1: "gb-eng", t2: "hr", score: "VS", scorers: "🏟️ 超級強強對陣！三獅軍團拼格子軍，首選小球。" },
-  { id: "GS55", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "07:00", t1: "gh", t2: "pa", score: "VS", scorers: "🏟️ 非洲黑星陣容更強，推薦加納勝。" },
-  { id: "GS56", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "10:00", t1: "uz", t2: "co", score: "VS", scorers: "🏟️ 哥倫比亞實力優勢，看好客勝。" },
-  { id: "GS57", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "01:00", t1: "ar", t2: "at", score: "VS", scorers: "🏟️ 焦點大戰，潘帕斯雄鷹技術更細膩，推薦勝。" },
-  { id: "GS58", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "05:00", t1: "fr", t2: "iq", score: "VS", scorers: "🏟️ 高盧雄雞戰意十足，看好大比分勝。" },
-  { id: "GS59", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "08:00", t1: "no", t2: "sn", score: "VS", scorers: "🏟️ 北歐力量火拼西非雄獅，看好對攻大球。" },
-  { id: "GS60", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "11:00", t1: "jo", t2: "dz", score: "VS", scorers: "🏟️ 阿爾及利亞大賽經驗豐富，看好客隊不敗。" },
-  { id: "GS61", stage: "Group I-L 小組賽", dateStr: "2026-06-24", time: "01:00", t1: "pt", t2: "uz", score: "VS", scorers: "🏟️ 葡萄牙邊路快馬群爆發，看好主隊。" },
-  { id: "GS62", stage: "Group I-L 小組賽", dateStr: "2026-06-24", time: "04:00", t1: "gb-eng", t2: "gh", score: "VS", scorers: "🏟️ 英格蘭實力大幅度領先，主勝穩。" },
-  { id: "GS63", stage: "Group I-L 小組賽", dateStr: "2026-06-24", time: "07:00", t1: "pa", t2: "hr", score: "VS", scorers: "🏟️ 克羅地亞中場大腦控球，看好客隊勝。" },
-  { id: "GS64", stage: "Group I-L 小組賽", dateStr: "2026-06-24", time: "10:00", t1: "co", t2: "cd", score: "VS", scorers: "🏟️ 哥倫比亞實力優勢，看好獨贏。" },
-  { id: "GS65", stage: "Group I-L 小組賽", dateStr: "2026-06-27", time: "03:00", t1: "no", t2: "fr", score: "VS", scorers: "🏟️ 頂級焦點戰！哈蘭德決戰麥巴比，推薦大球！" },
-  { id: "GS66", stage: "Group I-L 小組賽", dateStr: "2026-06-27", time: "03:00", t1: "sn", t2: "iq", score: "VS", scorers: "🏟️ 生死一戰，推薦雙方都有進球。" },
-  { id: "GS67", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "05:00", t1: "pa", t2: "gb-eng", score: "VS", scorers: "🏟️ 英格蘭取分爭首名，看好客勝。" },
-  { id: "GS68", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "05:00", t1: "hr", t2: "gh", score: "VS", scorers: "🏟️ 出線生死大對決，推薦小球盤口。" },
-  { id: "GS69", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "07:30", t1: "co", t2: "pt", score: "VS", scorers: "🏟️ 火星撞地球，對攻大戰，強推大球。" },
-  { id: "GS70", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "10:00", t1: "jo", t2: "ar", score: "VS", scorers: "🏟️ 阿根廷實力輾壓，客勝無懸念。" },
-  { id: "GS71", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "10:00", t1: "at", t2: "dz", score: "VS", scorers: "🏟️ 兩軍正面生死交鋒，推薦和局。" },
-  { id: "GS72", stage: "Group I-L 小組賽", dateStr: "2026-06-30", time: "07:30", t1: "cd", t2: "uz", score: "VS", scorers: "🏟️ 小組賽收官大戰，看好分出勝負。" },
-
-  /* --- 🏆 32強淘汰賽 --- */
-  { id: "K32_01", stage: "32強淘汰賽", dateStr: "2026-06-29", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 1】\n📢 特色：擴軍賽制首度登場！淘汰賽揭幕戰，戰術博弈激烈，推薦關注半場和局。" },
-  { id: "K32_02", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 2】\n📢 特色：一場定生死，強隊多半立足於防守，首選全場小球。" },
-  { id: "K32_03", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "04:30", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 3】\n📢 特色：傳統豪強對戰小組第三黑馬，豪門底蘊深厚，獨贏盤相對穩健。" },
-  { id: "K32_04", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 4】\n📢 特色：東道主若殺入此賽區，主場優勢明顯，看好主算出線。" },
-  { id: "K32_05", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 5】\n📢 特色：南美進攻球風對決，節奏極快，推薦大球。" },
-  { id: "K32_06", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 6】\n📢 特色：戰況容易陷入拉鋸，90分鐘握手言和踢延長賽成份高。" },
-  { id: "K32_07", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 7】\n📢 特色：強弱分明的對局，上游控球流派能完美掌控局勢。" },
-  { id: "K32_08", stage: "32強淘汰賽", dateStr: "2026-07-02", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 8】\n📢 特色：高強度對抗，哨音可能較為密集，可留意黃牌數。" },
-  { id: "K32_09", stage: "32強淘汰賽", dateStr: "2026-07-02", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 9】\n📢 特色：先失球的一方會發動極端反撲，下半場推薦大球。" },
-  { id: "K32_10", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 10】\n📢 特色：大賽經驗豐富隊伍在單場淘汰賽更佔心理優勢。" },
-  { id: "K32_11", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 11】\n📢 特色：防守反擊隊伍在淘汰賽極其吃香，看好受讓方。" },
-  { id: "K32_12", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 12】\n📢 特色：實力均等的防守大師碰頭，互射十二碼機率高。" },
-  { id: "K32_13", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 13】\n📢 特色：週末黃金檔！老牌歐洲強權亮相，看好順利取勝晉級。" },
-  { id: "K32_14", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 14】\n📢 特色：西班牙或阿根廷種子隊出戰預演，控球為王，強推主隊。" },
-  { id: "K32_15", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 15】\n📢 特色：戰意拉滿，邊路快馬群爆發，看好分出勝負。" },
-  { id: "K32_16", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 【32強生死戰 16】\n📢 特色：32強收官大戰！拼搶最後一席名額，必有精彩絕殺。" },
-
-  /* --- ⚽ 16強淘汰賽 --- */
-  { id: "K16_01", stage: "16強淘汰賽", dateStr: "2026-07-05", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 世界十六強！豪門大內鬥開始，兩隊均無犯錯空間，首選平局。" },
-  { id: "K16_02", stage: "16強淘汰賽", dateStr: "2026-07-05", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 進攻會遭遇鋼鐵防線嚴重阻礙，窒息攻防推薦小球盤口。" },
-  { id: "K16_03", stage: "16強淘汰賽", dateStr: "2026-07-06", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 上半場多傾向於控球試探，強烈推薦半場 0:0 或和局。" },
-  { id: "K16_04", stage: "16強淘汰賽", dateStr: "2026-07-06", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 傳統強權碰撞，球星個人一瞬間的閃光將一箭定江山。" },
-  { id: "K16_05", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 頂級戰術大師對壘，中場控制力優秀的一方勝算更高。" },
-  { id: "K16_06", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 高強度拼搶局，體能儲備好、板凳深度厚的球隊佔優。" },
-  { id: "K16_07", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "00:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強倒數次戰，戰略體系更成熟的一方更容易在常規時間贏波。" },
-  { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強收官大戰！關注極其擅長踢十二碼大戰的隊伍（如克羅地亞）。" },
-
-  /* --- ⚔️ 8強半準決賽 --- */
-  { id: "K8_01", stage: "8強半準決賽", dateStr: "2026-07-10", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 全球頂尖八強巔峰對決！全面移師美國超大型主場，推薦受讓方。" },
-  { id: "K8_02", stage: "8強半準決賽", dateStr: "2026-07-11", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 週末黃金檔期！世紀歐美大內鬥，實力五五開，常規時間看好踢和。" },
-  { id: "K8_03", stage: "8強半準決賽", dateStr: "2026-07-12", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 戰術博弈極端化，進球數往年皆偏少，強烈推薦小球盤口。" },
-  { id: "K8_04", stage: "8強半準決賽", dateStr: "2026-07-12", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 八強末戰，誰贏誰進四強！巨星戰略極其關鍵，強烈看好控球強隊。" },
-
-  /* --- 🌟 4強準決賽 --- */
-  { id: "K4_01", stage: "4強準決賽", dateStr: "2026-07-15", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：達拉斯 AT&T 體育場\n💡 準決賽第一場！為決賽門票防守將拉滿到極致，極度看好小球。" },
-  { id: "K4_02", stage: "4強準決賽", dateStr: "2026-07-16", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：亞特蘭大體育場\n💡 準決賽 second 戰！世界四強神仙打架，關鍵先生一槌定音，常規時間平局成份高。" },
-
-  /* --- 🥉 季軍爭奪賽 --- */
-  { id: "K3_01", stage: "季軍爭奪賽", dateStr: "2026-07-19", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：邁阿密 硬石體育場 (Hard Rock Stadium)\n💡 榮譽大戰！兩隊毫無包袱，全力展開對攻表演賽，瘋狂推薦大球盤及雙方有進球！" },
-
-  /* --- 👑 終極冠軍總決賽 --- */
-  { id: "KF_01", stage: "👑 冠軍總決賽", dateStr: "2026-07-20", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 終極聖地：美國新澤西州 大都會人壽體育場 (MetLife Stadium)\n💡 巔峰巨獻：決賽一球定乾坤！世紀大戰極易平局進入加時，推薦防守悍將受讓。" }
-];
-
-const store={};
-const root=document.getElementById("groups");
-
-// 初始化建立小組並設定 Firebase 即時積分同步與一鍵集氣機制
-Object.keys(groups).forEach(g=>{
- let box=document.createElement("div");
- box.className="group";
- box.innerHTML="<b class='group-title'>Group "+g+"</b>";
- let data=[];
- groups[g].forEach(code=>{ data.push({code:code, points:0}); });
- data.forEach(team=>{
-  let row=document.createElement("div");
-  row.className="row";
-  row.setAttribute("data-team-code", team.code);
-  
-  let img=document.createElement("img");
-  img.src="https://flagcdn.com/w80/"+team.code+".png";
-  img.className="flag";
-  
-  // ⚡【方向三】：一鍵點讚集氣
-  let cheerContainer = document.createElement("span");
-  cheerContainer.style.display = "flex"; cheerContainer.style.alignItems = "center"; cheerContainer.style.gap = "4px"; cheerContainer.style.marginLeft = "auto";
-  let cheerCount = document.createElement("span"); cheerCount.className = "cheer-count-text"; cheerCount.id = `cheerCount_${team.code}`; cheerCount.innerText = "0";
-  let cheerBtn = document.createElement("button"); cheerBtn.className = "cheer-btn-inline"; cheerBtn.innerText = "🔥集氣";
-  cheerBtn.onclick = () => { triggerCheerEffect(team.code); };
-  cheerContainer.append(cheerCount, cheerBtn);
-
-  let lockWrapper = document.createElement("div");
-  lockWrapper.className = "btn-lock-container";
-  
-  let b3=document.createElement("button"); b3.innerText="+3"; b3.className="win"; 
-  b3.onclick=()=>{ team.points+=3; updateFirebasePoints(g, team.code, team.points); };
-  let b1=document.createElement("button"); b1.innerText="+1"; b1.className="draw"; 
-  b1.onclick=()=>{ team.points+=1; updateFirebasePoints(g, team.code, team.points); };
-  let b0=document.createElement("button"); b0.innerText="+0"; b0.className="lose"; 
-  b0.onclick=()=>{ updateFirebasePoints(g, team.code, team.points); };
-  
-  lockWrapper.append(b3,b1,b0);
-  row.append(img, cheerContainer, lockWrapper);
-  box.appendChild(row);
- });
- let table=document.createElement("div");
- table.className="table-area";
- box.appendChild(table);
- store[g]={data, table};
- root.appendChild(box);
-});
-
-// 實時從 Firebase 讀取雲端積分數據並渲染
-db.ref("groups_data").on("value", (snapshot) => {
-  const cloudData = snapshot.val() || {};
-  Object.keys(store).forEach(g => {
-    store[g].data.forEach(team => {
-      if (cloudData[g] && cloudData[g][team.code] !== undefined) {
-        team.points = cloudData[g][team.code];
-      }
-    });
-    render(g); 
-  });
-});
-
-// 實時監聽球隊死忠集氣數值
-db.ref("cheer_stats").on("value", (snapshot) => {
-  const cheerData = snapshot.val() || {};
-  Object.keys(cheerData).forEach(code => {
-    const el = document.getElementById(`cheerCount_${code}`);
-    if(el) el.innerText = cheerData[code];
-  });
-});
-function triggerCheerEffect(teamCode) {
-  const cheerRef = db.ref(`cheer_stats/${teamCode}`);
-  cheerRef.transaction((currentCount) => {
-    return (currentCount || 0) + 1;
-  });
+function changeGlobalViewMode(modeStr) {
+    currentGlobalMode = modeStr;
+    localStorage.setItem('family_日誌_view_mode', modeStr);
+    document.getElementById('bodyNode').className = `view-${modeStr}`;
+    renderCalendar();
+    closeEventPopup();
 }
 
-// 🌐 【方向一】：實時監聽全網奪冠預測熱度榜
-db.ref("predict_stats").on("value", (snapshot) => {
-  const predictData = snapshot.val() || {};
-  const rankGrid = document.getElementById("predictRankGrid");
-  rankGrid.innerHTML = "";
-  
-  let sortedPredicts = [];
-  Object.keys(predictData).forEach(teamName => {
-    sortedPredicts.push({ name: teamName, votes: predictData[teamName] });
-  });
-  sortedPredicts.sort((a,b) => b.votes - a.votes);
-  
-  if(sortedPredicts.length === 0) {
-    rankGrid.innerHTML = "<div style='color:#a1a1a1; font-size:13px; text-align:center; grid-column: 1 / -1; padding: 10px 0;'>快啲點擊上方按鈕，為你既愛隊集氣啦！</div>";
-    return;
-  }
-  sortedPredicts.slice(0, 8).forEach((item, index) => {
-    let div = document.createElement("div");
-    div.className = "predict-rank-item";
-    div.innerHTML = `<span>${index+1}. ${item.name}</span><span style="color:#dfaa2a;font-weight:bold;">${item.votes} 票</span>`;
-    rankGrid.appendChild(div);
-  });
-});
-
-// 實時從 Firebase 讀取並校準雲端友誼賽戰報
-db.ref("friendly_news").on("value", (snapshot) => {
-  const data = snapshot.val();
-  
-  // 🛠️ 【自動重置刷新核心】：如果雲端數據結構老舊或為空，前端會立刻主動推送最新的 6月10日 戰報至雲端
-  if (!data || !data.results || data.results[0].home !== "剛果民主共和國") {
-    const freshFriendlyData = {
-      description: "隨着2026年美加墨世界盃（香港時間6月12日凌晨開幕）進入最後兩天倒數，各支男足國家隊在過去24小時內（6月9日至10日凌晨）完成了世界盃開賽前的最後一波焦點熱身賽。以下為最新男子國際友誼賽的完賽比分與最新資訊：",
-      results: [
-        { date: "6月10日 凌晨", home: "剛果民主共和國", score: "1 - 2", away: "智利", note: "智利下半場發力攻入兩球，客場反超取勝。" },
-        { date: "6月9日 晚上", home: "印度尼西亞", score: "1 - 0", away: "莫桑比克", note: "印尼主場一球小勝，為世界盃前累積信心。" },
-        { date: "6月9日 晚上", home: "柬埔寨", score: "2 - 0", away: "香港", note: "香港隊作客未能破門，最終兩球不敵東道主。" },
-        { date: "6月9日 晚上", home: "中國", score: "0 - 0", away: "泰國", note: "兩隊互有攻守但均無建樹，最終互交白卷。" },
-        { date: "6月9日 晚上", home: "菲律賓", score: "5 - 1", away: "緬甸", note: "菲律賓火力全開，主場大勝緬甸。" },
-        { date: "6月9日 上午", home: "西班牙", score: "3 - 1", away: "秘魯", note: "奧耶沙巴開賽2分鐘閃擊，柏德里推射空門，強權西班牙輕鬆取勝。" },
-        { date: "6月9日 凌晨", home: "法國", score: "3 - 1", away: "北愛爾蘭", note: "高盧雄雞展現爭冠熱門實力，兩球優勢擊敗對手。" },
-        { date: "6月9日 凌晨", home: "荷蘭", score: "2 - 1", away: "烏茲別克", note: "荷蘭雖有球員染紅，仍以2-1險勝頑強的烏茲別克。" }
-      ],
-      upcoming_hint: "備註：部分歐美強權（如阿根廷、英格蘭等）於美國本土進行的閉門或深夜熱身賽，官方正陸續結算最終統計。\n\n今日（6月10日）深夜至明日凌晨，將是世界盃正賽開打前的最後一波國際友誼賽，各隊隨即會進駐官方大本營：",
-      upcoming_list: [
-        "<b>6月11日 凌晨</b> 葡萄牙 vs 尼日利亞",
-        "<b>6月11日 凌晨</b> 英格蘭 vs 哥斯達黎加",
-        "<b>6月11日 凌晨</b> 危地馬拉 vs 奧地利"
-      ]
-    };
-    db.ref("friendly_news").set(freshFriendlyData);
-    return;
-  }
-
-  document.getElementById("friendlyDesc").innerText = data.description || "";
-  document.getElementById("friendlyUpcomingHint").innerText = data.upcoming_hint || "";
-  const resultsBody = document.getElementById("friendlyResultsBody");
-  resultsBody.innerHTML = "";
-  if (data.results) {
-    data.results.forEach(r => {
-      let tr = document.createElement("tr");
-      tr.innerHTML = `<td>${r.date}</td><td>${r.home}</td><td style="font-weight:bold;color:#dfaa2a;">${r.score}</td><td>${r.away}</td><td style="text-align:left;font-size:12px;color:#9ca3af;">${r.note}</td>`;
-      resultsBody.appendChild(tr);
-    });
-  }
-  const upcomingList = document.getElementById("friendlyUpcomingList");
-  upcomingList.innerHTML = "";
-  if (data.upcoming_list) {
-    data.upcoming_list.forEach(item => {
-      let li = document.createElement("li"); li.innerHTML = item; upcomingList.appendChild(li);
-    });
-  }
-});
-
-function updateFirebasePoints(groupName, teamCode, currentPoints) {
-  db.ref(`groups_data/${groupName}/${teamCode}`).set(currentPoints);
+/* ─── 🚀 核心優化：滾輪數值提取與華語標準化回填 ─── */
+function syncFormComboPicker(inputElement, targetInputId) {
+    if (!inputElement.value) return;
+    // 將 HTML5 datetime-local 的 T 分隔符轉換為舒服的空白可視化文字
+    let formattedTime = inputElement.value.replace('T', ' ');
+    document.getElementById(targetInputId).value = formattedTime;
 }
 
-function checkScoreUnlock() {
-  if(document.getElementById("scorePassword").value === "8679") {
-    alert("🔓 驗證成功！模擬計分按鍵已全面開啟。");
-    document.querySelectorAll(".btn-lock-container").forEach(el => el.style.display = "flex");
-    document.getElementById("lockControlPanel").style.display = "none";
-  } else {
-    alert("❌ 密碼錯誤！");
-  }
+function verifyGatePassword() {
+    if (document.getElementById('popupPassword').value === "8679") {
+        document.getElementById('lockSection').style.display = 'none';
+        if (currentPopupMode === "MANAGE") {
+            document.getElementById('secureManagePanel').style.display = 'block';
+            renderPopupManageListUI();
+        } else if (currentPopupMode === "WHATSAPP") {
+            document.getElementById('secureWhatsAppPanel').style.display = 'block';
+            renderPopupWhatsApp_UI();
+        } else if (currentPopupMode === "ALBUM") {
+            document.getElementById('secureAlbumPanel').style.display = 'block';
+            document.getElementById('albumBindDateLabel').innerText = selectedDateStr;
+            resetPhotoUploadForm();
+            renderPopupAlbumManageUI();
+        } else {
+            document.getElementById('secureFormPanel').style.display = 'block';
+            
+            // 預設將當前選定的日期帶入滾輪與輸入框
+            document.getElementById('eventTime').value = selectedDateStr + " 08:30";
+            document.getElementById('nativeStartPicker').value = selectedDateStr + "T08:30";
+            document.getElementById('eventEndTime').value = "";
+            document.getElementById('nativeEndPicker').value = "";
+            resetFormPhotoUpload();
+        }
+    } else { alert("❌ 密碼錯誤，拒絕進入核心面板！"); }
 }
 
-function render(g){
- let d=store[g];
- let sortedData = [...d.data].sort((a,b)=>b.points-a.points);
- d.table.innerHTML="";
- sortedData.forEach((t,i)=>{
-   let row=document.createElement("div");
-   row.className="table-row rank-"+i;
-   let img=document.createElement("img");
-   img.src="https://flagcdn.com/w80/"+t.code+".png";
-   img.className="flag"; img.style.width = "22px"; img.style.height="15px";
-   let txt=document.createElement("span");
-   txt.innerText = `${i+1}. ${teamDatabase[t.code]?teamDatabase[t.code].name.split(" ")[0]:t.code.toUpperCase()} (${t.points} 分)`;
-   row.append(img, txt);
-   d.table.appendChild(row);
- });
-}
+function openAddFormPopup(mode) {
+    currentPopupMode = mode || "ADD";
+    document.getElementById('lockSection').style.display = 'block';
+    document.getElementById('popupPassword').value = "";
+    document.getElementById('secureFormPanel').style.display = 'none';
+    document.getElementById('secureManagePanel').style.display = 'none';
+    document.getElementById('secureWhatsAppPanel').style.display = 'none';
+    document.getElementById('secureAlbumPanel').style.display = 'none';
+    document.getElementById('secureViewSwitchPanel').style.display = 'none';
 
-const matchBox = document.getElementById("matches");
+    document.getElementById('formSubmitBtn').innerText = "儲存至此日期";
+    document.getElementById('editKey').value = "";
 
-function initDateSelector() {
-  const container = document.getElementById("dateSelector");
-  container.innerHTML = "";
-  
-  let allBtn = document.createElement("button");
-  allBtn.className = "date-btn active"; allBtn.innerText = "🗓️ 全部 104 場賽程日曆";
-  allBtn.onclick = function() { 
-    document.querySelectorAll(".date-btn").forEach(b => b.classList.remove("active")); 
-    allBtn.classList.add("active"); renderMatches("all"); 
-  };
-  container.appendChild(allBtn);
-  
-  const uniqueStages = [...new Set(centralSchedule.map(m => m.stage))];
-  uniqueStages.forEach(stage => {
-    let btn = document.createElement("button"); 
-    btn.className = "date-btn"; btn.innerText = stage;
-    btn.onclick = function() { 
-      document.querySelectorAll(".date-btn").forEach(b => b.classList.remove("active")); 
-      btn.classList.add("active"); renderMatches(stage); 
-    };
-    container.appendChild(btn);
-  });
-}
-
-function renderMatches(filterStage) {
-  matchBox.innerHTML = "";
-  centralSchedule.forEach(m => {
-    if(filterStage !== "all" && m.stage !== filterStage) return;
+    if (currentPopupMode === "MANAGE") { document.getElementById('formTitle').innerText = "⚙️ 修改/刪除舊行程"; }
+    else if (currentPopupMode === "WHATSAPP") { document.getElementById('formTitle').innerText = "💬 WHATSAPP 通知發送控制"; }
+    else if (currentPopupMode === "ALBUM") { document.getElementById('formTitle').innerText = "🏡 麟李互助相簿管理面版"; }
+    else if (currentPopupMode === "SWITCH_VIEW") {
+        document.getElementById('formTitle').innerText = "👁️ 視覺切換模式";
+        document.getElementById('lockSection').style.display = 'none';
+        document.getElementById('secureViewSwitchPanel').style.display = 'block';
+    } else { document.getElementById('formTitle').innerText = "➕ 新增家庭活動"; }
     
-    let matchCard = document.createElement("div");
-    matchCard.className = "match-card";
-    matchCard.onclick = () => openSquad(m.t1, m.t2, m.scorers, m.stage, m.dateStr); 
-
-    let timeTag = document.createElement("div");
-    timeTag.className = "match-time";
-    timeTag.innerText = `⏳ 尚未開賽 | [${m.stage}] ${m.dateStr} ${m.time} HKT`;
-
-    let teamsDiv = document.createElement("div");
-    teamsDiv.className = "match-teams";
-
-    let slot1 = document.createElement("div"); slot1.className = "team-slot";
-    let img1 = document.createElement("img"); 
-    img1.src = m.t1 === "tbd" ? "https://flagcdn.com/w80/un.png" : "https://flagcdn.com/w80/"+m.t1+".png"; img1.className="flag";
-    let name1 = document.createElement("span"); name1.innerText = teamDatabase[m.t1] ? teamDatabase[m.t1].name.split(" ")[0] : m.t1;
-    slot1.append(img1, name1);
-
-    let vs = document.createElement("span"); vs.className = "vs"; vs.innerText = m.score;
-
-    let slot2 = document.createElement("div"); slot2.className = "team-slot";
-    let img2 = document.createElement("img"); 
-    img2.src = m.t2 === "tbd" ? "https://flagcdn.com/w80/un.png" : "https://flagcdn.com/w80/"+m.t2+".png"; img2.className="flag";
-    let name2 = document.createElement("span"); name2.innerText = teamDatabase[m.t2] ? teamDatabase[m.t2].name.split(" ")[0] : m.t2;
-    slot2.append(img2, name2);
-
-    teamsDiv.append(slot1, vs, slot2);
-    let viewHint = document.createElement("div");
-    viewHint.className = "view-btn"; viewHint.innerText = "📄 查看比賽球場場館與焦點推薦";
-
-    matchCard.append(timeTag, teamsDiv, viewHint);
-    matchBox.appendChild(matchCard);
-  });
+    document.getElementById('addEventPopupOverlay').style.display = 'block';
+    setTimeout(() => { document.getElementById('popupPassword').focus(); }, 200);
 }
 
-function openSquad(code1, code2, scorers, stageName, dateStr) {
-  const t1 = teamDatabase[code1]; const t2 = teamDatabase[code2];
-  document.getElementById("modalScorersList").innerText = scorers;
-  document.getElementById("modalTitle").innerText = `🏆 FIFA 官方真實賽事看板 (${stageName})`;
-  document.getElementById("team1Name").innerText = t1 ? t1.name : "待定";
-  document.getElementById("team2Name").innerText = t2 ? t2.name : "待定";
-  
-  let ul1 = document.getElementById("team1Players"); ul1.innerHTML = "";
-  if(t1) t1.stars.forEach(p => { let li = document.createElement("li"); li.innerText = p; ul1.appendChild(li); });
-  let ul2 = document.getElementById("team2Players"); ul2.innerHTML = "";
-  if(t2) t2.stars.forEach(p => { let li = document.createElement("li"); li.innerText = p; ul2.appendChild(li); });
+function closeEventPopup() { document.getElementById('addEventPopupOverlay').style.display = 'none'; }
+function closePopupOverlayOutside(e) { if (e.target === document.getElementById('addEventPopupOverlay')) closeEventPopup(); }
 
-  document.getElementById("squadModal").style.display = "flex";
+/* ─── 📸 拍照與檔案載入控制引擎 ─── */
+function triggerFileInput(type) {
+    if (type === 'image') document.getElementById('nativeImageInput').click();
+    if (type === 'video') document.getElementById('nativeVideoInput').click();
+    if (type === 'FormImage') document.getElementById('formImageInput').click();
+    if (type === 'FormVideo') document.getElementById('formVideoInput').click();
 }
 
-function closeSquad() { document.getElementById("squadModal").style.display = "none"; }
+function handleNativeFileLoad(input, type) {
+    let file = input.files[0]; if (!file) return;
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        uploadedBase64Cache = e.target.result; 
+        document.getElementById('mediaType').value = type;
+        if (type === 'image') {
+            document.getElementById('imageUploadPreview').src = uploadedBase64Cache;
+            document.getElementById('imageUploadPreview').style.display = 'block';
+            document.getElementById('videoUploadPreview').style.display = 'none';
+        } else {
+            document.getElementById('videoUploadPreview').src = uploadedBase64Cache;
+            document.getElementById('videoUploadPreview').style.display = 'block';
+            document.getElementById('imageUploadPreview').style.display = 'none';
+        }
+    };
+    reader.readAsDataURL(file);
+}
 
-function openPredictModal() { document.getElementById("predictModal").style.display = "flex"; }
-function closePredictModal() { document.getElementById("predictModal").style.display = "none"; }
+function handleFormFileLoad(input, type) {
+    let file = input.files[0]; if (!file) return;
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        formUploadedBase64Cache = e.target.result;
+        document.getElementById('formMediaType').value = type;
+        if (type === 'image') {
+            document.getElementById('formImagePreview').src = formUploadedBase64Cache;
+            document.getElementById('formImagePreview').style.display = 'block';
+            document.getElementById('formVideoPreview').style.display = 'none';
+        } else {
+            document.getElementById('formVideoPreview').src = formUploadedBase64Cache;
+            document.getElementById('formVideoPreview').style.display = 'block';
+            document.getElementById('formImagePreview').style.display = 'none';
+        }
+    };
+    reader.readAsDataURL(file);
+}
 
-// 提交預測表單至後端 GAS 試算表，並同步增加 Firebase 熱度得票
-function submitPrediction(event) {
-  event.preventDefault();
-  const phone = document.getElementById("userPhone").value.trim();
-  const name = document.getElementById("userName").value.trim();
-  const champTeam = document.getElementById("userChampTeam").value.trim();
+function resetPhotoUploadForm() {
+    uploadedBase64Cache = ""; document.getElementById('mediaTitle').value = ""; document.getElementById('mediaURL').value = "";
+    document.getElementById('imageUploadPreview').style.display = 'none'; document.getElementById('videoUploadPreview').style.display = 'none';
+}
 
-  const gasWebAppUrl = "https://script.google.com/macros/s/AKfycbwCi6xmPfFRDuy12wlzlhWoM6BoRC8mBoZ2iZ8b1ZRBDXEN4Etu8mq-vCUVTEIESRvq/exec"; 
+function resetFormPhotoUpload() {
+    formUploadedBase64Cache = ""; document.getElementById('formMediaURL').value = "";
+    document.getElementById('formImagePreview').style.display = 'none'; document.getElementById('formVideoPreview').style.display = 'none';
+}
 
-  const submitBtn = event.target.querySelector(".submit-btn");
-  const originalBtnText = submitBtn.innerText;
-  submitBtn.innerText = "正在同步數據...";
-  submitBtn.disabled = true;
+/* ─── ➕ 新增活動主程序 ─── */
+function addFamilyEvent() {
+    let title = document.getElementById('eventTitle').value.trim();
+    let startVal = document.getElementById('eventTime').value.trim();
+    let endVal = document.getElementById('eventEndTime').value.trim();
+    let editKey = document.getElementById('editKey').value;
 
-  const formData = new URLSearchParams();
-  formData.append("phone", phone);
-  formData.append("name", name);
-  formData.append("predicted_champion", champTeam);
+    if (!title || !startVal) { alert("請填寫活動名稱與開始時間！"); return; }
 
-  fetch(gasWebAppUrl, {
-    method: "POST",
-    mode: "cors",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: formData.toString(),
-    redirect: "follow"
-  })
-  .then(res => {
-    if (res.ok) {
-      // GAS 寫入成功後，立刻同步增加 Firebase 內該球隊的投票熱度計數
-      const statsRef = db.ref(`predict_stats/${champTeam}`);
-      statsRef.transaction((currentVotes) => {
-        return (currentVotes || 0) + 1;
-      });
-
-      alert(`🎉 預測提交成功！\n\n感謝 ${name} 參與！數據已成功儲存至試算表與實時榜。\n如果估中，我們將透過電話尾數通知你贏取夏日消暑獎品！`);
-      closePredictModal();
-      document.getElementById("userPhone").value = "";
-      document.getElementById("userName").value = "";
-      document.getElementById("userChampTeam").value = "";
-    } else {
-      alert("❌ 傳輸失敗，伺服器響應錯誤碼：" + res.status);
+    // 從輸入的文字中智慧提取 YYYY-MM-DD 作為主要繫結日期
+    let detectedDate = startVal.split(' ')[0] || selectedDateStr;
+    let timeLabel = startVal.split(' ')[1] || "08:30";
+    if (endVal) {
+        let endTimeLabel = endVal.split(' ')[1] || endVal;
+        timeLabel = `${timeLabel} ~ ${endTimeLabel}`;
     }
-  })
-  .catch(err => {
-    console.error(err);
-    alert("❌ 網絡連線或伺服器錯誤，請稍後再試！");
-  })
-  .finally(() => {
-    submitBtn.innerText = originalBtnText;
-    submitBtn.disabled = false;
-  });
+
+    let payload = {
+        title: title,
+        date: detectedDate,
+        time: timeLabel,
+        note: ""
+    };
+
+    let method = editKey ? "PUT" : "POST";
+    let targetURL = editKey ? `${dbURL}/${editKey}.json` : `${dbURL}.json`;
+
+    fetch(targetURL, {
+        method: method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    }).then(() => {
+        let formMediaData = formUploadedBase64Cache ? formUploadedBase64Cache : document.getElementById('formMediaURL').value.trim();
+        let formMediaType = document.getElementById('formMediaType').value;
+        
+        if (formMediaData) {
+            fetch(`${albumURL}.json`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ title: `隨附活動: ${title}`, url: formMediaData, type: formMediaType, date: detectedDate })
+            }).then(() => { completeAction(); });
+        } else {
+            completeAction();
+        }
+    });
+
+    function completeAction() {
+        document.getElementById('eventTitle').value = "";
+        resetFormPhotoUpload();
+        closeEventPopup();
+        alert("🎉 家庭活動與時間已成功儲存並同步至雲端！");
+        fetchCloudData();
+    }
 }
 
-window.onclick = function(e) { 
-  if (e.target == document.getElementById("squadModal")) closeSquad();
-  if (e.target == document.getElementById("predictModal")) closePredictModal();
+function uploadMediaToAlbum() {
+    let title = document.getElementById('mediaTitle').value.trim();
+    let url = document.getElementById('mediaURL').value.trim();
+    let type = document.getElementById('mediaType').value;
+    let finalMediaData = uploadedBase64Cache ? uploadedBase64Cache : url;
+
+    if (!title || !finalMediaData) { alert("請輸入描述並拍照、錄影或輸入媒體網址！"); return; }
+
+    fetch(`${albumURL}.json`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: title, url: finalMediaData, type: type, date: selectedDateStr })
+    }).then(() => {
+        resetPhotoUploadForm();
+        alert("🎉 成功上傳添加至麟李家庭相簿！");
+        fetchCloudData();
+    });
 }
 
-function updateCountdown() {
-  const targetDate = new Date("2026-06-12T03:00:00+08:00").getTime();
-  const difference = targetDate - new Date().getTime();
-  if (difference <= 0) { 
-    document.getElementById("timerDisplay").innerHTML = `<div class="live-msg">🔥 2026 美加墨世界盃盛大開戰！</div>`; return; 
-  }
-  const d = Math.floor(difference / (1000 * 60 * 60 * 24));
-  const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-  const s = Math.floor((difference % (1000 * 60)) / 1000);
-  document.getElementById("days").innerText = d.toString().padStart(2, '0');
-  document.getElementById("hours").innerText = h.toString().padStart(2, '0');
-  document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
-  document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+function deleteMediaFromAlbum(id) {
+    if (confirm("確定要刪除這張家庭相片/短片嗎？")) {
+        fetch(`${albumURL}/${id}.json`, { method: "DELETE" }).then(() => { fetchCloudData(); });
+    }
 }
 
-initDateSelector();
-renderMatches("all");
-setInterval(updateCountdown, 1000);
-updateCountdown();
+function renderMainAlbumUI() {
+    let mainGrid = document.getElementById('mainAlbumGrid');
+    let popGrid = document.getElementById('popupAlbumManageList');
+    
+    document.getElementById('albumDateLabel').innerText = selectedDateStr;
+    let dayMediaItems = albumItems.filter(item => item.date === selectedDateStr);
+    
+    if (dayMediaItems.length === 0) {
+        let noDataHtml = `<p style="color:gray; font-size:14px; grid-column: 1/-1; text-align:center; padding: 15px 0;">該日期暫無附圖或互助媒體。</p>`;
+        mainGrid.innerHTML = noDataHtml;
+        if(popGrid) popGrid.innerHTML = noDataHtml;
+        return;
+    }
+
+    let mainHtml = ""; let popHtml = "";
+    dayMediaItems.forEach(item => {
+        let mediaTag = item.type === "video" ? `<video src="${item.url}" controls></video>` : `<img src="${item.url}" onerror="this.src='https://placehold.co/150x110?text=Error'">`;
+        mainHtml += `<div class="album-item">${mediaTag}<div class="album-title">${item.title}</div><div class="album-date-badge">📅 ${item.date}</div></div>`;
+        popHtml += `<div class="album-item"><button class="album-delete-tag" onclick="deleteMediaFromAlbum('${item.id}')">×</button>${mediaTag}<div class="album-title">${item.title}</div><div class="album-date-badge">${item.date}</div></div>`;
+    });
+    mainGrid.innerHTML = mainHtml;
+    if(popGrid) popGrid.innerHTML = popHtml;
+}
+
+/* ─── ⚙️ 修改與刪除 ─── */
+function renderPopupManageListUI() {
+    let container = document.getElementById('popupManageList');
+    let filtered = activities.filter(a => a.date === selectedDateStr);
+    if (filtered.length === 0) { container.innerHTML = `<p style="color:gray; text-align:center;">今日暫無可更動的行程。</p>`; return; }
+    let html = "";
+    filtered.forEach(ev => {
+        html += `
+        <div class="manage-item-row" style="padding: 12px; margin-bottom: 10px; background: #fafafa; border-radius: 8px; border: 1px solid #eee;">
+            <div style="font-size:16px; margin-bottom: 8px; color:#262626;">⏰ <strong>${ev.time}</strong> - ${ev.title}</div>
+            <div class="action-btn-group-row">
+                <button class="pretty-delete-btn" onclick="deleteEventFromPopup('${ev.id}')">❌ 刪除活動</button>
+                <button class="pretty-edit-btn" onclick="openModifyEventForm('${ev.id}')">✏️ 修改內容</button>
+            </div>
+        </div>`;
+    });
+    container.innerHTML = html;
+}
+
+function openModifyEventForm(id) {
+    let ev = activities.find(a => a.id === id); if (!ev) return;
+    document.getElementById('secureManagePanel').style.display = 'none';
+    document.getElementById('secureFormPanel').style.display = 'block';
+    document.getElementById('formTitle').innerText = "✏️ 修改行程內容";
+    document.getElementById('eventTitle').value = ev.title;
+    document.getElementById('eventTime').value = ev.date + " " + (ev.time.split(' ~ ')[0] || "08:30");
+    document.getElementById('editKey').value = ev.id;
+    document.getElementById('formSubmitBtn').innerText = "確認修改更新至雲端";
+}
+
+function deleteEventFromPopup(id) {
+    if (confirm("確定要刪除這項活動嗎？")) {
+        fetch(`${dbURL}/${id}.json`, { method: "DELETE" }).then(() => { fetchCloudData(); });
+    }
+}
+
+/* ─── 💬 WHATSAPP 通知 ─── */
+function renderPopupWhatsApp_UI() {
+    let container = document.getElementById('popupWhatsAppList');
+    let filtered = activities.filter(a => a.date === selectedDateStr);
+    if (filtered.length === 0) { container.innerHTML = `<p style="color:gray; text-align:center;">無項目可通知。</p>`; return; }
+    let html = "";
+    filtered.forEach(ev => {
+        html += `
+        <div class="manage-item-row" style="display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid #eee;">
+            <div style="flex:1; font-size:15px;"><strong>${ev.time}</strong> - ${ev.title}</div>
+            <div><button class="pretty-whatsapp-btn" onclick="sendWhatsAppNotification('${ev.id}')">💬 發送通知</button></div>
+        </div>`;
+    });
+    container.innerHTML = html;
+}
+
+function sendWhatsAppNotification(id) {
+    let ev = activities.find(a => a.id === id); if (!ev) return;
+    let textMessage = `💡【麟李互助家庭日誌 - 行程通知】\n\n📅 日期：${ev.date}\n⏰ 時間：${ev.time}\n📌 項目：${ev.title}\n\n請大家安排好時間，互相照顧扶持！❤️`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(textMessage)}`, '_blank');
+}
+
+function renderPopupAlbumManageUI() { renderMainAlbumUI(); }
+
+/* ─── 📅 公眾假期與黃曆 ─── */
+const holidays2026 = {
+    "01-01":"元旦", "02-17":"年初一", "02-18":"年初二", "02-19":"年初三", "04-03":"受難節", "04-04":"清明節", "05-01":"勞動節", "05-25":"佛誕", "06-19":"端午節", "07-01":"七一回歸日", "10-01":"國慶日", "12-25":"聖誕節", "12-26":"節禮日"
+};
+function getHKHoliday(m, d) { return holidays2026[`${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`] || ""; }
+
+function getLunarDayText(dateStr) {
+    try {
+        let d = new Date(dateStr); if (isNaN(d.getTime())) return "";
+        let parts = new Intl.DateTimeFormat("zh-Hant-u-ca-chinese", {month:"numeric", day:"numeric"}).formatToParts(d);
+        let month = parts.find(p => p.type === 'month').value; let day = Number(parts.find(p => p.type === 'day').value);
+        const CN = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
+        if (day === 1) return ["", "正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月", "臘月"][Number(month)];
+        if (day <= 10) return "初" + CN[day]; if (day < 20) return "十" + CN[day - 10]; if (day === 20) return "二十"; if (day < 30) return "廿" + CN[day - 20]; return "三十";
+    } catch(e) { return ""; }
+}
+
+/* ─── 📥 數據加載與聯網同步 ─── */
+function fetchCloudData() {
+    fetch(`${dbURL}.json`, { method: "GET" }).then(res => res.json()).then(data => {
+        activities = [];
+        if (data) {
+            for (let key in data) {
+                if (data[key]) {
+                    activities.push({
+                        id: key, date: data[key].date ? data[key].date.trim() : "",
+                        time: data[key].time || "全日安排", title: data[key].title || "行程",
+                        note: data[key].note || "", isMultiDayEvent: data[key].isMultiDayEvent || false,
+                        multiDayRangeArray: data[key].multiDayRangeArray || []
+                    });
+                }
+            }
+        }
+        fetch(`${albumURL}.json`, { method: "GET" }).then(res => res.json()).then(albumData => {
+            albumItems = [];
+            if (albumData) {
+                for (let key in albumData) {
+                    if (albumData[key]) {
+                        albumItems.push({
+                            id: key, title: albumData[key].title, url: albumData[key].url,
+                            type: albumData[key].type || "image", date: albumData[key].date || "未知日期"
+                        });
+                    }
+                }
+            }
+            renderCalendar(); renderDayEvents(); renderMainAlbumUI();
+            autoCheckAndInjectAllMonthsEvents(); 
+        });
+    });
+}
+
+setInterval(fetchCloudData, 8000);
+
+function autoCheckAndInjectAllMonthsEvents() {
+    let hasJuneData = activities.some(a => a.date && a.date.startsWith("2026-06"));
+    let hasJulyData = activities.some(a => a.date && a.date.startsWith("2026-07"));
+    if (hasJuneData && hasJulyData) return; 
+
+    let batchPayloads = [];
+    if (!hasJuneData) {
+        batchPayloads = batchPayloads.concat([
+            { date: "2026-06-01", time: "08:30", title: "蓓 8:30 放學", isMultiDayEvent: true, multiDayRangeArray: ["2026-06-01", "2026-06-02", "2026-06-03", "2026-06-04"] },
+            { date: "2026-06-02", time: "19:15 / 21:45", title: "蓓 7:15pm 放學 / 熹 9:45pm 放學" },
+            { date: "2026-06-03", time: "11:15", title: "蓓 11:15 放學 / 熹 放假" },
+            { date: "2026-06-04", time: "09:25", title: "蓓 放假 / 熹 9:25 放學" },
+            { date: "2026-06-05", time: "11:15 / 21:45", title: "蓓 11:15 放學 / 熹 9:45 放學" },
+            { date: "2026-06-12", time: "11:10", title: "蓓 11:10 放學 / 全日 二胡課 🎼" },
+            { date: "2026-06-19", time: "端午節公眾假期", title: "🔴 端午節紅日放假" }
+        ]);
+    }
+    if (!hasJulyData) {
+        batchPayloads = batchPayloads.concat([
+            { date: "2026-07-01", time: "全日紅日", title: "🔴 香港特區成立紀念日 (放假)" },
+            { date: "2026-07-02", time: "08:50 / 12:00", title: "熹 8:50 放學 / 12:00 排球🏐" },
+            { date: "2026-07-04", time: "16:00", title: "蓓 4:00pm 有 Bball 排球 / 熹 二胡班 🎼", note: "右邊加筆備忘：8/12 P-30" },
+            { date: "2026-07-05", time: "16:00 - 18:00", title: "熹 4:00-6:00pm 練排球 🏐" },
+            { date: "2026-07-06", time: "08:50 / 11:00 / 16:00", title: "蓓 4:00pm 有活動 / 熹 8:50 放學，11:00 排球 🏐" },
+            { date: "2026-07-07", time: "09:50 / 12:30", title: "熹 9:50 放學 / 12:30 排球 🏐" },
+            { date: "2026-07-08", time: "全日", title: "熹 放假" },
+            { date: "2026-07-09", time: "08:50 / 11:00", title: "熹 8:50 放學 / 11:00 排球 🏐" },
+            { date: "2026-07-10", time: "08:50 / 10:30", title: "熹 8:50 放學 / 10:30 排球 🏐", note: "下面寫住 Openg (學校開放日)" },
+            { date: "2026-07-11", time: "全日活動", title: "蓓 放假 / 熹 上二胡班 + 排球活動 🏐" },
+            { date: "2026-07-12", time: "全日", title: "熹 練排球 🏐" },
+            { date: "2026-07-13", time: "全日", title: "熹 有活動安排" },
+            { date: "2026-07-14", time: "全日放假", title: "熹 放假 (跨日橫跨中)", isMultiDayEvent: true, multiDayRangeArray: ["2026-07-14", "2026-07-15", "2026-07-16"], note: "藍色橫線由14號橫跨到16號" },
+            { date: "2026-07-15", time: "10:00 - 12:00", title: "熹 10:00 - 12:00 練排球 🏐" },
+            { date: "2026-07-16", time: "11:45 / 13:30", title: "熹 11:45 放學 / 1:30 上二胡班 🎼" },
+            { date: "2026-07-17", time: "11:45 / 13:30", title: "熹 11:45 放學 / 1:30 排球 🏐" },
+            { date: "2026-07-18", time: "全日", title: "標記 SPN", note: "右邊加筆備忘 8/12 P-30" },
+            { date: "2026-07-19", time: "全日", title: "熹 練排球 🏐", note: "左邊寫住 Book Fast (提醒訂書)" },
+            { date: "2026-07-20", time: "12:15 / 13:10 / 16:00", title: "蓓 4:00pm 練 Sing 唱歌 / 熹 12:15 放學，1:10 排球 🏐" },
+            { date: "2026-07-21", time: "09:00 - 17:00", title: "熹 (H) 朝九晚五 音樂營 🎵" },
+            { date: "2026-07-22", time: "09:00 - 17:00", title: "熹 (H) 朝九晚五 音樂營 🎵" },
+            { date: "2026-07-23", time: "09:00 - 17:00", title: "熹 (H) 朝九晚五 音樂營 🎵" },
+            { date: "2026-07-24", time: "09:00 - 17:00", title: "熹 (H) 朝九晚五 音樂營 🎵" },
+            { date: "2026-07-25", time: "09:00 - 17:00", title: "熹 (H) 朝九晚五 音樂營 🎵 + 上二胡班 🎼", note: "右下角有加筆 8/12" },
+            { date: "2026-07-26", time: "15:00", title: "熹 3:00pm 練排球 🏐", note: "下面圈住 8:11 備忘" },
+            { date: "2026-07-27", time: "全日", title: "熹 練排球 🏐" },
+            { date: "2026-07-28", time: "全日訓練", title: "藍筆大圈標記：【大排】🏐 (熹 大排球訓練/比賽)" },
+            { date: "2026-07-29", time: "全日", title: "熹 練排球 🏐" }
+        ]);
+    }
+
+    Promise.all(batchPayloads.map(p => {
+        return fetch(`${dbURL}.json`, {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(p)
+        });
+    })).then(() => { fetchCloudData(); });
+}
+
+function renderCalendar(){
+    let y = current.getFullYear(); let m = current.getMonth();
+    monthLabel.innerText = y + "年 " + (m + 1) + "月";
+    let first = new Date(y, m, 1).getDay(); let days = new Date(y, m + 1, 0).getDate();
+    let html = "", total = 0;
+    for(let i=0; i<first; i++){ html += `<div class="calendar-day empty"></div>`; total++; }
+
+    for(let i=1; i<=days; i++){
+        let dStr = `${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
+        let isToday = new Date().toISOString().slice(0,10) === dStr;
+        let isSelected = selectedDateStr === dStr;
+        let lunarText = getLunarDayText(dStr); let holidayText = getHKHoliday(m+1, i);
+        
+        let dayActivities = activities.filter(a => {
+            if (a.isMultiDayEvent && a.multiDayRangeArray) { return a.multiDayRangeArray.includes(dStr); }
+            return a.date === dStr;
+        });
+        let dayMediaItems = albumItems.filter(item => item.date === dStr);
+        let belongsToMultiDay = activities.some(act => act.isMultiDayEvent && act.multiDayRangeArray && act.multiDayRangeArray.includes(dStr));
+        
+        let eventsHtml = "";
+        dayActivities.forEach(act => { eventsHtml += `<span class="day-event-badge" title="${act.title}">${act.time} ${act.title}</span>`; });
+        dayMediaItems.forEach(media => {
+            eventsHtml = `<span class="day-event-badge" style="background:#fff7e6; color:#d46b08; border-left: 3px solid #f39c12; font-weight:bold;">🖼️ 附圖: ${media.title}</span>` + eventsHtml;
+        });
+
+        let dayClass = "calendar-day";
+        if (isToday) dayClass += " today";
+        if (isSelected) dayClass += " selected-day";
+        if (belongsToMultiDay) dayClass += " multiday-pass-range";
+        if (holidayText) dayClass += " hk-holiday-pass-range";
+
+        html += `
+        <div class="${dayClass}" data-date="${dStr}" onclick="selectDate('${dStr}')">
+            <strong>${i}</strong><div class="lunar">${lunarText}</div>
+            ${holidayText ? `<div class="holiday">🔴 ${holidayText}</div>` : ""}
+            <div class="day-events-container">${eventsHtml}</div>
+        </div>`;
+        total++;
+    }
+    while(total % 7 !== 0){ html += `<div class="calendar-day empty"></div>`; total++; }
+    calendar.innerHTML = html;
+}
+
+function selectDate(dateStr) { selectedDateStr = dateStr; renderCalendar(); renderDayEvents(); renderMainAlbumUI(); }
+
+document.getElementById('popupPassword').addEventListener('keydown', function(e) { if (e.key === 'Enter') verifyGatePassword(); });
+
+function renderDayEvents() {
+    let container = document.getElementById('dayEvents');
+    let filtered = activities.filter(a => {
+        if (a.isMultiDayEvent && a.multiDayRangeArray) return a.multiDayRangeArray.includes(selectedDateStr);
+        return a.date === selectedDateStr;
+    });
+    document.getElementById('selectedDateLabel').innerText = selectedDateStr;
+    
+    let dayMedia = albumItems.filter(item => item.date === selectedDateStr);
+    if (filtered.length === 0 && dayMedia.length === 0) { container.innerHTML = `<p style="color:gray; text-align:center; padding:20px 0;">今日無 any 排定活動。</p>`; return; }
+    
+    let html = "";
+    filtered.forEach(ev => {
+        html += `
+        <div class="event-item">
+            <div class="event-time">⏰ 時間：${ev.time}</div>
+            <div class="event-desc">📌 項目：<strong>${ev.title}</strong></div>
+        </div>`;
+    });
+    dayMedia.forEach(m => {
+        let tag = m.type === "video" ? `<video src="${m.url}" controls style="max-width:100%; max-height:160px; margin-top:8px; border-radius:8px;"></video>` : `<img src="${m.url}" style="max-width:100%; max-height:160px; margin-top:8px; border-radius:8px;">`;
+        html += `
+        <div class="event-item" style="border-left-color: #f39c12; background: #fffdf6;">
+            <div class="event-time" style="color:#d46b08;">🖼️ 隨附影像：${m.title}</div>
+            <div>${tag}</div>
+        </div>`;
+    });
+    container.innerHTML = html;
+}
+
+function changeMonth(dir) { current.setMonth(current.getMonth() + dir); renderCalendar(); }
+document.getElementById('bodyNode').className = `view-${currentGlobalMode}`;
+fetchCloudData();
 </script>
 
 </body>
