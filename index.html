@@ -89,7 +89,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   color: #38bdf8;
 }
 
-/* 📊 方向一：奪冠預測熱度榜專屬樣式區塊 */
+/* 📊 方向一：奪冠預測熱度榜與動態進度條圖表樣式表配置 */
 .predict-rank-container {
   background: #111827;
   border: 1px solid #dfaa2a;
@@ -107,18 +107,42 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   gap: 5px;
 }
 .predict-rank-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
 }
 .predict-rank-item {
   background: #1f2937;
-  padding: 6px 10px;
-  border-radius: 4px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 4px solid #10b981;
+  position: relative;
+}
+.predict-rank-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-left: 3px solid #10b981;
+  font-weight: bold;
+  z-index: 2;
+}
+.predict-bar-bg {
+  background: #111827;
+  height: 8px;
+  border-radius: 4px;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #374151;
+}
+.predict-bar-fill {
+  background: linear-gradient(90deg, #10b981, #059669);
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ✅ 最新友誼賽資訊區區塊樣式 */
@@ -636,7 +660,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
       
       <button type="submit" class="submit-btn">提交預測</button>
       <div style="font-size: 0.8rem; color: #a1a1aa; margin-top: 10px; text-align: left; line-height: 1.4;">
-        📌 聲明：本次活動收集的名稱及電話尾數，僅用作熱度榜顯示及得獎資格核對用途，主辦方無法藉此識辨或追蹤您的個人身份，資料亦不會用作任何推廣或轉售，請放心參與。
+        📌 聲明：本次活動收集的名稱及電話尾數，僅用作熱度榜顯示及得獎資格核對用途，主辦方無法藉此識辨 or 追蹤您的個人身份，資料亦不會用作任何推廣或轉售，請放心參與。
       </div>
     </form>
   </div>
@@ -851,11 +875,12 @@ Object.keys(groups).forEach(g=>{
   img.src="https://flagcdn.com/w80/"+team.code+".png";
   img.className="flag";
   
-  // ⚡【方向三】：一鍵點讚集氣
+  // ⚡【方向三】：一鍵點讚集氣包裝器
   let cheerContainer = document.createElement("span");
   cheerContainer.style.display = "flex"; cheerContainer.style.alignItems = "center"; cheerContainer.style.gap = "4px"; cheerContainer.style.marginLeft = "auto";
   let cheerCount = document.createElement("span"); cheerCount.className = "cheer-count-text"; cheerCount.id = `cheerCount_${team.code}`; cheerCount.innerText = "0";
-  let cheerBtn = document.createElement("button"); cheerBtn.className = "cheer-btn-inline"; cheerBtn.innerText = "🔥集氣";
+  let cheerBtn = document.createElement("button");
+  cheerBtn.className = "cheer-btn-inline"; cheerBtn.innerText = "🔥集氣";
   cheerBtn.onclick = () => { triggerCheerEffect(team.code); };
   cheerContainer.append(cheerCount, cheerBtn);
 
@@ -908,15 +933,19 @@ function triggerCheerEffect(teamCode) {
   });
 }
 
-// 🌐 【方向一】：實時監聽全網奪冠預測熱度榜
+// 🌐 【方向一】：實時監聽全網奪冠預測熱度榜（圖表進度條化渲染）
 db.ref("predict_stats").on("value", (snapshot) => {
   const predictData = snapshot.val() || {};
   const rankGrid = document.getElementById("predictRankGrid");
   rankGrid.innerHTML = "";
   
   let sortedPredicts = [];
+  let totalVotes = 0;
+  
   Object.keys(predictData).forEach(teamName => {
-    sortedPredicts.push({ name: teamName, votes: predictData[teamName] });
+    const votes = predictData[teamName] || 0;
+    sortedPredicts.push({ name: teamName, votes: votes });
+    totalVotes += votes;
   });
   sortedPredicts.sort((a,b) => b.votes - a.votes);
   
@@ -924,37 +953,53 @@ db.ref("predict_stats").on("value", (snapshot) => {
     rankGrid.innerHTML = "<div style='color:#a1a1a1; font-size:13px; text-align:center; grid-column: 1 / -1; padding: 10px 0;'>快啲點擊上方按鈕，為你既愛隊集氣啦！</div>";
     return;
   }
+  
   sortedPredicts.slice(0, 8).forEach((item, index) => {
-    let div = document.createElement("div");
-    div.className = "predict-rank-item";
-    div.innerHTML = `<span>${index+1}. ${item.name}</span><span style="color:#dfaa2a;font-weight:bold;">${item.votes} 票</span>`;
-    rankGrid.appendChild(div);
+    const percentage = totalVotes > 0 ? Math.round((item.votes / totalVotes) * 100) : 0;
+    
+    let itemDiv = document.createElement("div");
+    itemDiv.className = "predict-rank-item";
+    
+    itemDiv.innerHTML = `
+      <div class="predict-rank-info">
+        <span>${index+1}. ${item.name}</span>
+        <span style="color:#dfaa2a;">${item.votes} 票 (${percentage}%)</span>
+      </div>
+      <div class="predict-bar-bg">
+        <div class="predict-bar-fill" id="barFill_${index}"></div>
+      </div>
+    `;
+    rankGrid.appendChild(itemDiv);
+    
+    // 微延遲觸發過渡動畫效果
+    setTimeout(() => {
+      const fillEl = document.getElementById(`barFill_${index}`);
+      if(fillEl) fillEl.style.width = percentage + "%";
+    }, 50);
   });
 });
 
-// 實時從 Firebase 讀取並校準雲端友誼賽戰報
+// 實時從 Firebase 讀取並校準雲端友誼賽戰報（同步重置核心：已更新為 6月11日 最新焦點數據）
 db.ref("friendly_news").on("value", (snapshot) => {
   const data = snapshot.val();
   
-  // 🛠️ 【自動重置刷新核心】：如果雲端數據結構老舊或為空，前端會立刻主動推送最新的 6月10日 戰報至雲端
-  if (!data || !data.results || data.results[0].home !== "剛果民主共和國") {
+  // 🛠️ 【自動重置刷新核心】：已校準為 6月11日 凌晨結算數據
+  if (!data || !data.results || data.results[0].home !== "英格蘭") {
     const freshFriendlyData = {
-      description: "隨着2026年美加墨世界盃（香港時間6月12日凌晨開幕）進入最後兩天倒數，各支男足國家隊在過去24小時內（6月9日至10日凌晨）完成了世界盃開賽前的最後一波焦點熱身賽。以下為最新男子國際友誼賽的完賽比分與最新資訊：",
+      description: "美加墨世界盃即將在明天凌晨（香港時間6月12日）正式點燃戰火！在過去24小時內（6月10日至11日凌晨），多支參賽勁旅完成了開賽前的最後一波官方熱身賽。以下為6月11日晨間最新結算的男子國際友誼賽焦點賽果與戰報：",
       results: [
-        { date: "6月10日 凌晨", home: "剛果民主共和國", score: "1 - 2", away: "智利", note: "智利下半場發力攻入兩球，客場反超取勝。" },
-        { date: "6月9日 晚上", home: "印度尼西亞", score: "1 - 0", away: "莫桑比克", note: "印尼主場一球小勝，為世界盃前累積信心。" },
-        { date: "6月9日 晚上", home: "柬埔寨", score: "2 - 0", away: "香港", note: "香港隊作客未能破門，最終兩球不敵東道主。" },
-        { date: "6月9日 晚上", home: "中國", score: "0 - 0", away: "泰國", note: "兩隊互有攻守但均無建樹，最終互交白卷。" },
-        { date: "6月9日 晚上", home: "菲律賓", score: "5 - 1", away: "緬甸", note: "菲律賓火力全開，主場大勝緬甸。" },
-        { date: "6月9日 上午", home: "西班牙", score: "3 - 1", away: "秘魯", note: "奧耶沙巴開賽2分鐘閃擊，柏德里推射空門，強權西班牙輕鬆取勝。" },
-        { date: "6月9日 凌晨", home: "法國", score: "3 - 1", away: "北愛爾蘭", note: "高盧雄雞展現爭冠熱門實力，兩球優勢擊敗對手。" },
-        { date: "6月9日 凌晨", home: "荷蘭", score: "2 - 1", away: "烏茲別克", note: "荷蘭雖有球員染紅，仍以2-1險勝頑強的烏茲別克。" }
+        { date: "6月11日 凌晨", home: "英格蘭", score: "1 - 0", away: "哥斯達黎加", note: "憑藉迪格蘭·賴斯（Declan Rice）在開賽第10分鐘接應安東尼·高登的助攻破門，三獅軍團小勝收官。" },
+        { date: "6月11日 凌晨", home: "葡萄牙", score: "2 - 1", away: "尼日利亞", note: "柏度·尼圖（Pedro Neto）先開紀錄，75分鐘憑小將法蘭斯高·干斯卡奧（Conceição）弧線球絕殺。41歲的C朗拿度打滿65分鐘，憾失兩次單刀。" },
+        { date: "6月11日 凌晨", home: "危地馬拉", score: "0 - 2", away: "奧地利", note: "奧地利輕鬆掌控節奏，兩球完勝對手，帶著連勝勢頭進駐世界盃大本營。" },
+        { date: "6月10日 晚間", home: "巴林", score: "2 - 1", away: "敘利亞", note: "兩支中東球隊的內戰，巴林把握能力較佳，險勝一球。" },
+        { date: "6月10日 晚間", home: "巴基斯坦", score: "2 - 0", away: "阿富汗", note: "亞洲鄰國交鋒，巴基斯坦主場兩球淨勝對手。" }
       ],
-      upcoming_hint: "備註：部分歐美強權（如阿根廷、英格蘭等）於美國本土進行的閉門或深夜熱身賽，官方正陸續結算最終統計。\n\n今日（6月10日）深夜至明日凌晨，將是世界盃正賽開打前的最後一波國際友誼賽，各隊隨即會進駐官方大本營：",
+      upcoming_hint: "💡 傳統豪門最終熱身總結：\n⚽ 葡萄牙：以兩連勝（日前擊敗智利及今日擊敗尼日利亞）正式為熱身賽收尾，這支世界盃K組種子隊的鋒線狀態正逐步調至最佳。\n⚽ 英格蘭：連續兩場熱身賽以 1-0（分別擊敗新西蘭與哥斯達黎加）小勝，雖然進攻火力顯得較為謹慎，但防守端連續保持清白之身。",
       upcoming_list: [
-        "<b>6月11日 凌晨</b> 葡萄牙 vs 尼日利亞",
-        "<b>6月11日 凌晨</b> 英格蘭 vs 哥斯達黎加",
-        "<b>6月11日 凌晨</b> 危地馬拉 vs 奧地利"
+        "<b>🔥 2026世界盃 開幕戰全面預告（最後備戰完結）</b>",
+        "<b>揭幕戰時間：</b>香港時間 6月12日（明天）凌晨 03:00 HKT",
+        "<b>對陣組合：</b>東道主 墨西哥 (Mexico) vs 南非 (South Africa)",
+        "<b>戰略陣容：</b>各隊現已全部進駐北美各大基地，接下來將是真正實力的生死對決！"
       ]
     };
     db.ref("friendly_news").set(freshFriendlyData);
@@ -1025,7 +1070,6 @@ function initDateSelector() {
     allBtn.classList.add("active"); renderMatches("all"); 
   };
   container.appendChild(allBtn);
-  
   const uniqueStages = [...new Set(centralSchedule.map(m => m.stage))];
   uniqueStages.forEach(stage => {
     let btn = document.createElement("button"); 
@@ -1063,7 +1107,7 @@ function renderMatches(filterStage) {
     let vs = document.createElement("span"); vs.className = "vs"; vs.innerText = m.score;
 
     let slot2 = document.createElement("div"); slot2.className = "team-slot";
-    let img2 = document.createElement("img"); 
+    let img2 = document.createElement("img");
     img2.src = m.t2 === "tbd" ? "https://flagcdn.com/w80/un.png" : "https://flagcdn.com/w80/"+m.t2+".png"; img2.className="flag";
     let name2 = document.createElement("span"); name2.innerText = teamDatabase[m.t2] ? teamDatabase[m.t2].name.split(" ")[0] : m.t2;
     slot2.append(img2, name2);
@@ -1071,7 +1115,6 @@ function renderMatches(filterStage) {
     teamsDiv.append(slot1, vs, slot2);
     let viewHint = document.createElement("div");
     viewHint.className = "view-btn"; viewHint.innerText = "📄 查看比賽球場場館與焦點推薦";
-
     matchCard.append(timeTag, teamsDiv, viewHint);
     matchBox.appendChild(matchCard);
   });
@@ -1097,7 +1140,6 @@ function closeSquad() { document.getElementById("squadModal").style.display = "n
 function openPredictModal() { document.getElementById("predictModal").style.display = "flex"; }
 function closePredictModal() { document.getElementById("predictModal").style.display = "none"; }
 
-// 提交預測表單至後端 GAS 試算表，並同步增加 Firebase 熱度得票
 function submitPrediction(event) {
   event.preventDefault();
   const phone = document.getElementById("userPhone").value.trim();
@@ -1125,7 +1167,6 @@ function submitPrediction(event) {
   })
   .then(res => {
     if (res.ok) {
-      // GAS 寫入成功後，立刻同步增加 Firebase 內該球隊的投票熱度計數
       const statsRef = db.ref(`predict_stats/${champTeam}`);
       statsRef.transaction((currentVotes) => {
         return (currentVotes || 0) + 1;
@@ -1159,7 +1200,7 @@ function updateCountdown() {
   const targetDate = new Date("2026-06-12T03:00:00+08:00").getTime();
   const difference = targetDate - new Date().getTime();
   if (difference <= 0) { 
-    document.getElementById("timerDisplay").innerHTML = `<div class="live-msg">🔥 2026 美加墨世界盃盛大開戰！</div>`; return; 
+    document.getElementById("timerDisplay").innerHTML = `<div class="live-msg">🔥 2026 美加墨世界盃盛大開戰！</div>`; return;
   }
   const d = Math.floor(difference / (1000 * 60 * 60 * 24));
   const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
