@@ -145,58 +145,185 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ✅ 最新世界盃比賽資訊區 */
+/* ==========================================================================
+   ✨ 【核心重構】最新世界盃比賽資訊區 (.friendly-section) 頂級視覺樣式表
+   ========================================================================== */
 .friendly-section {
-  background: #111827;
-  padding: 20px;
-  border-radius: 12px;
-  margin: 20px auto;
+  background: linear-gradient(180deg, #111827, #0f172a);
+  padding: 25px;
+  border-radius: 16px;
+  margin: 25px auto;
   max-width: 1200px;
-  border: 1px solid #374151;
-  border-left: 5px solid #38bdf8;
-  font-size: 14px;
-  line-height: 1.8;
+  border: 1px solid #1e293b;
+  border-left: 6px solid #38bdf8;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
 }
 .friendly-title {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #38bdf8;
   font-weight: bold;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 1px;
+}
+.friendly-desc-box {
+  background: rgba(30, 41, 59, 0.5);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #e5e7eb;
+}
+.friendly-subtitle {
+  font-size: 15px;
+  color: #dfaa2a;
+  font-weight: bold;
+  margin-top: 25px;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  text-transform: uppercase;
 }
 .friendly-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 12px 0;
   font-size: 13px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #374151;
 }
 .friendly-table th, .friendly-table td {
-  border: 1px solid #374151;
-  padding: 10px;
+  padding: 12px 14px;
   text-align: center;
+  vertical-align: middle;
 }
 .friendly-table th {
   background-color: #1f2937;
   color: #dfaa2a;
   font-weight: bold;
+  border-bottom: 2px solid #374151;
 }
-.friendly-table tr:hover {
-  background-color: #1a2333;
+.friendly-table td {
+  background-color: #111827;
+  border-bottom: 1px solid #1f2937;
+  color: #e5e7eb;
 }
-.friendly-subtitle {
-  font-size: 14px;
+.friendly-table tr:last-child td {
+  border-bottom: none;
+}
+.friendly-table tr:hover td {
+  background-color: #1e293b;
+}
+.score-badge {
+  background: #1e293b;
   color: #dfaa2a;
-  font-weight: bold;
-  margin-top: 15px;
-  margin-bottom: 6px;
+  font-weight: 900;
+  font-size: 14px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #dfaa2a;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(223,170,42,0.15);
 }
-.friendly-list {
-  margin: 0;
-  padding-left: 20px;
+
+/* 🏆 全新設計：流線型動態時間軸事件流樣式 */
+.timeline-container {
+  position: relative;
+  margin: 20px 0 20px 10px;
+  padding-left: 24px;
+  border-left: 2px solid #374151;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 16px;
+}
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+.timeline-dot {
+  position: absolute;
+  left: -33px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1f2937;
+  border: 2px solid #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  z-index: 2;
+}
+.timeline-dot.goal { border-color: #10b981; background: #064e3b; }
+.timeline-dot.redcard { border-color: #ef4444; background: #7f1d1d; }
+.timeline-dot.stadium { border-color: #38bdf8; background: #0c4a6e; }
+.timeline-dot.summary { border-color: #dfaa2a; background: #78350f; }
+
+.timeline-content {
+  background: #1f2937;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #374151;
+}
+.timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.event-tag {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.event-tag.goal { background-color: #10b981; color: #fff; }
+.event-tag.redcard { background-color: #ef4444; color: #fff; }
+.event-tag.stadium { background-color: #38bdf8; color: #0b0f19; }
+.event-tag.summary { background-color: #dfaa2a; color: #0b0f19; }
+
+.event-time {
+  font-family: monospace;
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: bold;
+}
+.event-body {
+  font-size: 13px;
+  line-height: 1.6;
   color: #d1d5db;
+}
+.event-body strong { color: #fff; }
+
+.analysis-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+.analysis-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+.analysis-list li::before {
+  content: "⚡";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 12px;
 }
 
 /* ✅ 標題與解鎖鍵複合包裝容器（左右撐開，對齊兩側線條） */
@@ -579,25 +706,28 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
 
 <div class="friendly-section">
   <div class="friendly-title">⚽ 最新世界盃比賽資訊</div>
-  <p id="friendlyDesc" style="margin: 0 0 10px 0; color: #d1d5db;">最新世界盃賽事戰報動態載入中...</p>
+  <div id="friendlyDesc" class="friendly-desc-box">最新賽事戰報動態載入中...</div>
   
   <div class="friendly-subtitle">📊 焦點賽果速報</div>
   <table class="friendly-table">
     <thead>
       <tr>
-        <th>比賽日期 (香港時間)</th>
-        <th>主隊</th>
-        <th>比數</th>
-        <th>客隊</th>
-        <th>賽事精采摘要</th>
+        <th style="width: 20%;">比賽日期 (HKT)</th>
+        <th style="width: 25%;">主隊</th>
+        <th style="width: 15%;">比數</th>
+        <th style="width: 25%;">客隊</th>
       </tr>
     </thead>
     <tbody id="friendlyResultsBody"></tbody>
   </table>
 
-  <div class="friendly-subtitle">📊 2026世界盃 揭幕戰詳細戰報</div>
-  <p id="friendlyUpcomingHint" style="margin: 0 0 8px 0; color: #9ca3af; white-space: pre-line;"></p>
-  <ul class="friendly-list" id="friendlyUpcomingList"></ul>
+  <div id="friendlyTimelineSection">
+    <div class="friendly-subtitle">⏱️ 揭幕戰核心事件時間軸</div>
+    <div id="friendlyTimelineContainer" class="timeline-container"></div>
+  </div>
+
+  <div class="friendly-subtitle">💡 戰況簡評與小組形勢</div>
+  <ul class="analysis-list" id="friendlyUpcomingList"></ul>
 </div>
 
 <div class="title-panel-container">
@@ -712,7 +842,7 @@ const teamDatabase = {
   "iq": { name: "伊拉克 (Iraq)", stars: ["侯賽因"] },
   "no": { name: "挪威 (Norway)", stars: ["哈蘭德", "奧迪加特"] },
   "ar": { name: "阿根廷 (Argentina)", stars: ["美斯", "羅達路", "安素"] },
-  "dz": { name: "阿爾及利意 (Algeria)", stars: ["馬列斯"] },
+  "dz": { name: "阿爾及利亞 (Algeria)", stars: ["馬列斯"] },
   "at": { name: "奧地利 (Austria)", stars: ["阿拉巴", "薩比沙"] },
   "jo": { name: "約旦 (Jordan)", stars: ["塔馬里"] },
   "pt": { name: "葡萄牙 (Portugal)", stars: ["C朗拿度", "般奴·費南迪斯"] },
@@ -837,7 +967,7 @@ const centralSchedule = [
   { id: "K16_05", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 頂級戰術大師對壘，中場控制力優秀的一方勝算更高。" },
   { id: "K16_06", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 高強度拼搶局，體能儲備好、板凳深度厚的球隊佔優。" },
   { id: "K16_07", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "00:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強倒數次戰，戰略體系更成熟的一方更容易在常規時間贏波。" },
-  { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強收官大戰！關注極極擅長踢十二碼大戰的隊伍（如克羅地亞）。" },
+  { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強收官大戰！關注極其擅長踢十二碼大戰的隊伍（如克羅地亞）。" },
 
   /* --- ⚔️ 8強半準決賽 --- */
   { id: "K8_01", stage: "8強半準決賽", dateStr: "2026-07-10", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 全球頂尖八強巔峰對決！全面移師美國超大型主場，推薦受讓方。" },
@@ -989,9 +1119,17 @@ db.ref("friendly_news").on("value", (snapshot) => {
     const freshFriendlyData = {
       description: "2026年美加墨世界盃的歷史性揭幕戰已於香港時間6月12日凌晨在**墨西哥城阿茲特克體育場（Mexico City Stadium）**正式完賽！這場 A 組的首輪生死大戰極具戲劇性，不僅誕生了本屆賽事首球，更全場狂飆 3 張紅牌。以下為您整理這場揭幕戰的最終賽果與戰報詳細資訊：",
       results: [
-        { date: "6月12日 凌晨", home: "墨西哥", score: "2 - 0", away: "南非", note: "基尼奧內斯 8' 射入全球首球，希門尼斯 66' 頭槌擴大優勢。南非西托爾 49' 及茲瓦內 83' 染紅，墨西哥蒙特斯 92' 亦領紅牌。" }
+        { date: "6月12日 凌晨", home: "墨西哥 🇲🇽", score: "2 - 0", away: "南非 🇿🇦" }
       ],
-      upcoming_hint: "### 📊 2026世界盃 揭幕戰賽果看板\n* **對陣組合**：墨西哥 🇲🇽 (MEX) 2 - 0 南非 🇿🇦 (RSA)\n* **賽事階段**：第一階段 Group A 小組賽第一輪\n* **現場觀眾**：80,824人（滿座）\n* **比賽地點**：墨西哥城體育場 (Estadio Azteca)\n\n### ⚽ 入球與紅牌事件時間軸\n* **第 8 分鐘（墨西哥進球 1-0）**：南非後場停球失誤，被世界盃前鋒**胡利安·基尼奧內斯（Julián Quiñones）**果斷斷球突破，推射破門，攻入 2026 年世界盃的**全球第一顆官方正式進球**！\n* **第 49 分鐘（南非紅牌）**：南非中場**斯菲費洛·西托爾（Yaya Sithole）**惡意犯規，被主裁判出示紅牌直接驅逐出場，南非被迫 10 人應戰。\n* **第 66 分鐘（墨西哥進球 2-0）**：墨西哥隊老將**勞爾·希門尼斯（Raúl Jiménez）**接應隊友傳中，禁區內頭槌破門，幫助東道主擴大領先優勢至 2:0！這也是希門尼斯個人職業生涯的首個世界盃正賽進球。\n* **第 83 分鐘（南非第二張紅牌）**：南非的**特姆巴·茲瓦內（Themba Zwane）**因粗暴動作領到紅牌，南非隊場上僅剩 9 人。\n* **第 90+2 分鐘（墨西哥紅牌）**：墨西哥隊隊長兼中堅**塞薩爾·蒙特斯（César Montes）**因破壞對方單刀進攻機會（Last-man offence），同樣被紅牌直接罰下。\n\n### 💡 戰況簡評與小組形勢",
+      // 🛠️ 將時間軸事件結構化封裝（便於前端高級渲染）
+      timeline: [
+        { type: "stadium", time: "🏟️ 賽事看板", body: "第一階段 Group A 小組賽第一輪 | 現場觀眾：80,824人（滿座）| 地點：墨西哥城體育場 (Estadio Azteca)" },
+        { type: "goal", time: "08'", body: "南非後場停球失誤，墨西哥前鋒 **胡利安·基尼奧內斯（Julián Quiñones）** 果斷斷球突破推射破門，攻入本屆世界盃全球第一顆官方正式進球！" },
+        { type: "redcard", time: "49'", body: "南非中場 **斯菲費洛·西托爾（Yaya Sithole）** 惡意蓄力犯規，遭主裁判出示紅牌直接驅逐出場，南非被迫 10 人應戰。" },
+        { type: "goal", time: "66'", body: "墨西哥隊老將 **勞爾·希門尼斯（Raúl Jiménez）** 接應隊友傳中禁區內頭槌破門，幫助東道主擴大領先優勢至 2-0！這也是他個人職業生涯首個世界盃正賽進球。" },
+        { type: "redcard", time: "83'", body: "南非隊的 **特姆巴·茲瓦內（Themba Zwane）** 因粗暴踩踏動作領到紅牌，南非隊場上僅剩 9 人頑抗。" },
+        { type: "redcard", time: "92'", body: "墨西哥隊隊長兼中堅 **塞薩爾·蒙特斯（César Montes）** 因破壞對方單刀進攻機會（Last-man offence），同樣被紅牌直接罰下，次輪將面臨停賽。" }
+      ],
       upcoming_list: [
         "作為東道主之一的墨西哥憑藉狂熱的主場優勢與純熟的逼搶戰術，全場壓制南非，順利全取 3 分，在 A 組積分榜上暫時以 3 分（淨勝球 +2）高居榜首！",
         "不過值得注意的是，墨西哥隊長蒙特斯在最後關頭染紅，將會在小組賽第二輪（香港時間 6 月 19 日凌晨 03:00）對陣太極虎韓國隊的關鍵生死戰中被罰停賽，這無疑為墨西哥次輪的後防線埋下了隱憂。"
@@ -1001,22 +1139,69 @@ db.ref("friendly_news").on("value", (snapshot) => {
     return;
   }
 
+  // 1. 渲染描述
   document.getElementById("friendlyDesc").innerText = data.description || "";
-  document.getElementById("friendlyUpcomingHint").innerText = data.upcoming_hint || "";
+  
+  // 2. 渲染焦點賽果表格
   const resultsBody = document.getElementById("friendlyResultsBody");
   resultsBody.innerHTML = "";
   if (data.results) {
     data.results.forEach(r => {
       let tr = document.createElement("tr");
-      tr.innerHTML = `<td>${r.date}</td><td>${r.home}</td><td style="font-weight:bold;color:#dfaa2a;">${r.score}</td><td>${r.away}</td><td style="text-align:left;font-size:12px;color:#9ca3af;">${r.note}</td>`;
+      tr.innerHTML = `
+        <td style="color: #9ca3af; font-family: monospace;">${r.date}</td>
+        <td style="font-weight: bold; font-size: 14px;">${r.home}</td>
+        <td><span class="score-badge">${r.score}</span></td>
+        <td style="font-weight: bold; font-size: 14px;">${r.away}</td>
+      `;
       resultsBody.appendChild(tr);
     });
   }
+
+  // 3. ✨ 動態高級渲染時間軸事件簿
+  const timelineContainer = document.getElementById("friendlyTimelineContainer");
+  timelineContainer.innerHTML = "";
+  
+  const timelineData = data.timeline || [
+    { type: "stadium", time: "🏟️ 賽事地點", body: "墨西哥城 阿茲特克體育場 (Estadio Azteca)" },
+    { type: "goal", time: "08' ⚽", body: "墨西哥隊胡利安·基尼奧內斯破門" },
+    { type: "redcard", time: "49' 🟥", body: "南非中場斯菲費洛·西托爾領紅牌罰下" },
+    { type: "goal", time: "66' ⚽", body: "勞爾·希門尼斯頭槌破門擴大比分" },
+    { type: "redcard", time: "83' 🟥", body: "南非特姆巴·茲瓦內粗暴動作領紅" },
+    { type: "redcard", time: "92' 🟥", body: "墨西哥隊長塞薩爾·蒙特斯領紅牌罰下" }
+  ];
+
+  timelineData.forEach(item => {
+    let itemDiv = document.createElement("div");
+    itemDiv.className = "timeline-item";
+    
+    // 設定徽章文案
+    let tagText = "事件";
+    if(item.type === "goal") tagText = "入球 GOAL";
+    if(item.type === "redcard") tagText = "紅牌 RED";
+    if(item.type === "stadium") tagText = "球場 STADIUM";
+    
+    itemDiv.innerHTML = `
+      <div class="timeline-dot ${item.type}"></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <span class="event-tag ${item.type}">${tagText}</span>
+          <span class="event-time">${item.time}</span>
+        </div>
+        <div class="event-body">${item.body}</div>
+      </div>
+    `;
+    timelineContainer.appendChild(itemDiv);
+  });
+
+  // 4. 渲染分析簡評
   const upcomingList = document.getElementById("friendlyUpcomingList");
   upcomingList.innerHTML = "";
   if (data.upcoming_list) {
     data.upcoming_list.forEach(item => {
-      let li = document.createElement("li"); li.innerHTML = item; upcomingList.appendChild(li);
+      let li = document.createElement("li"); 
+      li.innerHTML = item; 
+      upcomingList.appendChild(li);
     });
   }
 });
@@ -1025,6 +1210,7 @@ function updateFirebasePoints(groupName, teamCode, currentPoints) {
   db.ref(`groups_data/${groupName}/${teamCode}`).set(currentPoints);
 }
 
+// 密碼驗證
 function checkScoreUnlock() {
   if(document.getElementById("scorePassword").value === "8679") {
     alert("🔓 驗證成功！模擬計分按鍵已全面開啟。");
