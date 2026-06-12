@@ -222,16 +222,22 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
 .friendly-table tr:hover td {
   background-color: #1e293b;
 }
+.table-team-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
 .score-badge {
   background: #1e293b;
-  color: #dfaa2a;
+  color: #ff4d4f;
   font-weight: 900;
   font-size: 14px;
   padding: 4px 12px;
   border-radius: 20px;
   border: 1px solid #dfaa2a;
   display: inline-block;
-  box-shadow: 0 0 8px rgba(223,170,42,0.15);
+  box-shadow: 0 0 8px rgba(245, 77, 79, 0.2);
 }
 
 /* 🏆 全新設計：流線型動態時間軸事件流樣式 */
@@ -243,7 +249,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
 }
 .timeline-item {
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .timeline-item:last-child {
   margin-bottom: 0;
@@ -266,19 +272,18 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
 .timeline-dot.goal { border-color: #10b981; background: #064e3b; }
 .timeline-dot.redcard { border-color: #ef4444; background: #7f1d1d; }
 .timeline-dot.stadium { border-color: #38bdf8; background: #0c4a6e; }
-.timeline-dot.summary { border-color: #dfaa2a; background: #78350f; }
 
 .timeline-content {
   background: #1f2937;
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: 14px;
+  border-radius: 10px;
   border: 1px solid #374151;
 }
 .timeline-header {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 .event-tag {
   font-size: 11px;
@@ -290,7 +295,6 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
 .event-tag.goal { background-color: #10b981; color: #fff; }
 .event-tag.redcard { background-color: #ef4444; color: #fff; }
 .event-tag.stadium { background-color: #38bdf8; color: #0b0f19; }
-.event-tag.summary { background-color: #dfaa2a; color: #0b0f19; }
 
 .event-time {
   font-family: monospace;
@@ -303,7 +307,20 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   line-height: 1.6;
   color: #d1d5db;
 }
-.event-body strong { color: #fff; }
+.event-media {
+  margin-top: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #4b5563;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.event-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
 
 .analysis-list {
   list-style: none;
@@ -313,17 +330,18 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
 .analysis-list li {
   position: relative;
   padding-left: 18px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-size: 13px;
   line-height: 1.6;
   color: #d1d5db;
 }
 .analysis-list li::before {
-  content: "⚡";
+  content: "•";
   position: absolute;
   left: 0;
-  top: 1px;
-  font-size: 12px;
+  top: 0px;
+  font-size: 16px;
+  color: #dfaa2a;
 }
 
 /* ✅ 標題與解鎖鍵複合包裝容器（左右撐開，對齊兩側線條） */
@@ -418,7 +436,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* ⚡ 死忠集氣點讚按鈕專屬樣式 */
+/* ⚡ 死忠集氣點讚按鈕專專屬樣式 */
 .cheer-btn-inline {
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: #fff;
@@ -722,12 +740,16 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
   </table>
 
   <div id="friendlyTimelineSection">
-    <div class="friendly-subtitle">⏱️ 揭幕戰核心事件時間軸</div>
+    <div class="friendly-subtitle">⏱️ 揭幕戰核心事件時間軸 (隨官方實況圖同步更新)</div>
     <div id="friendlyTimelineContainer" class="timeline-container"></div>
   </div>
 
-  <div class="friendly-subtitle">💡 戰況簡評與小組形勢</div>
+  <div class="friendly-subtitle">💡 首輪局勢短評</div>
   <ul class="analysis-list" id="friendlyUpcomingList"></ul>
+  
+  <p style="font-size: 13px; color: #dfaa2a; font-weight: bold; border-top: 1px dashed #374151; padding-top: 12px; margin-top: 15px; text-align: center;">
+    🔥 接下來 A 組第二輪將會上演「榜首大戰」或「生死邊緣對決」，您最看好哪兩支球隊能率先突圍出線？
+  </p>
 </div>
 
 <div class="title-panel-container">
@@ -862,10 +884,10 @@ const groups={
   "J": ["ar", "dz", "at", "jo"], "K": ["pt", "cd", "uz", "co"], "L": ["gb-eng", "hr", "gh", "pa"]
 };
 
-// 📲 104 場核心正賽日曆數據庫（第1場揭幕戰已完成「支援自動更新」之格式擴充）
+// 📲 104 場核心正賽日曆數據庫（加入首輪完賽比分與戰報連結）
 const centralSchedule = [
-  { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "2 - 0", scorers: "🏟️ 歷史聖地：墨西哥城 阿茲特克體育場 (Estadio Azteca)\n🔥 正賽歷史揭幕戰完賽戰報：\n\n* 【第 8 分鐘 ⚽ 1-0】墨西哥隊 **胡利安·基尼奧內斯（Quiñones）** 斷球推射破門，轟入本屆世界盃全球首顆正式進球！\n* 【第 49 分鐘 🟥 紅牌】南非中場 **斯菲費洛·西托爾（Sithole）** 惡意犯規遭直紅驅逐。\n* 【第 66 分鐘 ⚽ 2-0】老將 **勞爾·希門尼斯（Jiménez）** 頭槌破門擴大比分。\n* 【第 83 分鐘 🟥 紅牌】南非 **特姆巴·茲瓦內（Zwane）** 粗暴動作領紅，南非僅剩 9 人應戰。\n* 【第 90+2 分鐘 🟥 紅牌】墨西哥隊長兼中堅 **塞薩爾·蒙特斯（Montes）** 因破壞對方單刀機會領紅罰下，次輪對陣韓國將停賽！\n\n💡 戰評：東道主墨西哥全場壓制，順利全取 3 分，淨勝球 +2 高居 A 組榜首！" },
-  { id: "GS02", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "10:00", t1: "kr", t2: "cz", score: "2 - 1", scorers: "🏟️ 戰場：墨西哥 瓜達拉哈拉體育場\n🔥 A組首輪焦點對決完賽戰報：\n\n* 【下半場 ⚽ 韓國熱血逆轉！】先落後一球下，憑藉 **黃仁範** 與 **吳賢揆** 在下慢場接連建功，配合洪明甫的 3-Back 戰術成功全取 3 分！\n\n💡 戰評：韓國隊展現出極強的韌性，成功逆轉歐洲勁旅捷克，在爭取小組出線的路上佔據了非常有利的位置。" },
+  { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "2 - 0", scorers: "🏟️ 歷史聖地：墨西哥城 阿茲特克體育場 (Estadio Azteca)\n🔥 正賽歷史揭幕戰完賽戰報：\n\n* 【第 9 分鐘 ⚽ 1-0】墨西哥隊 **胡利安·基尼奧內斯（Quiñones）** 斷球推射破門，轟入本屆世界盃全球首顆正式進球！\n* 【第 49 分鐘 🟥 紅牌】南非中場 **斯菲費洛·西托爾（Sithole）** 惡意犯規遭直紅驅逐。\n* 【第 67 分鐘 ⚽ 2-0】老將 **勞爾·希門尼斯（Jiménez）** 頭槌破門擴大比分。\n* 【第 83 分鐘 🟥 紅牌】南非 **特姆巴·茲瓦內（Zwane）** 粗暴動作領紅，南非僅剩 9 人應戰。\n* 【第 90+2 分鐘 🟥 紅牌】墨西哥隊長兼中堅 **塞薩爾·蒙特斯（Montes）** 因破壞對方單刀機會領紅罰下，次輪對陣韓國將停賽！\n\n💡 戰評：東道主墨西哥全場壓制，順利全取 3 分，淨勝球 +2 高居 A 組榜首！" },
+  { id: "GS02", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "10:00", t1: "kr", t2: "cz", score: "2 - 1", scorers: "🏟️ 墨西哥 瓜達拉哈拉體育場\n🔥 太極虎熱血逆轉戰報：\n先落後一球下，憑藉黃仁範與吳賢揆在下半場接連建功，配合洪明甫的 3-Back 戰術成功全取 3 分！\n💡 局勢簡評：韓國隊展現出極強的韌性，這場勝利讓他們在出線路上佔據有利位置。" },
   { id: "GS03", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "03:00", t1: "ca", t2: "ba", score: "VS", scorers: "🏟️ 加拿大 多倫多體育場\n💡 加拿大主場首秀，看好主隊坐和望贏。" },
   { id: "GS04", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "09:00", t1: "us", t2: "py", score: "VS", scorers: "🏟️ 美國 洛杉磯 SoFi 體育場\n💡 美國陣容齊整主場出擊，首選主隊獨贏。" },
   { id: "GS05", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "03:00", t1: "qa", t2: "ch", score: "VS", scorers: "🏟️ 美國 波士頓體育場\n💡 瑞士防守強硬，看好實力較高的一方小勝。" },
@@ -983,7 +1005,7 @@ const centralSchedule = [
   { id: "K3_01", stage: "季軍爭奪賽", dateStr: "2026-07-19", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 地點：邁阿密 硬石體育場 (Hard Rock Stadium)\n💡 榮譽大戰！兩隊毫無包袱，全力展開對攻表演賽，瘋狂推薦大球盤及雙方有進球！" },
 
   /* --- 👑 終極冠軍總決賽 --- */
-  { id: "KF_01", stage: "👑 冠軍總決賽", dateStr: "2026-07-20", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 終極聖地：美國新澤西州 大都會人壽體育場 (MetLife Stadium)\n💡 巔峰巨獻：決賽一球定乾坤！世紀大戰極易平局進入加時，推薦防守悍將受讓。" }
+  { id: "KF_01", stage: "👑 冠軍總決賽", dateStr: "2027-07-20", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 終極聖地：美國新澤西州 大都會人壽體育場 (MetLife Stadium)\n💡 巔峰巨獻：決賽一球定乾坤！世紀大戰極易平局進入加時，推薦防守悍將受讓。" }
 ];
 
 const store={};
@@ -1114,26 +1136,31 @@ db.ref("predict_stats").on("value", (snapshot) => {
 db.ref("friendly_news").on("value", (snapshot) => {
   const data = snapshot.val();
   
-    // 🛠️ 【自動重置刷新核心】：自動校準覆蓋為 6 月 12 日正式開打之世界盃 A 組第一輪最新正賽雙賽果
-  if (!data || !data.results || data.results[0].home !== "墨西哥") {
+  // 🛠️ 【自動重置刷新核心】：整合 A 組首輪最新雙賽果至實施戰報看板
+  if (!data || !data.results || data.results[0].homeCode !== "mx" || data.results.length < 2) {
     const freshFriendlyData = {
-      description: "2026年美加墨世界盃 A 組首輪兩場大戰已於香港時間6月12日正式完賽！東道主墨西哥旗開得勝，而太極虎韓國男足則完成了史詩級的熱血逆轉。以下為您整理這兩場首輪比賽的最終賽果與詳細資訊：",
+      description: "2026年美加墨世界盃 A 組第 1 輪已盛大完賽！兩場比賽高潮迭起、激烈無比，東道主墨西哥主場狂轟奠定首勝，而太極虎韓國隊則上演熱血大逆轉。以下為您整理 A 組首輪的最終官方賽果與戰報詳細資訊：",
       results: [
-        { date: "6月12日 03:00", home: "墨西哥", score: "2 - 0", away: "南非", note: "胡利安·基尼奧內斯 8' 射入本屆世界盃全球首球，勞爾·希門尼斯 66' 頭槌擴大優勢。下半場火藥味極濃，球證共出示 3 面紅牌（南非隊施托利、施雲尼被逐；墨西哥隊長蒙提斯補時染紅）。" },
-        { date: "6月12日 10:00", home: "韓國", score: "2 - 1", away: "捷克", note: "太極虎熱血逆轉！先落後一球下，憑藉黃仁範與吳賢揆在下半場接連建功，配合洪明甫的 3-Back 戰術成功全取 3 分，逆轉歐洲勁旅。" }
+        { date: "6月12日 凌晨", home: "墨西哥", homeCode: "mx", score: "2 - 0", away: "南非", awayCode: "za" },
+        { date: "6月12日 上午", home: "韓國", homeCode: "kr", score: "2 - 1", away: "捷克", awayCode: "cz" }
       ],
-      upcoming_hint: "### 💡 2026世界盃 A 組第一輪局勢短評\n* **墨西哥**：雖然順利收穫 3 分，但中堅施薩·蒙迪斯（César Montes）在補時階段的紅牌，將令他缺席下一場分組賽，這對東道主的防線調配將是一大考驗。\n* **韓國隊**：展現出極強的韌性，在瓜達拉哈拉成功逆轉歐洲勁旅捷克，這場勝利讓他們在爭取小組賽出線的路上佔據了非常有利的位置。\n\n### 🏟️ 2026世界盃 下一輪精采預告（榜首大戰生死對決）：",
+      timeline: [
+        { type: "stadium", time: "🏟️ 賽事看板 (A 組第 1 輪)", body: "比賽地點：墨西哥城阿茲特克體育場 / 現場觀眾：80,824人（滿座）。東道主墨西哥 2 - 0 力克南非！", imgUrl: "https://gpts-dashboard-images.s3.amazonaws.com/worldcup2026_mexico_win.jpeg" },
+        { type: "goal", time: "09' - 基紐尼斯閃擊破門", body: "南非後場停球低級失誤，墨西哥前鋒 **胡利安·基尼奧內斯（Julián Quiñones）** 果斷斷球殺入禁區推射死角，攻入本屆世界盃全球正式首球！", imgUrl: "https://gpts-dashboard-images.s3.amazonaws.com/worldcup2026_mexico_win.jpeg" },
+        { type: "redcard", time: "49' - 南非施托利直紅驅逐", body: "南非中場防守球員 **斯菲費洛·西托爾（Yaya Sithole）** 蓄力惡意踩踏犯規，裁判毫不猶豫出示紅牌驅逐，南非被迫 10 人應戰。" },
+        { type: "goal", time: "67' - 占文尼斯頭槌奠勝", body: "墨西哥邊路精準起球傳中，老將 **勞爾·希門尼斯（Raúl Jiménez）** 禁區中路高高躍起，頭槌砸入死角擴大比分至 2-0！", imgUrl: "https://gpts-dashboard-images.s3.amazonaws.com/worldcup2026_mexico_win.jpeg" },
+        { type: "redcard", time: "83' & 92' - 終場前火藥味爆發雙方染紅", body: "第 83 分鐘南非 **施雲尼（Themba Zwane）** 粗暴鏟球領取第二張紅牌，南非僅剩 9 人；補時 92 分鐘墨西哥隊長 **施薩·蒙迪斯（César Montes）** 因破壞單刀（Last-man offence）亦被紅牌罰下！" },
+        { type: "goal", time: "韓捷大戰 - 太極虎熱血逆轉", body: "另一場 A 組焦點戰在瓜達拉哈拉體育場展開，韓國隊在先落後一球的逆境下展現極強韌性，憑藉 **黃仁範** 與 **吳賢揆** 在下半場接連建功，配合洪明甫果斷變陣 3-Back 戰術，最終 2-1 熱血逆轉擊敗歐洲勁旅捷克，全取 3 分！" }
+      ],
       upcoming_list: [
-        "<b>小組賽第二輪：</b>香港時間 6月19日 凌晨 03:00 墨西哥 vs 韓國 (榜首大戰)",
-        "<b>小組賽第二輪：</b>香港時間 6月19日 凌晨 00:00 捷克 vs 南非 (生死邊緣對決)",
-        "<b>球迷熱議：</b>兩戰全勝的球隊將率先突圍出線，您最看好哪兩支球隊？快點擊上方按鈕提交您的奪冠大預測！"
+        "<b>墨西哥 🇲🇽</b> 雖然旗開得勝全取 3 分，但主力中堅施薩·蒙迪斯在補時階段染紅，將缺席分組賽次輪對陣韓國隊的關鍵榜首生死大戰，這為東道主的後防調配埋下巨大考驗。",
+        "<b>韓國隊 🇰🇷</b> 成功在客場氣氛下逆轉實力強勁的捷克隊，這場熱血逆轉讓太極虎在小組出線權的爭奪戰中搶佔了極其有利的先機地位。"
       ]
     };
     db.ref("friendly_news").set(freshFriendlyData);
     return;
   }
 
-  // 1. 渲染描述
   document.getElementById("friendlyDesc").innerText = data.description || "";
   
   // 2. 渲染焦點賽果表格
@@ -1144,51 +1171,55 @@ db.ref("friendly_news").on("value", (snapshot) => {
       let tr = document.createElement("tr");
       tr.innerHTML = `
         <td style="color: #9ca3af; font-family: monospace;">${r.date}</td>
-        <td style="font-weight: bold; font-size: 14px;">${r.home}</td>
+        <td>
+          <div class="table-team-cell">
+            <img src="https://flagcdn.com/w80/${r.homeCode}.png" style="width:24px;border-radius:2px;">
+            <span style="font-weight:bold;">${r.home}</span>
+          </div>
+        </td>
         <td><span class="score-badge">${r.score}</span></td>
-        <td style="font-weight: bold; font-size: 14px;">${r.away}</td>
+        <td>
+          <div class="table-team-cell">
+            <span style="font-weight:bold;">${r.away}</span>
+            <img src="https://flagcdn.com/w80/${r.awayCode}.png" style="width:24px;border-radius:2px;">
+          </div>
+        </td>
       `;
       resultsBody.appendChild(tr);
     });
   }
 
-  // 3. ✨ 動態高級渲染時間軸事件簿
+  // 3. 渲染時間軸
   const timelineContainer = document.getElementById("friendlyTimelineContainer");
   timelineContainer.innerHTML = "";
-  
-  const timelineData = data.timeline || [
-    { type: "stadium", time: "🏟️ 賽事地點", body: "墨西哥城 阿茲特克體育場 (Estadio Azteca)" },
-    { type: "goal", time: "08' ⚽", body: "墨西哥隊胡利安·基尼奧內斯破門" },
-    { type: "redcard", time: "49' 🟥", body: "南非中場斯菲費洛·西托爾領紅牌罰下" },
-    { type: "goal", time: "66' ⚽", body: "勞爾·希門尼斯頭槌破門擴大比分" },
-    { type: "redcard", time: "83' 🟥", body: "南非特姆巴·茲瓦內粗暴動作領紅" },
-    { type: "redcard", time: "92' 🟥", body: "墨西哥隊長塞薩爾·蒙特斯領紅牌罰下" }
-  ];
-
-  timelineData.forEach(item => {
-    let itemDiv = document.createElement("div");
-    itemDiv.className = "timeline-item";
-    
-    // 設定徽章文案
-    let tagText = "事件";
-    if(item.type === "goal") tagText = "入球 GOAL";
-    if(item.type === "redcard") tagText = "紅牌 RED";
-    if(item.type === "stadium") tagText = "球場 STADIUM";
-    
-    itemDiv.innerHTML = `
-      <div class="timeline-dot ${item.type}"></div>
-      <div class="timeline-content">
-        <div class="timeline-header">
-          <span class="event-tag ${item.type}">${tagText}</span>
-          <span class="event-time">${item.time}</span>
+  if (data.timeline) {
+    data.timeline.forEach(item => {
+      let itemDiv = document.createElement("div");
+      itemDiv.className = "timeline-item";
+      
+      let tagText = "事件";
+      if(item.type === "goal") tagText = "入球 GOAL";
+      if(item.type === "redcard") tagText = "紅牌 RED";
+      if(item.type === "stadium") tagText = "賽事 SIGN";
+      
+      let mediaHtml = item.imgUrl ? `<div class="event-media"><img src="${item.imgUrl}" alt="Match Live"></div>` : '';
+      
+      itemDiv.innerHTML = `
+        <div class="timeline-dot ${item.type}"></div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <span class="event-tag ${item.type}">${tagText}</span>
+            <span class="event-time">${item.time}</span>
+          </div>
+          <div class="event-body">${item.body}</div>
+          ${mediaHtml}
         </div>
-        <div class="event-body">${item.body}</div>
-      </div>
-    `;
-    timelineContainer.appendChild(itemDiv);
-  });
+      `;
+      timelineContainer.appendChild(itemDiv);
+    });
+  }
 
-  // 4. 渲染分析簡評
+  // 4. 渲染局勢短評簡評
   const upcomingList = document.getElementById("friendlyUpcomingList");
   upcomingList.innerHTML = "";
   if (data.upcoming_list) {
@@ -1204,7 +1235,6 @@ function updateFirebasePoints(groupName, teamCode, currentPoints) {
   db.ref(`groups_data/${groupName}/${teamCode}`).set(currentPoints);
 }
 
-// 密碼驗證
 function checkScoreUnlock() {
   if(document.getElementById("scorePassword").value === "8679") {
     alert("🔓 驗證成功！模擬計分按鍵已全面開啟。");
@@ -1269,7 +1299,6 @@ function renderMatches(filterStage) {
     let timeTag = document.createElement("div");
     timeTag.className = "match-time";
     
-    // 🔍 動態賽果更新邏輯：如果 score 是已完賽的比分（如 2 - 0），則將狀態更改為「已完賽」
     let matchStatusText = (m.score !== "VS" && m.score !== "") ? `⚽ 已完賽 | ${m.score}` : "⏳ 尚未開賽";
     timeTag.innerText = `${matchStatusText} | [${m.stage}] ${m.dateStr} ${m.time} HKT`;
 
