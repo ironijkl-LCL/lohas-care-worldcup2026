@@ -145,14 +145,14 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ✅ 最新友誼賽資訊區區塊樣式 */
+/* ✅ 最新世界盃比賽資訊區 */
 .friendly-section {
   background: #111827;
   padding: 20px;
   border-radius: 12px;
   margin: 20px auto;
   max-width: 1200px;
-  border: 1px solid #1f2937;
+  border: 1px solid #374151;
   border-left: 5px solid #38bdf8;
   font-size: 14px;
   line-height: 1.8;
@@ -291,7 +291,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* ⚡ 方向三：死忠集氣點讚按鈕專屬樣式 */
+/* ⚡ 死忠集氣點讚按鈕專屬樣式 */
 .cheer-btn-inline {
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: #fff;
@@ -578,8 +578,8 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
 </div>
 
 <div class="friendly-section">
-  <div class="friendly-title">⚽ 最新友誼賽資訊</div>
-  <p id="friendlyDesc" style="margin: 0 0 10px 0; color: #d1d5db;">最新友誼賽戰報與賽程動態載入中...</p>
+  <div class="friendly-title">⚽ 最新世界盃比賽資訊</div>
+  <p id="friendlyDesc" style="margin: 0 0 10px 0; color: #d1d5db;">最新世界盃賽事戰報動態載入中...</p>
   
   <div class="friendly-subtitle">📊 焦點賽果速報</div>
   <table class="friendly-table">
@@ -589,13 +589,13 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
         <th>主隊</th>
         <th>比數</th>
         <th>客隊</th>
-        <th>戰況簡報</th>
+        <th>賽事精采摘要</th>
       </tr>
     </thead>
     <tbody id="friendlyResultsBody"></tbody>
   </table>
 
-  <div class="friendly-subtitle">⏳ 接下來的熱身賽預告（最後閱兵）</div>
+  <div class="friendly-subtitle">📊 2026世界盃 揭幕戰詳細戰報</div>
   <p id="friendlyUpcomingHint" style="margin: 0 0 8px 0; color: #9ca3af; white-space: pre-line;"></p>
   <ul class="friendly-list" id="friendlyUpcomingList"></ul>
 </div>
@@ -622,7 +622,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
     
     <div id="modalScorersBox" class="scorers-box">
       <div class="scorers-title">🏟️ 比賽球場地點與大數據焦點心水推薦</div>
-      <div id="modalScorersList" class="scorers-list"></div>
+      <div id="modalScorersList" class="scorers-list" style="white-space: pre-line; line-height: 1.6;"></div>
     </div>
 
     <div class="squad-grid">
@@ -657,10 +657,9 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
         <label>心水冠軍隊伍</label>
         <input type="text" id="userChampTeam" class="form-input" required placeholder="例如: 西班牙 / 法國 / 阿根廷">
       </div>
-      
       <button type="submit" class="submit-btn">提交預測</button>
       <div style="font-size: 0.8rem; color: #a1a1aa; margin-top: 10px; text-align: left; line-height: 1.4;">
-        📌 聲明：本次活動收集的名稱及電話尾數，僅用作熱度榜顯示及得獎資格核對用途，主辦方無法藉此識辨 or 追蹤您的個人身份，資料亦不會用作任何推廣或轉售，請放心參與。
+        📌 聲明：本次活動收集的名稱及電話尾數，僅用作熱度榜顯示及得獎資格核對用途，主辦方無法藉此識辨或追蹤您的個人身份，資料亦不會用作任何推廣 or 轉售，請放心參與。
       </div>
     </form>
   </div>
@@ -676,8 +675,8 @@ const db = firebase.database();
 
 const teamDatabase = {
   "tbd": { name: "待定 (TBD)", stars: ["隨比賽進程解鎖"] },
-  "mx": { name: "墨西哥 (Mexico)", stars: ["艾臣·馬天尼斯", "占文尼斯", "奧祖亞"] },
-  "za": { name: "南非 (South Africa)", stars: ["珀西·陶", "莫哥拿"] },
+  "mx": { name: "墨西哥 (Mexico)", stars: ["艾臣·馬天尼斯", "占文尼斯", "奧祖亞", "胡利安·基尼奧內斯", "塞薩爾·蒙特斯"] },
+  "za": { name: "南非 (South Africa)", stars: ["珀西·陶", "莫哥拿", "斯菲費洛·西托爾", "特姆巴·茲瓦內"] },
   "kr": { name: "韓國 (South Korea)", stars: ["孫興慜", "金玟哉", "李剛仁"] },
   "cz": { name: "捷克 (Czechia)", stars: ["柏德列·希克", "蘇錫"] },
   "ca": { name: "加拿大 (Canada)", stars: ["阿方素·戴維斯", "祖拿芬·戴維"] },
@@ -713,7 +712,7 @@ const teamDatabase = {
   "iq": { name: "伊拉克 (Iraq)", stars: ["侯賽因"] },
   "no": { name: "挪威 (Norway)", stars: ["哈蘭德", "奧迪加特"] },
   "ar": { name: "阿根廷 (Argentina)", stars: ["美斯", "羅達路", "安素"] },
-  "dz": { name: "阿爾及利亞 (Algeria)", stars: ["馬列斯"] },
+  "dz": { name: "阿爾及利意 (Algeria)", stars: ["馬列斯"] },
   "at": { name: "奧地利 (Austria)", stars: ["阿拉巴", "薩比沙"] },
   "jo": { name: "約旦 (Jordan)", stars: ["塔馬里"] },
   "pt": { name: "葡萄牙 (Portugal)", stars: ["C朗拿度", "般奴·費南迪斯"] },
@@ -733,8 +732,9 @@ const groups={
   "J": ["ar", "dz", "at", "jo"], "K": ["pt", "cd", "uz", "co"], "L": ["gb-eng", "hr", "gh", "pa"]
 };
 
+// 📲 104 場核心正賽日曆數據庫（第1場揭幕戰已完成「支援自動更新」之格式擴充）
 const centralSchedule = [
-  { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "VS", scorers: "🏟️ 墨西哥城 阿茲特克體育場\n💡 心水推薦：揭幕戰東道主墨西哥主場優勢極大，推薦勝。" },
+  { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "2 - 0", scorers: "🏟️ 歷史聖地：墨西哥城 阿茲特克體育場 (Estadio Azteca)\n🔥 正賽歷史揭幕戰完賽戰報：\n\n* 【第 8 分鐘 ⚽ 1-0】墨西哥隊 **胡利安·基尼奧內斯（Quiñones）** 斷球推射破門，轟入本屆世界盃全球首顆正式進球！\n* 【第 49 分鐘 🟥 紅牌】南非中場 **斯菲費洛·西托爾（Sithole）** 惡意犯規遭直紅驅逐。\n* 【第 66 分鐘 ⚽ 2-0】老將 **勞爾·希門尼斯（Jiménez）** 頭槌破門擴大比分。\n* 【第 83 分鐘 🟥 紅牌】南非 **特姆巴·茲瓦內（Zwane）** 粗暴動作領紅，南非僅剩 9 人應戰。\n* 【第 90+2 分鐘 🟥 紅牌】墨西哥隊長兼中堅 **塞薩爾·蒙特斯（Montes）** 因破壞對方單刀機會領紅罰下，次輪對陣韓國將停賽！\n\n💡 戰評：東道主墨西哥全場壓制，順利全取 3 分，淨勝球 +2 高居 A 組榜首！" },
   { id: "GS02", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "10:00", t1: "kr", t2: "cz", score: "VS", scorers: "🏟️ 墨西哥 瓜達拉哈拉體育場\n💡 心水推薦：太極虎戰捷克，兩隊實力接近，推薦平局或小球。" },
   { id: "GS03", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "03:00", t1: "ca", t2: "ba", score: "VS", scorers: "🏟️ 加拿大 多倫多體育場\n💡 加拿大主場首秀，看好主隊坐和望贏。" },
   { id: "GS04", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "09:00", t1: "us", t2: "py", score: "VS", scorers: "🏟️ 美國 洛杉磯 SoFi 體育場\n💡 美國陣容齊整主場出擊，首選主隊獨贏。" },
@@ -837,7 +837,7 @@ const centralSchedule = [
   { id: "K16_05", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 頂級戰術大師對壘，中場控制力優秀的一方勝算更高。" },
   { id: "K16_06", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 高強度拼搶局，體能儲備好、板凳深度厚的球隊佔優。" },
   { id: "K16_07", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "00:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強倒數次戰，戰略體系更成熟的一方更容易在常規時間贏波。" },
-  { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強收官大戰！關注極其擅長踢十二碼大戰的隊伍（如克羅地亞）。" },
+  { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強收官大戰！關注極極擅長踢十二碼大戰的隊伍（如克羅地亞）。" },
 
   /* --- ⚔️ 8強半準決賽 --- */
   { id: "K8_01", stage: "8強半準決賽", dateStr: "2026-07-10", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 全球頂尖八強巔峰對決！全面移師美國超大型主場，推薦受讓方。" },
@@ -926,6 +926,7 @@ db.ref("cheer_stats").on("value", (snapshot) => {
     if(el) el.innerText = cheerData[code];
   });
 });
+
 function triggerCheerEffect(teamCode) {
   const cheerRef = db.ref(`cheer_stats/${teamCode}`);
   cheerRef.transaction((currentCount) => {
@@ -979,27 +980,21 @@ db.ref("predict_stats").on("value", (snapshot) => {
   });
 });
 
-// 實時從 Firebase 讀取並校準雲端友誼賽戰報（同步重置核心：已更新為 6月11日 最新焦點數據）
+// 實時從 Firebase 讀取並校準雲端世界盃比賽資訊
 db.ref("friendly_news").on("value", (snapshot) => {
   const data = snapshot.val();
   
-  // 🛠️ 【自動重置刷新核心】：已校準為 6月11日 凌晨結算數據
-  if (!data || !data.results || data.results[0].home !== "英格蘭") {
+  // 🛠️ 【自動重置刷新核心】：自動校準覆蓋為 6 月 12 日正式開打之世界盃揭幕戰最新正賽賽果與戰報
+  if (!data || !data.results || data.results[0].home !== "墨西哥") {
     const freshFriendlyData = {
-      description: "美加墨世界盃即將在明天凌晨（香港時間6月12日）正式點燃戰火！在過去24小時內（6月10日至11日凌晨），多支參賽勁旅完成了開賽前的最後一波官方熱身賽。以下為6月11日晨間最新結算的男子國際友誼賽焦點賽果與戰報：",
+      description: "2026年美加墨世界盃的歷史性揭幕戰已於香港時間6月12日凌晨在**墨西哥城阿茲特克體育場（Mexico City Stadium）**正式完賽！這場 A 組的首輪生死大戰極具戲劇性，不僅誕生了本屆賽事首球，更全場狂飆 3 張紅牌。以下為您整理這場揭幕戰的最終賽果與戰報詳細資訊：",
       results: [
-        { date: "6月11日 凌晨", home: "英格蘭", score: "1 - 0", away: "哥斯達黎加", note: "憑藉迪格蘭·賴斯（Declan Rice）在開賽第10分鐘接應安東尼·高登的助攻破門，三獅軍團小勝收官。" },
-        { date: "6月11日 凌晨", home: "葡萄牙", score: "2 - 1", away: "尼日利亞", note: "柏度·尼圖（Pedro Neto）先開紀錄，75分鐘憑小將法蘭斯高·干斯卡奧（Conceição）弧線球絕殺。41歲的C朗拿度打滿65分鐘，憾失兩次單刀。" },
-        { date: "6月11日 凌晨", home: "危地馬拉", score: "0 - 2", away: "奧地利", note: "奧地利輕鬆掌控節奏，兩球完勝對手，帶著連勝勢頭進駐世界盃大本營。" },
-        { date: "6月10日 晚間", home: "巴林", score: "2 - 1", away: "敘利亞", note: "兩支中東球隊的內戰，巴林把握能力較佳，險勝一球。" },
-        { date: "6月10日 晚間", home: "巴基斯坦", score: "2 - 0", away: "阿富汗", note: "亞洲鄰國交鋒，巴基斯坦主場兩球淨勝對手。" }
+        { date: "6月12日 凌晨", home: "墨西哥", score: "2 - 0", away: "南非", note: "基尼奧內斯 8' 射入全球首球，希門尼斯 66' 頭槌擴大優勢。南非西托爾 49' 及茲瓦內 83' 染紅，墨西哥蒙特斯 92' 亦領紅牌。" }
       ],
-      upcoming_hint: "💡 傳統豪門最終熱身總結：\n⚽ 葡萄牙：以兩連勝（日前擊敗智利及今日擊敗尼日利亞）正式為熱身賽收尾，這支世界盃K組種子隊的鋒線狀態正逐步調至最佳。\n⚽ 英格蘭：連續兩場熱身賽以 1-0（分別擊敗新西蘭與哥斯達黎加）小勝，雖然進攻火力顯得較為謹慎，但防守端連續保持清白之身。",
+      upcoming_hint: "### 📊 2026世界盃 揭幕戰賽果看板\n* **對陣組合**：墨西哥 🇲🇽 (MEX) 2 - 0 南非 🇿🇦 (RSA)\n* **賽事階段**：第一階段 Group A 小組賽第一輪\n* **現場觀眾**：80,824人（滿座）\n* **比賽地點**：墨西哥城體育場 (Estadio Azteca)\n\n### ⚽ 入球與紅牌事件時間軸\n* **第 8 分鐘（墨西哥進球 1-0）**：南非後場停球失誤，被世界盃前鋒**胡利安·基尼奧內斯（Julián Quiñones）**果斷斷球突破，推射破門，攻入 2026 年世界盃的**全球第一顆官方正式進球**！\n* **第 49 分鐘（南非紅牌）**：南非中場**斯菲費洛·西托爾（Yaya Sithole）**惡意犯規，被主裁判出示紅牌直接驅逐出場，南非被迫 10 人應戰。\n* **第 66 分鐘（墨西哥進球 2-0）**：墨西哥隊老將**勞爾·希門尼斯（Raúl Jiménez）**接應隊友傳中，禁區內頭槌破門，幫助東道主擴大領先優勢至 2:0！這也是希門尼斯個人職業生涯的首個世界盃正賽進球。\n* **第 83 分鐘（南非第二張紅牌）**：南非的**特姆巴·茲瓦內（Themba Zwane）**因粗暴動作領到紅牌，南非隊場上僅剩 9 人。\n* **第 90+2 分鐘（墨西哥紅牌）**：墨西哥隊隊長兼中堅**塞薩爾·蒙特斯（César Montes）**因破壞對方單刀進攻機會（Last-man offence），同樣被紅牌直接罰下。\n\n### 💡 戰況簡評與小組形勢",
       upcoming_list: [
-        "<b>🔥 2026世界盃 開幕戰全面預告（最後備戰完結）</b>",
-        "<b>揭幕戰時間：</b>香港時間 6月12日（明天）凌晨 03:00 HKT",
-        "<b>對陣組合：</b>東道主 墨西哥 (Mexico) vs 南非 (South Africa)",
-        "<b>戰略陣容：</b>各隊現已全部進駐北美各大基地，接下來將是真正實力的生死對決！"
+        "作為東道主之一的墨西哥憑藉狂熱的主場優勢與純熟的逼搶戰術，全場壓制南非，順利全取 3 分，在 A 組積分榜上暫時以 3 分（淨勝球 +2）高居榜首！",
+        "不過值得注意的是，墨西哥隊長蒙特斯在最後關頭染紅，將會在小組賽第二輪（香港時間 6 月 19 日凌晨 03:00）對陣太極虎韓國隊的關鍵生死戰中被罰停賽，這無疑為墨西哥次輪的後防線埋下了隱憂。"
       ]
     };
     db.ref("friendly_news").set(freshFriendlyData);
@@ -1093,7 +1088,10 @@ function renderMatches(filterStage) {
 
     let timeTag = document.createElement("div");
     timeTag.className = "match-time";
-    timeTag.innerText = `⏳ 尚未開賽 | [${m.stage}] ${m.dateStr} ${m.time} HKT`;
+    
+    // 🔍 動態賽果更新邏輯：如果 score 是已完賽的比分（如 2 - 0），則將狀態更改為「已完賽」
+    let matchStatusText = (m.score !== "VS" && m.score !== "") ? `⚽ 已完賽 | ${m.score}` : "⏳ 尚未開賽";
+    timeTag.innerText = `${matchStatusText} | [${m.stage}] ${m.dateStr} ${m.time} HKT`;
 
     let teamsDiv = document.createElement("div");
     teamsDiv.className = "match-teams";
@@ -1114,7 +1112,7 @@ function renderMatches(filterStage) {
 
     teamsDiv.append(slot1, vs, slot2);
     let viewHint = document.createElement("div");
-    viewHint.className = "view-btn"; viewHint.innerText = "📄 查看比賽球場場館與焦點推薦";
+    viewHint.className = "view-btn"; viewHint.innerText = "📄 查看比賽球場場館與詳細戰報事件簿";
     matchCard.append(timeTag, teamsDiv, viewHint);
     matchBox.appendChild(matchCard);
   });
@@ -1128,9 +1126,9 @@ function openSquad(code1, code2, scorers, stageName, dateStr) {
   document.getElementById("team2Name").innerText = t2 ? t2.name : "待定";
   
   let ul1 = document.getElementById("team1Players"); ul1.innerHTML = "";
-  if(t1) t1.stars.forEach(p => { let li = document.createElement("li"); li.innerText = p; ul1.appendChild(li); });
+  if(t1) t1.stars.forEach(p => { let li2 = document.createElement("li"); li2.innerText = p; ul1.appendChild(li2); });
   let ul2 = document.getElementById("team2Players"); ul2.innerHTML = "";
-  if(t2) t2.stars.forEach(p => { let li = document.createElement("li"); li.innerText = p; ul2.appendChild(li); });
+  if(t2) t2.stars.forEach(p => { let li2 = document.createElement("li"); li2.innerText = p; ul2.appendChild(li2); });
 
   document.getElementById("squadModal").style.display = "flex";
 }
@@ -1145,7 +1143,6 @@ function submitPrediction(event) {
   const phone = document.getElementById("userPhone").value.trim();
   const name = document.getElementById("userName").value.trim();
   const champTeam = document.getElementById("userChampTeam").value.trim();
-
   const gasWebAppUrl = "https://script.google.com/macros/s/AKfycbwCi6xmPfFRDuy12wlzlhWoM6BoRC8mBoZ2iZ8b1ZRBDXEN4Etu8mq-vCUVTEIESRvq/exec"; 
 
   const submitBtn = event.target.querySelector(".submit-btn");
