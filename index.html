@@ -341,31 +341,6 @@ h1 { font-size: 2.2rem; color: #dfaa2a;
   font-size: 1.5rem;
 }
 
-/* ✅ 直播LINK按鈕專屬樣式（翡翠綠高亮、符合25px核心高度規範） */
-.live-stream-btn {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: #ffffff;
-  text-decoration: none;
-  padding: 0 15px;
-  font-size: 13px;
-  font-weight: bold;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 25px;
-  line-height: 25px;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
-  transition: all 0.2s ease-in-out;
-  border: none;
-  cursor: pointer;
-}
-.live-stream-btn:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
-}
-
 /* ✅ 密碼管制面板鎖定區 */
 .lock-control-panel {
   background: #111827;
@@ -734,7 +709,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
 <div class="friendly-section">
   <div class="friendly-title">⚽ 最新世界盃比賽資訊</div>
   <div id="friendlyDesc" class="friendly-desc-box">最新賽事戰報動態載入中...</div>
-  
+   
   <div class="friendly-subtitle">📊 焦點賽果速報</div>
   <table class="friendly-table">
     <thead>
@@ -760,7 +735,6 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
 <div class="title-panel-container">
   <div style="display: flex; align-items: center; gap: 15px;">
     <h2>🌍 (A-L) 小組積分榜</h2>
-    <a href="https://857zbw28.vip/?from=et" target="_blank" class="live-stream-btn">📺 觀看世界盃現場直播</a>
   </div>
   <div class="lock-control-panel" id="lockControlPanel">
     <input type="password" id="scorePassword" class="lock-input">
@@ -779,7 +753,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
   <div class="modal-content">
     <span class="close-modal" onclick="closeSquad()">&times;</span>
     <h3 id="modalTitle" style="text-align:center; margin-top:0;">🏆 官方賽事詳細資訊</h3>
-    
+     
     <div id="modalScorersBox" class="scorers-box">
       <div class="scorers-title">🏟️ 比賽球場地點與大數據焦點心水推薦</div>
       <div id="modalScorersList" class="scorers-list" style="white-space: pre-line; line-height: 1.6;"></div>
@@ -803,7 +777,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
     <span class="close-modal" onclick="closePredictModal()">&times;</span>
     <h3 style="text-align:center; margin-top:0; color: #dfaa2a;">🔮 2026世界盃奪冠大預測</h3>
     <p style="font-size: 13px; color: #10b981; text-align: center; font-weight: bold; margin-bottom: 15px;">🎁 估中者可以贏取夏日消暑獎品！</p>
-    
+     
     <form class="predict-form" onsubmit="submitPrediction(event)">
       <div class="form-group">
         <label>電話尾數 (例如: 1234 或 xxxx1234)</label>
