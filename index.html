@@ -90,7 +90,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a;
   color: #38bdf8;
 }
 
-/* 📊 方向一：奪冠預測熱度榜與動態進度條圖表樣式表配置 */
+/* 📊 奪冠預測熱度榜與動態進度條圖表樣式表配置 */
 .predict-rank-container {
   background: #111827;
   border: 1px solid #dfaa2a;
@@ -147,8 +147,8 @@ h1 { font-size: 2.2rem; color: #dfaa2a;
 }
 
 /* ==========================================================================
-   ✨ 【核心重構】最新世界盃比賽資訊區 (.friendly-section) 頂級視覺樣式表
-   ========================================================================== */
+   ✨ 最新世界盃比賽資訊區 (.friendly-section) 頂級視覺樣式表
+   ========================================================================= */
 .friendly-section {
   background: linear-gradient(180deg, #111827, #0f172a);
   padding: 25px;
@@ -235,7 +235,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a;
   box-shadow: 0 0 8px rgba(223,170,42,0.15);
 }
 
-/* 🏆 全新設計：流線型動態時間軸事件流樣式 */
+/* 🏆 流線型動態時間軸事件流樣式 */
 .timeline-container {
   position: relative;
   margin: 20px 0 20px 10px;
@@ -339,6 +339,31 @@ h1 { font-size: 2.2rem; color: #dfaa2a;
 .title-panel-container h2 {
   margin: 0;
   font-size: 1.5rem;
+}
+
+/* ✅ 直播LINK按鈕專屬樣式（翡翠綠高亮、符合25px核心高度規範） */
+.live-stream-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0 15px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  line-height: 25px;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+  transition: all 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+.live-stream-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
 }
 
 /* ✅ 密碼管制面板鎖定區 */
@@ -733,7 +758,10 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
 </div>
 
 <div class="title-panel-container">
-  <h2>🌍 (A-L) 小組積分榜</h2>
+  <div style="display: flex; align-items: center; gap: 15px;">
+    <h2>🌍 (A-L) 小組積分榜</h2>
+    <a href="https://857zbw28.vip/?from=et" target="_blank" class="live-stream-btn">📺 觀看世界盃現場直播</a>
+  </div>
   <div class="lock-control-panel" id="lockControlPanel">
     <input type="password" id="scorePassword" class="lock-input">
     <button class="lock-btn" onclick="checkScoreUnlock()">🔒</button>
@@ -971,7 +999,7 @@ const centralSchedule = [
   { id: "K16_07", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "00:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強倒數次戰，戰術體系更成熟的一方更容易在常規時間贏波。" },
   { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強收官大戰！關注極其擅長踢十二碼大戰的隊伍（如克羅地亞）。" },
 
-  /* --- ⚔️ 8強半準決賽 --- */
+  /* --- 8強半準決賽 --- */
   { id: "K8_01", stage: "8強半準決賽", dateStr: "2026-07-10", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 全球頂尖八強巔峰對決！全面移師美國超大型主場，推薦受讓方。" },
   { id: "K8_02", stage: "8強半準決賽", dateStr: "2026-07-11", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 週末黃金檔期！世紀歐美大內鬥，實力五五開，常規時間看好踢和。" },
   { id: "K8_03", stage: "8強半準決賽", dateStr: "2026-07-12", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 戰術博弈極端化，進球數往年皆偏少，強烈推薦小球盤口。" },
@@ -1007,7 +1035,7 @@ Object.keys(groups).forEach(g=>{
   img.src="https://flagcdn.com/w80/"+team.code+".png";
   img.className="flag";
   
-  // ⚡【方向三】：一鍵點讚集氣包裝器
+  // ⚡ 一鍵點讚集氣包裝器
   let cheerContainer = document.createElement("span");
   cheerContainer.style.display = "flex"; cheerContainer.style.alignItems = "center"; cheerContainer.style.gap = "4px"; cheerContainer.style.marginLeft = "auto";
   let cheerCount = document.createElement("span"); cheerCount.className = "cheer-count-text"; cheerCount.id = `cheerCount_${team.code}`; cheerCount.innerText = "0";
@@ -1066,7 +1094,7 @@ function triggerCheerEffect(teamCode) {
   });
 }
 
-// 🌐 【方向一】：實時監聽全網奪冠預測熱度榜（圖表進度條化渲染）
+// 實時監聽全網奪冠預測熱度榜（圖表進度條化渲染）
 db.ref("predict_stats").on("value", (snapshot) => {
   const predictData = snapshot.val() || {};
   const rankGrid = document.getElementById("predictRankGrid");
@@ -1104,7 +1132,6 @@ db.ref("predict_stats").on("value", (snapshot) => {
     `;
     rankGrid.appendChild(itemDiv);
     
-    // 微延遲觸發過渡動畫效果
     setTimeout(() => {
       const fillEl = document.getElementById(`barFill_${index}`);
       if(fillEl) fillEl.style.width = percentage + "%";
@@ -1116,7 +1143,6 @@ db.ref("predict_stats").on("value", (snapshot) => {
 db.ref("friendly_news").on("value", (snapshot) => {
   const data = snapshot.val();
   
-  // 🛠️ 【自動重置刷新核心】：自動校準覆蓋為 6 月 13 日 B 組最新完賽真實數據
   if (!data || !data.results || data.results[0].home !== "加拿大") {
     const freshFriendlyData = {
       description: "2026 美加墨世界盃 B 組賽事已於香港時間 6 月 13 日凌晨正式引爆！作為三大東道主之一的加拿大，今日在多倫多體育場迎來本土歷史性首戰，成功在落後劣勢下逼平歐洲勁旅波赫，拼下隊史世界盃首個積分！以下為最新焦點賽況整理：",
@@ -1157,7 +1183,7 @@ db.ref("friendly_news").on("value", (snapshot) => {
     });
   }
 
-  // 3. ✨ 動態高級渲染時間軸事件簿
+  // 3. 動態高級渲染時間軸事件簿
   const timelineContainer = document.getElementById("friendlyTimelineContainer");
   timelineContainer.innerHTML = "";
   
