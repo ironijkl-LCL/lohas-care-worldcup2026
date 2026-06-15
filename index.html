@@ -881,37 +881,19 @@ const groups={
   "J": ["ar", "dz", "at", "jo"], "K": ["pt", "cd", "uz", "co"], "L": ["gb-eng", "hr", "gh", "pa"]
 };
 
-// 📲 104 場核心正賽日曆數據庫（已完美聯動同步更新最新完賽比分與戰報連結）
+// 📲 104 場核心正賽日曆數據庫（已全面聯動同步更新最新完賽比分與戰報連結）
 const centralSchedule = [
   { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "2 - 0", scorers: "🏟️ 歷史聖地：墨西哥城 阿茲特克體育場 (Estadio Azteca)\n🔥 正賽歷史揭幕戰完賽戰報：\n\n* 【第 9 分鐘 ⚽ 1-0】墨西哥隊 **胡利安·基尼奧內斯（Quiñones）** 斷球推射破門，轟入本屆世界盃全球首顆正式進球！\n* 【第 49 分鐘 🟥 紅牌】南非中場 **斯菲費洛·西托爾（Sithole）** 惡意犯規遭直紅驅逐。\n* 【第 67 分鐘 ⚽ 2-0】老將 **勞爾·希門尼斯（Jiménez）** 頭槌破門擴大比分。\n* 【第 83 分鐘 🟥 紅牌】南非 **特姆巴·茲瓦內（Zwane）** 粗暴動作領紅，南非僅剩 9 人應戰。\n* 【第 90+2 分鐘 🟥 紅牌】墨西哥隊長兼中堅 **塞薩爾·蒙特斯（Montes）** 因破壞對方單刀機會領紅罰下，次輪對陣韓國將停賽！\n\n💡 戰評：東道主墨西哥全場壓制，順利全取 3 分，淨勝球 +2 高居 A 組榜首！" },
   { id: "GS02", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "10:00", t1: "kr", t2: "cz", score: "2 - 1", scorers: "🏟️ 墨西哥 瓜達拉哈拉體育場\n🔥 太極虎熱血逆轉戰報：\n先落後一球下，憑藉黃仁範與吳賢揆在下半場接連建功，配合洪明甫的 3-Back 戰術成功全取 3 分！\n💡 局勢簡評：韓國隊展現出極強的韌性，這場勝利讓他們在出線路上佔據有利位置。" },
   { id: "GS03", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "03:00", t1: "ca", t2: "ba", score: "1 - 1", scorers: "🏟️ 多倫多體育場\n🔥 戰報：波赫隊在上半場憑藉盧基奇（Lukić）頭槌先馳得點；下半場加拿大展開瘋狂反撲，第79分鐘前鋒賴林（Cyle Larin）替補挺身而出推射破門，收穫隊史歷史性首個積分！" },
   { id: "GS04", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "09:00", t1: "us", t2: "py", score: "4 - 1", scorers: "🏟️ 洛杉磯 SoFi 體育場\n🔥 戰報：開賽僅6分鐘麥肯尼迫使波巴迪利亞自擺烏龍；隨後前鋒巴洛根在上半場梅開二度（30'、45+4'）；第72分鐘巴拉圭馬利斯奧扳回一城；補時階段雷納再下一城，東道主美國 4-1 大勝巴拉圭！" },
   { id: "GS05", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "03:00", t1: "qa", t2: "ch", score: "1 - 1", scorers: "🏟️ 美國 波士頓體育場\n🔥 戰報：瑞士在第17分鐘憑藉安保路（Embolo）射入十二碼領先。下半場補時第4分鐘（90+4'），卡塔爾施壓造成瑞士球員穆海姆（Muheim）自擺烏龍，卡塔爾驚險 1-1 絕平瑞士，斬獲決賽周歷史第一分！" },
-  { id: "GS06", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "06:00", t1: "br", t2: "ma", score: "1 - 1", scorers: "🏟️ 美國 紐約大門戶人壽體育場\n🔥 戰報：這場焦點大戰火星四濺。摩洛哥先開紀錄取得領先；隨後巴西憑藉頭號球星雲尼斯奧斯（Vinicius Junior）在第32分鐘門前包抄建功扳平比分。最終 1-1 戰平各得1分。" },
-  { id: "GS07", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "09:00", t1: "ht", t2: "gb-sct", score: "0 - 1", scorers: "🏟️ 美國 邁阿密體育場\n🔥 戰報：蘇格蘭憑藉隊長約翰·麥金（John McGinn）門前敏銳射入關鍵金球，1-0 險勝海地，打破了球隊長達 36 年的世界盃決賽周正賽「荒」，喜迎久違勝利！" },
-  { id: "GS08", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "12:00", t1: "au", t2: "tr", score: "2 - 0", scorers: "🏟️ 溫哥華 BC Place 體育場\n🔥 戰報：袋鼠軍團火力全開！憑藉新星伊蘭坤達（Nestory Irankunda）第26分鐘邊路突襲閃擊破門，以及麥卡菲（Connor Metcalfe）第74分鐘進球鎖定 2-0 完勝！" },
-  { id: "GS09", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "00:00", t1: "cz", t2: "za", score: "VS", scorers: "🏟️ 小組賽第二輪。捷克需拼搶積分，推薦主勝。" },
-  { id: "GS10", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "ch", t2: "ba", score: "VS", scorers: "🏟️ 兩歐勁旅相遇，球風偏穩，首選小球。" },
-  { id: "GS11", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "06:00", t1: "ca", t2: "qa", score: "VS", scorers: "🏟️ 加拿大速度流邊路進攻，看好主隊全取三分。" },
-  { id: "GS12", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "mx", t2: "kr", score: "VS", scorers: "🏟️ 次輪生死戰！墨西哥遭遇太極虎，強烈推薦大球。" },
-  { id: "GS13", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "03:00", t1: "us", t2: "au", score: "VS", scorers: "🏟️ 洛杉磯 SoFi 體育場，東道主勝率高。" },
-  { id: "GS14", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "06:00", t1: "gb-sct", t2: "ma", score: "VS", scorers: "🏟️ 摩洛哥實力稍勝，防守反擊推薦客隊勝。" },
-  { id: "GS15", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "08:30", t1: "br", t2: "ht", score: "VS", scorers: "🏟️ 巴西鋒線輾壓，看好讓球大勝。" },
-  { id: "GS16", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "11:00", t1: "tr", t2: "py", score: "VS", scorers: "🏟️ 土耳其控球流戰術，看好主隊坐和望贏。" },
-  { id: "GS17", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ch", t2: "ca", score: "VS", scorers: "🏟️ 第三輪生死開哨，局勢多變，首選雙方都有進球。" },
-  { id: "GS18", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ba", t2: "qa", score: "VS", scorers: "🏟️ 同步開賽，推薦分出勝負。" },
-  { id: "GS19", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "06:00", t1: "gb-sct", t2: "br", score: "VS", scorers: "🏟️ 巴西提前出線或爭首名，獨贏盤相對穩健。" },
-  { id: "M20", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "06:00", t1: "ma", t2: "ht", score: "VS", scorers: "🏟️ 摩洛哥實力優勢，看好獨贏。" },
-  { id: "M21", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "09:00", t1: "cz", t2: "mx", score: "VS", scorers: "🏟️ 焦點戰！阿茲特克主場狂熱，看好墨西哥。" },
-  { id: "M22", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "09:00", t1: "za", t2: "kr", score: "VS", scorers: "🏟️ 韓國非勝不可，孫興慜領銜搶攻，首選客勝。" },
-  { id: "M23", stage: "Group A-D 小組賽", dateStr: "2026-06-26", time: "10:00", t1: "tr", t2: "us", score: "VS", scorers: "🏟️ 焦點對決，戰況激烈推薦大球。" },
-  { id: "M24", stage: "Group A-D 小組賽", dateStr: "2026-06-26", time: "10:00", t1: "py", t2: "au", score: "VS", scorers: "🏟️ 出線生死大戰，推薦和局。" },
-
-  /* --- Group E-H 小組賽 --- */
-  { id: "GS25", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "01:00", t1: "de", t2: "cw", score: "VS", scorers: "🏟️ 戰車出征實力輾壓，看好德國大勝。" },
-  { id: "GS26", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "04:00", t1: "nl", t2: "jp", score: "VS", scorers: "🏟️ 焦點大戰！日本藍武士挑戰橙衣軍團，推薦大盤對攻。" },
-  { id: "GS27", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "07:00", t1: "ci", t2: "ec", score: "VS", scorers: "🏟️ 非洲猛象硬碰南美強權，推薦和局。" },
+  { id: "GS06", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "06:00", t1: "br", t2: "ma", score: "1 - 1", scorers: "🏟️ 美國 紐約大門戶人壽體育場\n🔥 戰報：這場焦點大戰火星四濺。摩洛哥先開紀錄取得領先；隨後 academic 傳統強門巴西憑藉球星雲尼斯奧斯（Vinicius Junior）在第32分鐘攻入扳平球。最終 1-1 戰平各得1分。" },
+  { id: "GS07", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "09:00", t1: "ht", t2: "gb-sct", score: "0 - 1", scorers: "🏟️ 美國 邁阿密體育場\n🔥 戰報：蘇格蘭憑藉隊長約翰·麥金（John McGinn）射入關鍵奠勝球，1-0 險勝海地，打破了球隊長達 36 年的世界盃決賽周正賽「荒」，喜迎久違勝利！" },
+  { id: "GS08", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "12:00", t1: "au", t2: "tr", score: "2 - 0", scorers: "🏟️ 溫哥華 BC Place 體育場\n🔥 戰報：袋鼠軍團火力全開！憑藉新星伊蘭坤達（Nestory Irankunda）26分鐘邊路突襲閃擊破門，以及麥卡菲（Connor Metcalfe）74分鐘進球鎖定 2-0 完勝土耳其全取 3 分！" },
+  { id: "GS25", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "01:00", t1: "de", t2: "cw", score: "7 - 1", scorers: "🏟️ 休斯敦體育場\n🔥 戰報：日耳曼戰車強勢大開殺戒！雖然庫拉索在21分鐘由科梅內西亞射入歷史性首球一度追平，但隨後德國全面接管比賽。舒洛達碧克頭槌破門、夏維斯罰入十二碼，下半場梅斯亞拿（Musiala）梅開二度，加上布朗（Brown）和安達夫（Undav）各建一功，最終 7-1 狂勝全取3分！" },
+  { id: "GS26", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "04:00", t1: "nl", t2: "jp", score: "2 - 2", scorers: "🏟️ 達拉斯體育場\n🔥 戰報：強強對決絕平激戰！下半場上演入球大戰，荷蘭隊隊長雲迪克頭槌破門先開紀錄，日本隊中村敬斗迅速扳平；隨後荷蘭憑森馬維爾射入世界波再度領先。第88分鐘日本隊憑藉鎌田大地（Daichi Kamada）關鍵射門經折射破網，2-2 頑強逼平橙衣軍團！" },
+  { id: "GS27", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "07:00", t1: "ci", t2: "ec", score: "0 - 0", scorers: "🏟️ 美國 亞特蘭大體育場\n🔥 戰報：非洲猛象象牙海岸硬碰南美強權厄瓜多爾，雙方防線滴水不漏，全場高強度對抗，最終 0-0 互交白卷各得 1 分。" },
   { id: "GS28", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "10:00", t1: "se", t2: "tn", score: "VS", scorers: "🏟️ 瑞典雙前鋒進攻火力猛烈，看好主勝。" },
   { id: "GS29", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "00:00", t1: "es", t2: "cv", score: "VS", scorers: "🏟️ 西班牙控球體系無解，看好輕鬆勝出。" },
   { id: "GS30", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "03:00", t1: "be", t2: "eg", score: "VS", scorers: "🏟️ 迪布尼決戰沙拿，推薦雙方都有進球。" },
@@ -1133,42 +1115,43 @@ db.ref("predict_stats").on("value", (snapshot) => {
 db.ref("friendly_news").on("value", (snapshot) => {
   const data = snapshot.val();
   
-  // 🛠️ 【自動重置刷新核心】：自動校準覆蓋為最新的真實 6月14日 完賽戰報與形勢總結
-  if (!data || !data.results || data.results[0].homeCode !== "ca" || data.results.length < 5 || !data.results[4].homeCode) {
+  // 🛠️ 【自動重置刷新核心】：自動校準為最新的 6月15日 E組與F組大戰完賽戰報數據物件
+  if (!data || !data.results || data.results[0].homeCode !== "ca" || data.results.length < 6 || !data.results[5].homeCode) {
     const freshFriendlyData = {
-      description: "美加墨世界盃小組賽首輪進入第三天的賽事！在香港時間6月13日晚至6月14日清晨，B組、C組和D組上演了多場精采絕倫的激戰。其中卡塔爾在補時階段絕平瑞士，斬獲了隊史在世界盃決賽周的歷史性第一分；而傳統豪門巴西則在焦點大戰中被摩洛哥逼平。以下為香港時間 6月14日 結算的最新世界盃小組賽戰果與局勢總結：",
+      description: "2026年美加墨世界盃分組賽首輪進入第四日！截至香港時間6月15日晨間，E組與F組的兩場重頭戲已正式完場。其中，傳統豪門德國隊火力全開，以大比數狂勝對手，而荷蘭與日本則合演了一場高潮迭起的精彩和局。以下為根據FIFA官方數據結算的最新戰果與詳細形勢：",
       results: [
         { date: "6月13日 凌晨", home: "加拿大", homeCode: "ca", score: "1 - 1", away: "波赫", awayCode: "ba" },
         { date: "6月13日 上午", home: "美國", homeCode: "us", score: "4 - 1", away: "巴拉圭", awayCode: "py" },
         { date: "6月14日 凌晨", home: "卡塔爾", homeCode: "qa", score: "1 - 1", away: "瑞士", awayCode: "ch" },
         { date: "6月14日 凌晨", home: "巴西", homeCode: "br", score: "1 - 1", away: "摩洛哥", awayCode: "ma" },
         { date: "6月14日 早上", home: "海地", homeCode: "ht", score: "0 - 1", away: "蘇格蘭", awayCode: "gb-sct" },
-        { date: "6月14日 中午", home: "澳洲", homeCode: "au", score: "2 - 0", away: "土耳其", awayCode: "tr" }
+        { date: "6月14日 中午", home: "澳洲", homeCode: "au", score: "2 - 0", away: "土耳其", awayCode: "tr" },
+        { date: "6月15日 01:00", home: "德國", homeCode: "de", score: "7 - 1", away: "庫拉索", awayCode: "cw" },
+        { date: "6月15日 04:00", home: "荷蘭", homeCode: "nl", score: "2 - 2", away: "日本", awayCode: "jp" },
+        { date: "6月15日 07:00", home: "象牙海岸", homeCode: "ci", score: "0 - 0", away: "厄瓜多爾", awayCode: "ec" }
       ],
       timeline: [
-        { type: "stadium", time: "🏟️ 賽事看板 (B組/D組首發大勝亮點)", body: "加拿大 1-1 戰平波赫取得歷史首分；東道主美國隊火力全開，以 4-1 大勝巴拉圭喜迎開門紅！", imgUrl: "https://gpts-dashboard-images.s3.amazonaws.com/worldcup2026_mexico_win.jpeg" },
-        { type: "goal", time: "B組 17' - 安保路主罰點球", body: "卡塔爾 vs 瑞士在舊金山體育場開打。上半場第17分鐘，瑞士隊獲得點球機會，明星前鋒 **安保路（Breel Embolo）** 操刀主罰一蹴而就，瑞士 1-0 領先。" },
-        { type: "goal", time: "B組 90+4' - 穆海姆自擺烏龍", body: "眼看瑞士即將全取3分，頑強的卡塔爾在最後一刻（90+4'）發動總攻造成混亂，瑞士後衛 **穆海姆（Muheim）** 忙中出錯自擺烏龍，卡塔爾驚險 1-1 逼平瑞士，斬獲隊史決賽周歷史第一分！" },
-        { type: "goal", time: "C組 20' - 沙巴利反客為主", body: "巴西 vs 摩洛哥傳統強權火星撞地球。第20分鐘摩洛哥反擊犀利，新星 **沙巴利（Ismael Saibari）** 搶點破門技驚四座，摩洛哥 1-0 領先。" },
-        { type: "goal", time: "C組 32' - 維尼修斯重砲追平", body: "落後的森巴軍團展開全線圍攻，第32分鐘頭號球星 **維尼修斯（Vinicius Junior）** 挺身而出轟入重砲救主，最終兩隊 1-1 戰平各得1分。", imgUrl: "https://gpts-dashboard-images.s3.amazonaws.com/worldcup2026_mexico_win.jpeg" },
-        { type: "goal", time: "C組 早上 - 麥金打破36年荒", body: "海地 vs 蘇格蘭開戰。蘇格蘭憑藉隊長 **約翰·麥金（John McGinn）** 的全場唯一奠勝入球，1-0 險勝海地，打破了蘇格蘭長達 36 年的世界盃決賽周正賽「荒」，喜迎久違勝利！" },
-        { type: "goal", time: "D組 中午 - 袋鼠新星邊路閃擊", body: "澳洲 vs 土耳其於溫哥華 BC Place 展開。澳洲新星 **伊蘭坤達（Nestory Irankunda）** 第26分鐘邊路閃擊破門，隨後 **麥卡菲（Connor Metcalfe）** 74分鐘進球鎖定 2-0 完勝！" }
+        { type: "stadium", time: "🏟️ E組戰車啟航看板 (德國 7-1 庫拉索)", body: "賽事於休斯敦體育場展開，四屆冠軍德國隊全線爆發，展開瘋狂進攻狂潮！", imgUrl: "https://gpts-dashboard-images.s3.amazonaws.com/worldcup2026_mexico_win.jpeg" },
+        { type: "goal", time: "E組 21' - 庫拉索轟入歷史首球", body: "世界盃新丁庫拉索反擊犀利，由 **科梅內西亞（Comenencia）** 破門攻入決賽周隊史歷史性首球，一度追平比數為 1-1！" },
+        { type: "goal", time: "E組 戰車全面接管 - 多點開花", body: "隨後德國全面接管比賽。舒洛達碧克頭槌破門、夏維斯罰入十二碼，下半場 **梅斯亞拿（Musiala）** 梅開二度，加上布朗（Brown）和安達夫（Undav）各建一功，最終 7-1 狂勝全取3分！" },
+        { type: "stadium", time: "🏟️ F組亞歐焦點看板 (荷蘭 2-2 日本)", body: "達拉斯體育場近 7 萬名球迷共同見證高潮迭起的歐亞巔峰對決，下半場雙方合演史詩級進球大戰！" },
+        { type: "goal", time: "F組 下半場 - 雲迪克、中村敬斗連環破門", body: "荷蘭隊隊長 **雲迪克（Virgil van Dijk）** 禁區內接應角球頭槌破網打破僵局；隨後日本隊藍武士迅速反擊，由 **中村敬斗** 門前冷靜推射迅速扳平比數！" },
+        { type: "goal", time: "F組 88' - 森馬維爾重砲 / 鎌田大地世界級絕平", body: "荷蘭憑翼鋒森馬維爾（Summerville）射入不可思議的世界波再度領先 2-1。眼看橙衣軍團即將帶走勝利，第 88 分鐘日本隊 **鎌田大地（Daichi Kamada）** 禁區邊緣起腳怒射，皮球經防守球員折射破網，2-2 頑強絕平荷蘭！" }
       ],
       upcoming_list: [
-        "<b>💥 Group B (B組) 世紀大混戰：</b> 隨著加拿大、波赫、卡塔爾、瑞士首輪全部踢成 1-1，四隊同積 1 分、得失球完全相同！次輪 **瑞士 vs 加拿大**、**卡塔爾 vs 波赫** 將直接演變成出線生死戰。",
-        "<b>🏴%9B%A0 Group C (C組) 蘇格蘭登頂：</b> 趁著巴西與摩洛哥相撞戰平，蘇格蘭以 3 分暫時傲視C組龍頭，掌握晉級主動權！次輪巴西將對陣海地全力爭勝，蘇格蘭則對陣非洲硬漢摩洛哥。",
-        "<b>🇦🇺 Group D (D組) 雙強爭雄：</b> 美國（+3 淨勝球）與澳洲（+2 淨勝球）首輪雙雙告捷。兩隊將在小組賽次輪正面交鋒，直接決戰分組第一寶座！",
-        "<b>📅 今日稍後及明日凌晨賽程預告（香港時間）：</b> 世界盃首輪小組賽繼續不停歇，今晚至明晨將由 E組 和 F組 的勁旅接棒登場：<br>• 6月14日 09:00 (C組) 海地 0 - 1 蘇格蘭 (已完賽)<br>• 6月15日 01:00 (E組) 德國 vs 庫拉索<br>• 6月15日 04:00 (F組) 荷蘭 vs 日本 (🔥 焦點亞歐大戰！)<br>• 6月15日 07:00 (E組) 科特迪瓦 vs 厄瓜多爾<br>• 6月15日 10:00 (F組) 瑞典 vs 突尼斯"
+        "<b>🇩🇪 Group E (E組) 日耳曼戰車傲視群雄：</b> 德國隊首戰憑藉 7-1 的極端大比數與高達 +6 的淨勝球優勢，毫無懸念地高居E組榜首！同組象牙海岸與厄瓜多爾 0-0 互交白卷各得 1 分。",
+        "<b>🇯🇵 🇳🇱 Group F (F組) 歐亞雙強並列第一：</b> 荷蘭與日本合演 2-2 絕平激戰，兩隊各得 1 分並列榜首，戰術體系極其成熟！同組的瑞典與突尼西亞將於今日稍後亮相。",
+        "<b>📅 今日稍後及明日焦點賽程預告：</b> 首輪小組賽進入最後白熱化階段！香港時間 **6月15日 10:00** 瑞典 vs 突尼西亞（F組）；**6月16日 00:00** 西班牙 vs 佛得角（H組）；**03:00** 比利時 vs 埃及（G組）；**06:00** 沙特阿拉伯 vs 烏拉圭（H組）；**09:00** 伊朗 vs 新西蘭（G組），強強對決不容錯過！"
       ]
     };
     db.ref("friendly_news").set(freshFriendlyData);
     return;
   }
 
-  // 1. 渲染導言描述
+  // 1. 渲染導言簡介
   document.getElementById("friendlyDesc").innerText = data.description || "";
   
-  // 2. 渲染焦點賽果表格（已全面整合主客隊國旗動態生成渲染邏輯）
+  // 2. 渲染焦點賽果表格（已全面整合主客隊國旗與 RWD 手機自適應）
   const resultsBody = document.getElementById("friendlyResultsBody");
   resultsBody.innerHTML = "";
   if (data.results) {
@@ -1224,7 +1207,7 @@ db.ref("friendly_news").on("value", (snapshot) => {
     });
   }
 
-  // 4. 渲染局勢觀察簡評
+  // 4. 渲染分析簡評
   const upcomingList = document.getElementById("friendlyUpcomingList");
   upcomingList.innerHTML = "";
   if (data.upcoming_list) {
