@@ -719,6 +719,9 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
   </div>
 </div>
 
+<!-- ==========================================================================
+     ✨ 動態載入世界盃最新比賽資訊與實況戰報 
+     ========================================================================== -->
 <div class="friendly-section">
   <div class="friendly-title">⚽ 最新世界盃比賽資訊</div>
   <div id="friendlyDesc" class="friendly-desc-box">最新賽事戰報動態載入中...</div>
@@ -883,7 +886,6 @@ const groups={
 
 // 📲 104 場核心正賽日曆數據庫（全面完整顯示 104 場賽程，絕不省略）
 const centralSchedule = [
-  /* === 第一輪分組賽 === */
   { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "2 - 0", scorers: "🏟️ 歷史聖地：墨西哥城 阿茲特克體育場 (Estadio Azteca)\n🔥 正賽歷史揭幕戰完賽戰報：\n\n* 【第 9 分鐘 ⚽ 1-0】墨西哥隊 **胡利安·基尼奧內斯（Quiñones）** 斷球推射破門，轟入本屆世界盃全球首顆正式進球！\n* 【第 49 分鐘 🟥 紅牌】南非中場 **斯菲費洛·西托爾（Sithole）** 惡意犯規遭直紅驅逐。\n* 【第 67 分鐘 ⚽ 2-0】老將 **勞爾·希門尼斯（Jiménez）** 頭槌破門擴大比分。\n* 【第 83 分鐘 🟥 紅牌】南非 **特姆巴·茲瓦內（Zwane）** 粗暴動作領紅，南非僅剩 9 人應戰。\n* 【第 90+2 分鐘 🟥 紅牌】墨西哥隊長兼中堅 **塞薩爾·蒙特斯（Montes）** 因破壞對方單刀機會領紅罰下，次輪對陣韓國將停賽！\n\n💡 戰評：東道主墨西哥全場壓制，順利全取 3 分，淨勝球 +2 高居 A 組榜首！" },
   { id: "GS02", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "10:00", t1: "kr", t2: "cz", score: "2 - 1", scorers: "🏟️ 墨西哥 瓜達拉哈拉體育場\n🔥 太極虎熱血逆轉戰報：\n先落後一球下，憑藉黃仁範與吳賢揆在下半場接連建功，配合洪明甫的 3-Back 戰術成功全取 3 分！\n💡 局勢簡評：韓國隊展現出極強的韌性，這場勝利讓他們在出線路上佔據有利位置。" },
   { id: "GS03", stage: "Group A-D 小組賽", dateStr: "2026-06-13", time: "03:00", t1: "ca", t2: "ba", score: "1 - 1", scorers: "🏟️ 多倫多體育場\n🔥 戰報：波赫隊在上半場憑藉盧基奇（Lukić）頭槌先馳得點；下半場加拿大展開瘋狂反撲，第79分鐘前鋒賴林（Cyle Larin）替補挺身而出推射破門，收穫隊史歷史性首個積分！" },
@@ -894,27 +896,29 @@ const centralSchedule = [
   { id: "GS08", stage: "Group A-D 小組賽", dateStr: "2026-06-14", time: "12:00", t1: "au", t2: "tr", score: "2 - 0", scorers: "🏟️ 溫哥華 BC Place 體育場\n🔥 戰報：袋鼠軍團火力全開！憑藉新星伊蘭坤達（Nestory Irankunda）26分鐘邊路突襲閃擊破門，以及麥卡菲（Connor Metcalfe）74分鐘進球鎖定 2-0 完勝土耳其全取 3 分！" },
   
   /* --- Group E-H 小組賽 --- */
-  { id: "GS25", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "01:00", t1: "de", t2: "cw", score: "7 - 1", scorers: "🏟️ 休斯敦體育場\n🔥 戰報：日耳曼戰車強勢大開殺戒！雖然庫拉索在21分鐘由科梅內西亞射入歷史性首球一度追平，但隨後德國全面接管比賽。舒洛達碧克頭槌破門、夏維斯罰入十二碼，下半場梅斯亞拿（Musiala）梅開二度，加上布朗（Brown）和安達夫（Undav）各建一功，最終 7-1 狂勝全取3分！" },
+  { id: "GS25", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "01:00", t1: "de", t2: "cw", score: "7 - 1", scorers: "🏟️ 休斯敦體育場\n🔥 戰報：日耳曼戰車強勢大開殺戒！雖然庫拉索在21分鐘由科梅內西亞射入歷史性首球一度追平，但隨後德國全面接管比賽。舒洛達碧克頭槌破門新建樹，夏維斯罰入十二碼，下半場梅斯亞拿（Musiala）梅開二度，加上布朗（Brown）和安達夫（Undav）各建一功，最終 7-1 狂勝全取3分！" },
   { id: "GS26", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "04:00", t1: "nl", t2: "jp", score: "2 - 2", scorers: "🏟️ 達拉斯體育場\n🔥 戰報：強強對決絕平激戰！下半場上演入球大戰，荷蘭隊隊長雲迪克頭槌破門先開紀錄，日本隊中村敬斗迅速扳平；隨後荷蘭憑森馬維爾射入世界波再度領先。第88分鐘日本隊憑藉鎌田大地（Daichi Kamada）關鍵射門經折射破網，2-2 頑強逼平橙衣軍團！" },
   { id: "GS27", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "07:00", t1: "ci", t2: "ec", score: "1 - 0", scorers: "🏟️ 美國 亞特蘭大體育場\n🔥 戰報：非洲猛象象牙海岸硬碰南美強權厄瓜多爾。全場高強度對抗拉鋸，象牙海岸把握住關鍵機會射入全場唯一進球，以 1-0 險勝強敵厄瓜多爾順利奪得 3 分開齋！" },
   { id: "GS28", stage: "Group E-H 小組賽", dateStr: "2026-06-15", time: "10:00", t1: "se", t2: "tn", score: "5 - 1", scorers: "🏟️ 堪薩斯城體育場\n🔥 戰報：北歐海盜強勢橫掃！開賽僅6分鐘便由亞亞里閃擊破門，隨後伊沙克與基奧基利斯接連建功。雖然突尼西亞在42分鐘由列基克扳回一城，外加下半場瑞典再由史雲貝治和亞亞里錦上添花，最終 5-1 大勝登頂！" },
-  { id: "GS29", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "00:00", t1: "es", t2: "cv", score: "0 - 0", scorers: "🏟️ 亞特蘭大體育場\n🔥 戰報：大冷門！無敵艦隊進攻啞火。西班牙全場狂轟濫炸，巴塞球星柏德里更在補時領黃。面對佛得角的頑強鐵桶陣始終無法破門，吞下 0-0 悶和。" },
+  { id: "GS29", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "00:00", t1: "es", t2: "cv", score: "0 - 0", scorers: "🏟️ 亞特蘭大體育場\n🔥 戰報：大冷門！無敵艦隊進攻啞火。西班牙全場狂轟濫炸，柏德里補時領黃。面對佛得角的頑強鐵桶陣始終無法破門，吞下 0-0 悶和。" },
   { id: "GS30", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "03:00", t1: "be", t2: "eg", score: "1 - 1", scorers: "🏟️ 西雅圖體育場\n🔥 戰報：紅魔首輪失意！奪冠熱門比利時迎戰非洲雄獅埃及，兩隊上半場各展攻勢對衝，最終防守大戰下以 1-1 握手言和各取 1 分。" },
-  { id: "GS31", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "06:00", t1: "sa", t2: "uy", score: "1 - 1", scorers: "🏟️ 邁阿密體育場\n🔥 戰報：強強對抗膠著。沙地阿拉伯在第40分鐘先馳得點反客為主；下半場烏拉圭展開瘋狂反撲，並於第79分鐘成功扳平比數，最終激戰至 90+7' 以 1-1 握手言和！" },
+  { id: "GS31", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "06:00", t1: "sa", t2: "uy", score: "1 - 1", scorers: "🏟️ 邁阿密體育場\n🔥 戰報：強強對抗膠著。沙地阿拉伯在第40分鐘先馳得點反客為主；下半場烏拉圭展開瘋狂反撲，並於第79分鐘成功扳平比數，最終激戰至 90+7' 以 1-1 握手言和各得 1 分！" },
   { id: "GS32", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "09:00", t1: "ir", t2: "nz", score: "2 - 2", scorers: "🏟️ 洛杉磯 SoFi 體育場\n🔥 戰報：雙方大打進攻大戰，全場對攻極為激烈，兩隊兩度落後均展現堅韌鬥志兩度追平，最終 2-2 震撼言和各得 1 分！" },
   
   /* --- Group I-L 小組賽 --- */
-  { id: "GS49", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "00:00", t1: "fr", t2: "sn", score: "3 - 1", scorers: "🏟️ 紐約新澤西體育場\n🔥 戰報：高盧雄雞在近8萬球迷見證下強勢登場！法國全場完全控制比賽大局，進攻流暢，最終以兩球優勢 3-1 擊敗非洲勁旅塞內加爾，順利奪取開門紅！" },
+  { id: "GS49", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "00:00", t1: "fr", t2: "sn", score: "3 - 1", scorers: "🏟️ 紐約新澤西體育場\n🔥 戰報：高盧雄雞在近8萬球迷見證下強勢登場！法國全場完全控制比賽大局，進攻流暢，皇馬前鋒麥巴比（Kylian Mbappé）在下半場突襲梅開二度，助法國 3-1 輕取非洲勁旅塞內加爾，順利奪取開門紅！" },
   { id: "GS50", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "03:00", t1: "iq", t2: "no", score: "1 - 4", scorers: "🏟️ 波士頓體育場\n🔥 戰報：夏蘭特世界盃首球降臨！挪威全線反客為主壓制，曼城神鋒**夏蘭特**在禁區內敏銳推射攻入個人歷史性首個世界盃正賽進球，帶領北歐海盜 4-1 橫掃伊拉克全取 3 分！" },
-  { id: "GS51", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "09:00", t1: "ar", t2: "dz", score: "3 - 0", scorers: "🏟️ 堪薩斯城體育場\n🔥 戰報：美斯戴帽創造歷史！衛冕冠軍阿根廷強勢登場，第六度亮相世界盃的球王**美斯**迎來大爆發，個人獨中三元上演世界盃生涯首個帽子戲法，率隊 3-0 大勝！" },
-  { id: "GS52", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "12:00", t1: "at", t2: "jo", score: "3 - 1", scorers: "🏟️ 奧地利體育場\n🔥 戰報：奧地利憑藉舒密特（Romano Schmid）先開紀錄，加上阿拿奧度域（Marko Arnautović）在補時階段射入十二碼奠定勝局，以 3-1 擊敗約旦。" },
-  { id: "GS53", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "01:00", t1: "pt", t2: "cd", score: "1 - 1", scorers: "🏟️ 侯斯頓體育場\n🔥 戰報：非洲雄獅頑強逼平！葡萄牙遭遇鐵桶陣阻擊。儘管全場狂攻，最終仍以 1-1 與剛果民主共和國握手言和，各得 1 分。" },
-  { id: "GS54", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "04:00", t1: "gb-eng", t2: "hr", score: "4 - 2", scorers: "🏟️ 達拉斯體育場\n🔥 戰報：三獅軍團火力全開！英格蘭展現強大進攻實力，以 4-2 擊退強敵克羅地亞，順利在死亡之組拔得頭籌全取 3 分！" },
+  { id: "GS51", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "09:00", t1: "ar", t2: "dz", score: "3 - 0", scorers: "🏟️ 堪薩斯城體育場\n🔥 戰報：美斯戴帽創造歷史！衛冕冠軍阿根廷強勢登場，第六度亮相世界盃的球王**美斯**迎來大爆發，個人獨中三元上演世界盃生涯首個帽子戲法，率隊 3-0 大勝阿爾及利亞！" },
+  { id: "GS52", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "12:00", t1: "at", t2: "jo", score: "3 - 1", scorers: "🏟️ 奧地利體育場\n🔥 戰報：奧地利全場兩翼齊飛，憑藉舒密特（Romano Schmid）先開紀錄，加上阿拿奧度域（Marko Arnautović）在補時階段射入十二碼奠定勝局，以 3-1 輕取約旦。" },
+  { id: "GS53", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "01:00", t1: "pt", t2: "cd", score: "1 - 1", scorers: "🏟️ 侯斯頓體育場\n🔥 戰報：非洲雄獅頑強逼平爆大冷！葡萄牙雖由祖奧·利維斯（João Neves）早段頭槌先開紀錄，但隨後被剛果民主共和國的維沙（Yoane Wissa）頭槌扳平。C朗拿度全場遭嚴密防守未能破門，最終 1-1 握手言和各得 1 分。" },
+  { id: "GS54", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "04:00", t1: "gb-eng", t2: "hr", score: "4 - 2", scorers: "🏟️ 達拉斯體育場\n🔥 戰報：三獅軍團復仇成功火力全開！英格蘭在大打進攻仗中憑藉哈利·卡尼（Harry Kane）梅開二度，加上祖迪·比寧咸與拉舒福特各建一功，以 4-2 擊退宿敵克羅地亞，順利奪取開門紅！" },
+  { id: "GS55", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "07:00", t1: "gh", t2: "pa", score: "1 - 0", scorers: "🏟️ 多倫多體育場\n🔥 戰報：雙方全場激烈拉鋸，在暴雨之下激戰至補時第5分鐘，加納由前鋒加勒·耶倫基（Caleb Yirenkyi）上演壓軸壓哨絕殺，最終 1-0 險勝巴拿馬全取 3 分！" },
+  { id: "GS56", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "10:00", t1: "uz", t2: "co", score: "1 - 3", scorers: "🏟️ 美國 三藩市體育場\n🔥 戰報：哥倫比亞展現南美勁旅本色，憑藉達尼洛·穆尼奧斯、路易斯·迪亞斯及坎帕斯在90+9分鐘的進球，3-1 擊敗烏茲別克，強勢登頂 K 組！" },
 
   /* --- 其餘分組賽日曆框架 --- */
-  { id: "GS09", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "00:00", t1: "cz", t2: "za", score: "VS", scorers: "🏟️ 小組賽第二輪生死戰。" },
-  { id: "GS10", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "ch", t2: "ba", score: "VS", scorers: "🏟️ 局局關鍵對決。" },
-  { id: "GS11", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "06:00", t1: "ca", t2: "qa", score: "VS", scorers: "🏟️ 東道主出擊。" },
+  { id: "GS09", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "00:00", t1: "cz", t2: "za", score: "VS", scorers: "🏟️ 小組賽第二輪生死戰。捷克背水一戰迎戰南非。" },
+  { id: "GS10", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "ch", t2: "ba", score: "VS", scorers: "🏟️ B組次輪瑞士戰波斯尼亞。" },
+  { id: "GS11", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "06:00", t1: "ca", t2: "qa", score: "VS", scorers: "🏟️ B組次輪加拿大對卡塔爾。" },
   { id: "GS12", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "mx", t2: "kr", score: "VS", scorers: "🏟️ 墨西哥狂熱主場生死激戰太極虎。" },
   { id: "GS13", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "03:00", t1: "us", t2: "au", score: "VS", scorers: "🏟️ 次輪美澳大碰撞。" },
   { id: "GS14", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "06:00", t1: "gb-sct", t2: "ma", score: "VS", scorers: "🏟️ 出線關鍵博弈。" },
@@ -944,8 +948,6 @@ const centralSchedule = [
   { id: "GS46", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "08:00", t1: "cv", t2: "sa", score: "VS", scorers: "🏟️ 生死同步開哨。" },
   { id: "GS47", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "11:00", t1: "nz", t2: "be", score: "VS", scorers: "🏟️ 比利時出線生死局。" },
   { id: "GS48", stage: "Group E-H 小組賽", dateStr: "2026-06-27", time: "11:00", t1: "eg", t2: "ir", score: "VS", scorers: "🏟️ 最終輪命運對決。" },
-  { id: "GS55", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "07:00", t1: "gh", t2: "pa", score: "VS", scorers: "🏟️ 迦納火拼巴拿馬。" },
-  { id: "GS56", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "10:00", t1: "uz", t2: "co", score: "VS", scorers: "🏟️ 烏茲別克戰哥倫比亞。" },
   { id: "GS57", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "01:00", t1: "ar", t2: "at", score: "VS", scorers: "🏟️ 次輪小組賽激戰。" },
   { id: "GS58", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "05:00", t1: "fr", t2: "iq", score: "VS", scorers: "🏟️ 法國次輪搶攻。" },
   { id: "GS59", stage: "Group I-L 小組賽", dateStr: "2026-06-23", time: "08:00", t1: "no", t2: "sn", score: "VS", scorers: "🏟️ 挪威對戰塞內加爾。" },
@@ -963,7 +965,7 @@ const centralSchedule = [
   { id: "GS71", stage: "Group I-L 小組賽", dateStr: "2026-06-28", time: "10:00", t1: "at", t2: "dz", score: "VS", scorers: "🏟️ 命運終極交鋒。" },
   { id: "GS72", stage: "Group I-L 小組賽", dateStr: "2026-06-30", time: "07:30", t1: "cd", t2: "uz", score: "VS", scorers: "🏟️ 最終輪名譽生死收官戰。" },
 
-  /* --- 🏆 淘汰賽精準對陣結構框架 --- */
+  /* --- 🏆 32強 至 冠軍總決賽 完整框架 --- */
   { id: "K32_01", stage: "32強淘汰賽", dateStr: "2026-06-29", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 1" },
   { id: "K32_02", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 2" },
   { id: "K32_03", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "04:30", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 3" },
@@ -1079,7 +1081,8 @@ function triggerCheerEffect(teamCode) {
 // 🌐 【方向一】：實時監聽全網奪冠預測熱度榜（圖表進度條化渲染）
 db.ref("predict_stats").on("value", (snapshot) => {
   const predictData = snapshot.val() || {};
-  const rankGrid = document.getElementById("predictRankGrid");
+  const rankGrid = document.getElementById("predictGrid");
+  if (!rankGrid) return;
   rankGrid.innerHTML = "";
   
   let sortedPredicts = [];
@@ -1114,7 +1117,6 @@ db.ref("predict_stats").on("value", (snapshot) => {
     `;
     rankGrid.appendChild(itemDiv);
     
-    // 微延遲觸發過渡動畫效果
     setTimeout(() => {
       const fillEl = document.getElementById(`barFill_${index}`);
       if(fillEl) fillEl.style.width = percentage + "%";
@@ -1126,43 +1128,42 @@ db.ref("predict_stats").on("value", (snapshot) => {
 db.ref("friendly_news").on("value", (snapshot) => {
   const data = snapshot.val();
   
-  // 🛠️ 【自動重置刷新核心】：自動校準為 6月16、17、18日 跨日完賽最新戰報數據物件（修復覆蓋問題）
-  if (!data || !data.results || data.results[0].home !== "伊拉克" || data.results.length < 5) {
+  // 🛠️ 【自動重置刷新核心】：自動校準為 6月17與18日 跨日完賽最新戰報數據物件（徹底解決因 Ca 或其他 Code 造成的覆蓋重置 Bug）
+  if (!data || !data.results || data.results[0].home !== "法國" || data.results.length < 5) {
     const freshFriendlyData = {
-      description: "2026年美加墨世界盃分組賽首輪進入最後高潮，I組、J組、K組及L組的多場豪強大戰已在香港時間6月17日至18日全面完場。衛冕冠軍阿根廷在球王美斯的帶領下強勢啟航，英格蘭與法國等奪冠熱門也順利全取3分；而葡萄牙則遭到頑強阻擊，首戰握手言和。以下為根據FIFA官方數據結算的最新完整戰果與分組形勢：",
+      description: "2026年美加墨世界盃分組賽首輪進入最後高潮，I組、J組、K組及L組的多場豪強大戰已在香港時間6月17日至18日全面完場。衛冕冠軍阿根廷在球王美斯的帶領下強勢起航，英格蘭與法國等奪冠熱門也順利全取3分；而葡萄牙則遭到頑強阻擊，首戰握手言和。以下為根據FIFA官方數據結算的最新完整戰果與分組形勢：",
       results: [
-        { date: "6月18日 凌晨", home: "伊拉克", homeCode: "iq", score: "1 - 4", away: "挪威", awayCode: "no" },
-        { date: "6月18日 凌晨", home: "法國", homeCode: "fr", score: "3 - 1", away: "塞內加爾", awayCode: "sn" },
-        { date: "6月18日 凌晨", home: "英格蘭", homeCode: "gb-eng", score: "4 - 2", away: "克羅地亞", awayCode: "hr" },
-        { date: "6月18日 凌晨", home: "葡萄牙", homeCode: "pt", score: "1 - 1", away: "剛果民主", awayCode: "cd" },
-        { date: "6月17日 中午", home: "奧地利", homeCode: "at", score: "3 - 1", away: "約旦", awayCode: "jo" },
+        { date: "6月17日 凌晨", home: "法國", homeCode: "fr", score: "3 - 1", away: "塞內加爾", awayCode: "sn" },
+        { date: "6月17日 早上", home: "伊拉克", homeCode: "iq", score: "1 - 4", away: "挪威", awayCode: "no" },
         { date: "6月17日 上午", home: "阿根廷", homeCode: "ar", score: "3 - 0", away: "阿爾及利亞", awayCode: "dz" },
-        { date: "6月16日 上午", home: "伊朗", homeCode: "ir", score: "2 - 2", away: "新西蘭", awayCode: "nz" },
-        { date: "6月16日 早上", home: "沙地阿拉伯", homeCode: "sa", score: "1 - 1", away: "烏拉圭", awayCode: "uy" },
-        { date: "6月16日 凌晨", home: "比利時", homeCode: "be", score: "1 - 1", away: "埃及", awayCode: "eg" },
-        { date: "6月16日 凌晨", home: "西班牙", homeCode: "es", score: "0 - 0", away: "佛得角", awayCode: "cv" }
+        { date: "6月17日 中午", home: "奧地利", homeCode: "at", score: "3 - 1", away: "約旦", awayCode: "jo" },
+        { date: "6月18日 凌晨", home: "葡萄牙", homeCode: "pt", score: "1 - 1", away: "剛果民主", awayCode: "cd" },
+        { date: "6月18日 凌晨", home: "英格蘭", homeCode: "gb-eng", score: "4 - 2", away: "克羅地亞", awayCode: "hr" },
+        { date: "6月18日 早上", home: "加納", homeCode: "gh", score: "1 - 0", away: "巴拿馬", awayCode: "pa" },
+        { date: "6月18日 中午", home: "烏茲別克", homeCode: "uz", score: "1 - 3", away: "哥倫比亞", awayCode: "co" }
       ],
       timeline: [
-        { type: "stadium", time: "🏟️ L組焦點大戰 (英格蘭 4-2 克羅地亞)", body: "三獅軍團火力全開！英格蘭在達拉斯體育場展現強大進攻實力，在進攻拉鋸戰中火力壓制格子軍，順利在死亡之組拔得頭籌全取3分！" },
-        { type: "stadium", time: "🏟️ K組大冷門 (葡萄牙 1-1 剛果民主)", body: "非洲雄獅頑強逼平！葡萄牙在侯斯頓體育場遭遇鐵桶陣全面阻擊。儘管C朗拿度領銜全場狂攻，最終仍被剛果民主頑強逼和各得1分。" },
-        { type: "goal", time: "J組 上手完賽 - 美斯上演世界級帽戰", body: "阿根廷 3-0 大勝阿爾及利亞！衛冕冠軍強勢登場，第六度亮相世界盃的球王 **美斯（Lionel Messi）** 迎來全面大爆發，個人獨中三元上演世界盃生涯首個帽子戲法，橫掃非陸狐狸！" },
-        { type: "goal", time: "I組 完賽戰報 - 夏蘭特首球叩門爆發", body: "挪威 4-1 伊拉克！挪威神鋒 **夏蘭特（Erling Haaland）** 在禁區展現驚人門前嗅覺，攻入其個人決賽週處子歷史性首球，強勢大勝開齋！" },
-        { type: "stadium", time: "🏟️ I組歐陸激戰 (法國 3-1 塞內加爾)", body: "高盧雄雞法國隊在紐約新澤西體育場強勢登場。皇馬前鋒麥巴比在下半場突襲梅開二度，助法國 3-1 輕取非洲勁旅塞內加爾。" }
+        { type: "goal", time: "J組 上午 - 美斯首秀戴帽神蹟", body: "衛冕冠軍阿根廷在堪薩斯城體育場強勢登場！第六度亮相世界盃的球王 **美斯（Lionel Messi）** 迎來大爆發，個人獨中三元上演世界盃生涯首個帽子戲法，率隊 3-0 完勝阿爾及利亞開齋！" },
+        { type: "stadium", time: "🏟️ L組進攻大戰 (英格蘭 4-2 克羅地亞)", body: "三獅軍團火力全開！英格蘭在達拉斯體育場展現強大進攻實力，憑藉哈利·卡尼梅開二度，加上比寧咸與拉舒福特各建一功，4-2 擊退宿敵格子軍團拔得頭籌！" },
+        { type: "goal", time: "I組 早上 - 夏蘭特首球叩門爆發", body: "挪威 4-1 大勝伊拉克！曼城神鋒 **夏蘭特（Erling Haaland）** 攻入個人歷史上首個世界盃決賽週進球，帶領北歐海盜橫掃對手！" },
+        { type: "stadium", time: "🏟️ K組爆大冷 (葡萄牙 1-1 剛果民主)", body: "葡萄牙在侯斯頓遭遇鐵桶陣全面阻擊。利維斯早段頭槌先開紀錄，但隨後被剛果民主的維沙頭槌扳平，41歲的C朗拿度全場遭嚴密防守未能破門，1-1 握手言和各得 1 分。" },
+        { type: "goal", time: "I組 凌晨 - 麥巴比梅開二度輕取對手", body: "法國 3-1 擊敗非洲勁旅塞內加爾。高盧雄雞在紐約新澤西體育場掌控大局，皇馬前鋒 **麥巴比（Kylian Mbappé）** 在下半場展現驚人爆發力梅開二度奠定勝局。" }
       ],
       upcoming_list: [
-        "<b>🌍 Group G / H組首輪亂局結算</b>：G組四隊首輪全部踢和（伊朗 2-2 新西蘭、比利時 1-1 埃及）陷入完全均勢大混戰；H組沙地與烏拉圭憑藉進球數優勢（1-1），領先西班牙與佛得角（0-0）。",
-        "<b>💥 Group I / J組歐洲雙雄爭鋒</b>：I組挪威憑藉進球火力（+3 淨勝球）暫時力壓法國（+2 淨勝球）居榜首；J組阿根廷淨勝球佔優登頂，次輪將與奧地利上演火星撞地球榜首大戰！",
-        "<b>⚽ Group K / L組新賽程啟航</b>：英格蘭暫居 L 組首名；葡萄牙首戰受挫次輪必拼。今日稍後將迎來：L組 **加納 vs 巴拿馬**（07:00）；K組 **烏茲別克 vs 哥倫比亞**（10:00）及 A組次輪生死激戰 **捷克 vs 南非**（6月19日 00:00），精彩不停歇！"
+        "<b>🇳🇴 🇫🇷 Group I (I組) 歐陸雙強領跑</b>：挪威憑藉強大的進攻火力（+3 淨勝球）暫時力壓同積 3 分的法國隊（+2 淨勝球），兩支歐洲球隊分列小組前兩位。",
+        "<b>🇦🇷 🥷 Group J (J組) 阿根廷爭冠啟航</b>：阿根廷淨勝球佔優登頂，下一輪阿根廷將與同樣全取3分的奧地利上演正面對決榜首大戰！",
+        "<b>🇨🇴 🇵🇹 Group K (K組) 哥倫比亞強勢登頂</b>：哥倫比亞 3-1 擊敗烏茲別克全取 3 分強勢登頂 K 組。葡萄牙首戰遭非洲雄獅逼平受挫僅得 1 分，次輪必拼。",
+        "<b>🏴󠁧󠁢󠁥󠁮󠁧󠁿 🇬🇭 Group L (L組) 三獅復仇成功居榜首</b>：英格蘭（4-2）暫居榜首，加納憑藉暴雨補時第5分鐘的壓哨絕合（1-0 險勝巴拿馬）積 3 分緊隨其後。次輪出線「生死戰」將於 **6月19日 00:00 捷克 vs 南非** 震撼連場接軌打響！"
       ]
     };
     db.ref("friendly_news").set(freshFriendlyData);
     return;
   }
 
-  // 1. 渲染導言描述
+  // 1. 渲染導言簡介
   document.getElementById("friendlyDesc").innerText = data.description || "";
 
-  // 2. 渲染焦點賽果表格（已全面整合主客隊國旗與 RWD 手機自適應並排顯示標籤）
+  // 2. 渲染焦點賽果表格（整合主客隊國旗 Code 並進行自適應並排國旗顯示）
   const resultsBody = document.getElementById("friendlyResultsBody");
   resultsBody.innerHTML = "";
   if (data.results) {
