@@ -10,6 +10,7 @@ body{
   color: #f3f4f6;
   font-family: Arial, sans-serif;
   padding: 20px;
+  line-height: 25px;
 }
 
 h1, h2 { color: #ffffff; text-align: center; }
@@ -75,7 +76,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   border: 1px solid #1f2937;
   border-left: 5px solid #dfaa2a;
   font-size: 14px;
-  line-height: 1.8;
+  line-height: 25px;
 }
 .info img{
   width: 26px;
@@ -89,7 +90,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   color: #38bdf8;
 }
 
-/* 📊 方向一：奪冠預測熱度榜與動態進度條圖表樣式表配置 */
+/* 📊 奪冠預測熱度榜與動態進度條圖表樣式表配置 */
 .predict-rank-container {
   background: #111827;
   border: 1px solid #dfaa2a;
@@ -176,7 +177,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   border: 1px solid rgba(56, 189, 248, 0.2);
   margin-bottom: 20px;
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 25px;
   color: #e5e7eb;
 }
 .friendly-subtitle {
@@ -237,7 +238,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   border-radius: 20px;
   border: 1px solid #dfaa2a;
   display: inline-block;
-  box-shadow: 0 0 8px rgba(223,170,42,0.15);
+  box-shadow: 0 0 8px rgba(22,170,42,0.15);
 }
 
 /* 🏆 流線型動態時間軸樣式 */
@@ -304,7 +305,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
 }
 .event-body {
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 25px;
   color: #d1d5db;
 }
 .event-media {
@@ -332,7 +333,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   padding-left: 18px;
   margin-bottom: 12px;
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 25px;
   color: #d1d5db;
 }
 .analysis-list li::before {
@@ -436,7 +437,7 @@ h1 { font-size: 2.2rem; color: #dfaa2a; text-shadow: 0 0 10px rgba(223,170,42,0.
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* ⚡ 死忠集氣點讚按鈕專屬樣式 */
+/* ⚡ 集氣點讚按鈕專屬樣式 */
 .cheer-btn-inline {
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: #fff;
@@ -631,7 +632,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
 .scorers-list {
   font-size: 12px;
   color: #9ca3af;
-  line-height: 1.6;
+  line-height: 25px;
   white-space: pre-line;
 }
 
@@ -719,9 +720,6 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
   </div>
 </div>
 
-<!-- ==========================================================================
-     ✨ 動態載入世界盃最新比賽資訊與實況戰報 
-     ========================================================================== -->
 <div class="friendly-section">
   <div class="friendly-title">⚽ 最新世界盃比賽資訊</div>
   <div id="friendlyDesc" class="friendly-desc-box">最新賽事戰報動態載入中...</div>
@@ -774,7 +772,7 @@ button.win:hover, button.draw, button.lose:hover, button.hot-btn:hover{ transfor
     
     <div id="modalScorersBox" class="scorers-box">
       <div class="scorers-title">🏟️ 比賽球場地點與大數據焦點心水推薦</div>
-      <div id="modalScorersList" class="scorers-list" style="white-space: pre-line; line-height: 1.6;"></div>
+      <div id="modalScorersList" class="scorers-list" style="white-space: pre-line; line-height: 25px;"></div>
     </div>
 
     <div class="squad-grid">
@@ -884,7 +882,7 @@ const groups={
   "J": ["ar", "dz", "at", "jo"], "K": ["pt", "cd", "uz", "co"], "L": ["gb-eng", "hr", "gh", "pa"]
 };
 
-// 📲 104 場核心正賽日曆數據庫（全面完整顯示 104 場賽程，絕不省略）
+// 📲 104 場核心正賽日曆數據庫
 const centralSchedule = [
   /* === 第一輪分組賽 === */
   { id: "GS01", stage: "Group A-D 小組賽", dateStr: "2026-06-12", time: "03:00", t1: "mx", t2: "za", score: "2 - 0", scorers: "🏟️ 歷史聖地：墨西哥城 阿茲特克體育場 (Estadio Azteca)\n🔥 正賽歷史揭幕戰完賽戰報：\n\n* 【第 9 分鐘 ⚽ 1-0】墨西哥隊 **胡利安·基尼奧內斯（Quiñones）** 斷球推射破門，轟入本屆世界盃全球首顆正式進球！\n* 【第 49 分鐘 🟥 紅牌】南非中場 **斯菲費洛·西托爾（Sithole）** 惡意犯規遭直紅驅逐。\n* 【第 67 分鐘 ⚽ 2-0】老將 **勞爾·希門尼斯（Jiménez）** 頭槌破門擴大比分。\n* 【第 83 分鐘 🟥 紅牌】南非 **特姆巴·茲瓦內（Zwane）** 粗暴動作領紅，南非僅剩 9 人應戰。\n* 【第 90+2 分鐘 🟥 紅牌】墨西哥隊長兼中堅 **塞薩爾·蒙特斯（Montes）** 因破壞對方單刀機會領紅罰下，次輪對陣韓國將停賽！\n\n💡 戰評：東道主墨西哥全場壓制，順利全取 3 分，淨勝球 +2 高居 A 組榜首！" },
@@ -905,7 +903,7 @@ const centralSchedule = [
   { id: "GS30", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "03:00", t1: "be", t2: "eg", score: "1 - 1", scorers: "🏟️ 西雅圖體育場\n🔥 戰報：紅魔首輪失意！奪冠熱門比利時迎戰非洲雄獅埃及，兩隊上半場各展攻勢對衝，最終防守大戰下以 1-1 握手言和各取 1 分。" },
   { id: "GS31", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "06:00", t1: "sa", t2: "uy", score: "1 - 1", scorers: "🏟️ 邁阿密體育場\n🔥 戰報：強強對抗膠著。沙地阿拉伯在第40分鐘先馳得點反客為主；下半場烏拉圭展開瘋狂反撲，並於第79分鐘成功扳平比數，最終激戰至 90+7' 以 1-1 握手言和各得 1 分！" },
   { id: "GS32", stage: "Group E-H 小組賽", dateStr: "2026-06-16", time: "09:00", t1: "ir", t2: "nz", score: "2 - 2", scorers: "🏟️ 洛杉磯 SoFi 體育場\n🔥 戰報：雙方大打進攻大戰，全場對攻極為激烈，兩隊兩度落後均展現堅韌鬥志兩度追平，最終 2-2 震撼言和各得 1 分！" },
-  
+
   /* --- Group I-L 小組賽 --- */
   { id: "GS49", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "00:00", t1: "fr", t2: "sn", score: "3 - 1", scorers: "🏟️ 紐約新澤西體育場\n🔥 戰報：高盧雄雞在近8萬球迷見證下強勢登場！法國全場完全控制比賽大局，進攻流暢，皇馬前鋒麥巴比（Kylian Mbappé）在下半場突襲梅開二度，助法國 3-1 輕取非洲勁旅塞內加爾，順利奪取開門紅！" },
   { id: "GS50", stage: "Group I-L 小組賽", dateStr: "2026-06-17", time: "03:00", t1: "iq", t2: "no", score: "1 - 4", scorers: "🏟️ 波士頓體育場\n🔥 戰報：夏蘭特世界盃首球降臨！挪威全線反客為主壓制，曼城神鋒**夏蘭特**在禁區內敏銳推射攻入個人歷史性首個世界盃正賽進球，帶領北歐海盜 4-1 橫掃伊拉克全取 3 分！" },
@@ -916,27 +914,27 @@ const centralSchedule = [
   { id: "GS55", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "07:00", t1: "gh", t2: "pa", score: "1 - 0", scorers: "🏟️ 多倫多體育場\n🔥 戰報：雙方全場激烈拉鋸，在暴雨之下激戰至補時第5分鐘，加納由前鋒加勒·耶倫基（Caleb Yirenkyi）上演壓軸壓哨絕殺，最終 1-0 險勝巴拿馬全取 3 分！" },
   { id: "GS56", stage: "Group I-L 小組賽", dateStr: "2026-06-18", time: "10:00", t1: "uz", t2: "co", score: "1 - 3", scorers: "🏟️ 美國 三藩市體育場\n🔥 戰報：哥倫比亞展現南美勁旅本色，憑藉達尼洛·穆尼奧斯、路易斯·迪亞斯及坎帕斯在90+9分鐘的進球，3-1 擊敗烏茲別克，強勢登頂 K 組！" },
 
-  /* === 第二輪分組賽生死戰 === */
-  { id: "GS09", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "00:00", t1: "cz", t2: "za", score: "1 - 1", scorers: "🏟️ 亞特蘭大體育場\n🔥 次輪背水一戰：捷克開賽僅6分鐘由沙迪歷克（Michal Sadílek）突襲領先；但南非下半場展開反撲在83分鐘獲得點球，由莫哥拿（Teboho Mokoena）一蹴而就，最終 1-1 握手言和各取 1 分！" },
-  { id: "GS10", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "ch", t2: "ba", score: "4 - 1", scorers: "🏟️ 洛杉磯體育場\n🔥 戰報：瑞士十字軍大開殺戒！全場完美掌控推進節奏，進攻點多點開花。末段更有老將沙卡（Granit Xhaka）於補時第7分鐘罰入精準十二碼鎖定 4-1 狂勝，全取3分暫登B組榜首！" },
-  { id: "GS11", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "06:00", t1: "ca", t2: "qa", score: "5 - 0", scorers: "🏟️ 溫哥華不列顛哥倫比亞體育場\n🔥 實時激戰（進行中）：東道主加拿大重裝碾壓！賴林16分鐘高空頭槌破冰，明星前鋒喬納森·戴維（Jonathan David）上半場大殺四方梅開二度。配合卡塔爾吞下兩張紅牌及一記烏龍球，楓葉軍團正以 5-0 絕對優勢狂轟濫炸！" },
-  { id: "GS12", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "09:00", t1: "mx", t2: "kr", score: "VS", scorers: "🏟️ A組次輪生死大對決！榜首之爭，東道主墨西哥主場迎戰太極虎韓國，強烈推薦大球！" },
-  { id: "GS13", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "03:00", t1: "us", t2: "au", score: "VS", scorers: "🏟️ 次輪 D 組碰撞。東道主美國再臨洛杉磯主場，決戰袋鼠軍團！" },
-  { id: "GS14", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "06:00", t1: "gb-sct", t2: "ma", score: "VS", scorers: "🏟️ C組次輪關鍵形勢出線博弈，蘇格蘭拼死對衝非陸反擊黑馬。" },
-  { id: "GS15", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "08:30", t1: "br", t2: "ht", score: "VS", scorers: "🏟️ C組次輪。森巴軍團不容有失，必定全線壓上強攻海地防線。" },
-  { id: "GS16", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "11:00", t1: "tr", t2: "py", score: "VS", scorers: "🏟️ D組次輪生死拉鋸戰。" },
-  
-  /* --- 第三輪與後續其餘分組賽日曆框架 (GS33 - GS72) 鎖定閉合 --- */
-  { id: "GS33", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "01:00", t1: "nl", t2: "se", score: "VS", scorers: "🏟️ 荷蘭決戰北歐海盜。" },
-  { id: "GS34", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "04:00", t1: "de", t2: "ci", score: "VS", scorers: "🏟️ 戰車戰猛象。" },
-  { id: "GS35", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "08:00", t1: "ec", t2: "cw", score: "VS", scorers: "🏟️ 關鍵搶分之夜。" },
-  { id: "GS36", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "12:00", t1: "tn", t2: "jp", score: "VS", scorers: "🏟️ 藍武士遠征抗非。" },
-  { id: "GS37", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "00:00", t1: "es", t2: "sa", score: "VS", scorers: "🏟️ 鬥牛軍團調整再出發。" },
-  { id: "GS38", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "03:00", t1: "be", t2: "ir", score: "VS", scorers: "🏟️ 歐洲紅魔次輪搶攻。" },
-  { id: "GS39", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "06:00", t1: "uy", t2: "cv", score: "VS", scorers: "🏟️ 烏拉圭全力爭勝。" },
-  { id: "GS40", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "09:00", t1: "nz", t2: "eg", score: "VS", scorers: "🏟️ 埃及法老搶分戰。" },
-  { id: "GS17", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ch", t2: "ca", score: "VS", scorers: "🏟️ 小組生死出線戰。" },
-  { id: "GS18", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ba", t2: "qa", score: "VS", scorers: "🏟️ 同步激戰開哨。" },
+  /* --- 第二輪分組賽生死戰 --- */
+  { id: "GS09", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "00:00", t1: "cz", t2: "za", score: "1 - 1", scorers: "🏟️ 亞特蘭大體育場\n🔥 次輪背水一戰：捷克開賽僅6分鐘由沙迪歷克突襲領先；但南非下半場展開反撲在83分鐘獲得點球，由莫哥拿操刀命中，最終 1-1 握手言和各取 1 分！" },
+  { id: "GS10", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "03:00", t1: "ch", t2: "ba", score: "4 - 1", scorers: "🏟️ 洛杉磯體育場\n🔥 戰報：瑞士十字軍大開殺戒！全場完美掌控推進節奏，進攻多點開花。末段老將沙卡於補時第7分鐘罰入精準十二碼鎖定 4-1 狂勝，與加拿大同積 4 分！" },
+  { id: "GS11", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "06:00", t1: "ca", t2: "qa", score: "6 - 0", scorers: "🏟️ 溫哥華 BC Place 體育場\n🔥 戰報：東道主歷史性狂勝！加拿大在主場火力全開，賴林16'頭槌破冰，喬納森·戴維上半場梅開二度。配合卡塔爾連領兩紅崩盤及一記下半場烏龍，楓葉軍團 6-0 狂勝刷新隊史紀錄，反超瑞士暫居榜首！" },
+  { id: "GS12", stage: "Group A-D 小組賽", dateStr: "2026-06-19", time: "09:00", t1: "mx", t2: "kr", score: "1 - 0", scorers: "🏟️ 瓜達拉哈拉體育場\n🔥 戰報：東道主榜首之爭勝出！墨西哥坐鎮狂熱主場迎戰太極虎韓國，憑藉路易斯·羅莫（Luis Romo）在第50分鐘的致命推射一槌定音，1-0 力克韓國斬獲兩連勝，積 6 分強勢出線！" },
+  { id: "GS13", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "03:00", t1: "us", t2: "au", score: "2 - 0", scorers: "🏟️ 西雅圖體育場\n🔥 戰報：美利堅喜迎連勝！東道主美國隊全場完美控制局勢，防線密不透風，進攻端兩度撕裂對手，最終以 2-0 完勝袋鼠軍團澳洲，兩戰全勝積 6 分傲視 D 組！" },
+  { id: "GS14", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "06:00", t1: "gb-sct", t2: "ma", score: "0 - 1", scorers: "🏟️ 波士頓體育場\n🔥 戰報：北非雄獅爆冷全取 3 分！摩洛哥頂住蘇格蘭整場的高空猛攻，憑藉鋼鐵般的整體防守與犀利反擊，以 1-0 險勝對手，取得首場小組賽勝利積 4 分！" },
+  { id: "GS15", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "08:30", t1: "br", t2: "ht", score: "VS", scorers: "🏟️ 邁阿密體育場\n💡 實時提示：C組次輪焦點戰（進行中/即將開打）。巴西首輪踢和，森巴軍團本場不容有失，必定全線壓上爭取 3 分！" },
+  { id: "GS16", stage: "Group A-D 小組賽", dateStr: "2026-06-20", time: "11:00", t1: "tr", t2: "py", score: "VS", scorers: "🏟️ 洛杉磯 SoFi 體育場\n💡 賽事預告：D組次輪對決。土耳其對巴拉圭的賽果將直接決定本組次席爭奪戰的去向。" },
+
+  /* --- 其餘分組賽日曆框架 (GS33 - GS72) --- */
+  { id: "GS33", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "01:00", t1: "nl", t2: "se", score: "VS", scorers: "🏟️ 荷蘭決戰北歐海盜瑞典。" },
+  { id: "GS34", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "04:00", t1: "de", t2: "ci", score: "VS", scorers: "🏟️ E組次輪：日耳曼戰車火拼非洲象牙海岸，榜首生死戰！" },
+  { id: "GS35", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "08:00", t1: "ec", t2: "cw", score: "VS", scorers: "🏟️ 厄瓜多爾次輪爭分大戰。" },
+  { id: "GS36", stage: "Group E-H 小組賽", dateStr: "2026-06-21", time: "12:00", t1: "tn", t2: "jp", score: "VS", scorers: "🏟️ 藍武士日本次輪力爭開齋。" },
+  { id: "GS37", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "00:00", t1: "es", t2: "sa", score: "VS", scorers: "🏟️ 西班牙鬥牛士調整再出發。" },
+  { id: "GS38", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "03:00", t1: "be", t2: "ir", score: "VS", scorers: "🏟️ 歐洲紅魔比利時次輪搶攻。" },
+  { id: "GS39", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "06:00", t1: "uy", t2: "cv", score: "VS", scorers: "🏟️ 烏拉圭全力爭勝戰佛得角。" },
+  { id: "GS40", stage: "Group E-H 小組賽", dateStr: "2026-06-22", time: "09:00", t1: "nz", t2: "eg", score: "VS", scorers: "🏟️ 埃及法老搶分大戰。" },
+  { id: "GS17", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ch", t2: "ca", score: "VS", scorers: "🏟️ 最終輪小組生死出線戰。" },
+  { id: "GS18", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "03:00", t1: "ba", t2: "qa", score: "VS", scorers: "🏟️ 同步生死戰開哨。" },
   { id: "GS19", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "06:00", t1: "gb-sct", t2: "br", score: "VS", scorers: "🏟️ 出線最終決戰。" },
   { id: "M20", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "06:00", t1: "ma", t2: "ht", score: "VS", scorers: "🏟️ 最終輪搶分博弈。" },
   { id: "M21", stage: "Group A-D 小組賽", dateStr: "2026-06-25", time: "09:00", t1: "cz", t2: "mx", score: "VS", scorers: "🏟️ 東道主生死決戰。" },
@@ -967,32 +965,32 @@ const centralSchedule = [
   /* --- 🏆 32強 至 冠軍總決賽 淘汰賽流完整框架 --- */
   { id: "K32_01", stage: "32強淘汰賽", dateStr: "2026-06-29", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 1" },
   { id: "K32_02", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 2" },
-  { id: "K32_03", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "04:30", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 3" },
-  { id: "K32_04", stage: "32強淘汰賽", dateStr: "2026-06-30", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 4" },
-  { id: "K32_05", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 5" },
-  { id: "K32_06", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 6" },
-  { id: "K32_07", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 7" },
-  { id: "K32_08", stage: "32強淘汰賽", dateStr: "2026-07-02", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 8" },
-  { id: "K32_09", stage: "32強淘汰賽", dateStr: "2026-07-02", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 9" },
-  { id: "K32_10", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 10" },
-  { id: "K32_11", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 11" },
-  { id: "K32_12", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 12" },
-  { id: "K32_13", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 13" },
-  { id: "K32_14", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 14" },
-  { id: "K32_15", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 15" },
-  { id: "K32_16", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 16" },
-  { id: "K16_01", stage: "16強淘汰賽", dateStr: "2026-07-05", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 1" },
-  { id: "K16_02", stage: "16強淘汰賽", dateStr: "2026-07-05", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 2" },
-  { id: "K16_03", stage: "16強淘汰賽", dateStr: "2026-07-06", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 3" },
-  { id: "K16_04", stage: "16強淘汰賽", dateStr: "2026-07-06", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 4" },
-  { id: "K16_05", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 5" },
-  { id: "K16_06", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 6" },
-  { id: "K16_07", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "00:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 7" },
-  { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 8" },
-  { id: "K8_01", stage: "8強半準決賽", dateStr: "2026-07-10", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 8強半準決賽 1" },
-  { id: "K8_02", stage: "8強半準決賽", dateStr: "2026-07-11", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 8強半準決賽 2" },
-  { id: "K8_03", stage: "8強半準決賽", dateStr: "2026-07-12", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 8強半準決賽 3" },
-  { id: "K8_04", stage: "8強半準決賽", dateStr: "2026-07-12", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 8強半準決賽 4" },
+  { id: "K32_03", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "04:30", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 3" },
+  { id: "K32_04", stage: "32強淘汰賽", dateStr: "2026-07-01", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 4" },
+  { id: "K32_05", stage: "32強淘汰賽", dateStr: "2026-07-02", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 5" },
+  { id: "K32_06", stage: "32強淘汰賽", dateStr: "2026-07-02", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 6" },
+  { id: "K32_07", stage: "32強淘汰賽", dateStr: "2026-07-02", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 7" },
+  { id: "K32_08", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 8" },
+  { id: "K32_09", stage: "32強淘汰賽", dateStr: "2026-07-03", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 9" },
+  { id: "K32_10", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 10" },
+  { id: "K32_11", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 11" },
+  { id: "K32_12", stage: "32強淘汰賽", dateStr: "2026-07-04", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 12" },
+  { id: "K32_13", stage: "32強淘汰賽", dateStr: "2026-07-05", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 13" },
+  { id: "K32_14", stage: "32強淘汰賽", dateStr: "2026-07-05", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 14" },
+  { id: "K32_15", stage: "32強淘汰賽", dateStr: "2026-07-05", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 15" },
+  { id: "K32_16", stage: "32強淘汰賽", dateStr: "2026-07-05", time: "凌晨/上午", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 32強淘汰生死戰 16" },
+  { id: "K16_01", stage: "16強淘汰賽", dateStr: "2026-07-06", time: "01:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 1" },
+  { id: "K16_02", stage: "16強淘汰賽", dateStr: "2026-07-06", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 2" },
+  { id: "K16_03", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 3" },
+  { id: "K16_04", stage: "16強淘汰賽", dateStr: "2026-07-07", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 4" },
+  { id: "K16_05", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 5" },
+  { id: "K16_06", stage: "16強淘汰賽", dateStr: "2026-07-08", time: "08:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 6" },
+  { id: "K16_07", stage: "16強淘汰賽", dateStr: "2026-07-09", time: "00:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 7" },
+  { id: "K16_08", stage: "16強淘汰賽", dateStr: "2026-07-09", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 16強巔峰對決 8" },
+  { id: "K8_01", stage: "8強半準決賽", dateStr: "2026-07-11", time: "04:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 8強半準決賽 1" },
+  { id: "K8_02", stage: "8強半準決賽", dateStr: "2026-07-12", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 8強半準決賽 2" },
+  { id: "K8_03", stage: "8強半準決賽", dateStr: "2026-07-13", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 8強半準決賽 3" },
+  { id: "K8_04", stage: "8強半準決賽", dateStr: "2026-07-13", time: "09:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "💡 8強半準決賽 4" },
   { id: "K4_01", stage: "4強準決賽", dateStr: "2026-07-15", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 準決賽神仙打架 1" },
   { id: "K4_02", stage: "4強準決賽", dateStr: "2026-07-16", time: "03:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 準決賽神仙打架 2" },
   { id: "K3_01", stage: "季軍爭奪賽", dateStr: "2026-07-19", time: "05:00", t1: "tbd", t2: "tbd", score: "VS", scorers: "🏟️ 季軍爭奪榮譽戰" },
@@ -1018,7 +1016,7 @@ Object.keys(groups).forEach(g=>{
   img.src="https://flagcdn.com/w80/"+team.code+".png";
   img.className="flag";
   
-  // ⚡【方向三】：一鍵點讚集氣包裝器
+  // ⚡ 一鍵點讚集氣包裝器
   let cheerContainer = document.createElement("span");
   cheerContainer.style.display = "flex"; cheerContainer.style.alignItems = "center"; cheerContainer.style.gap = "4px"; cheerContainer.style.marginLeft = "auto";
   let cheerCount = document.createElement("span"); cheerCount.className = "cheer-count-text"; cheerCount.id = `cheerCount_${team.code}`; cheerCount.innerText = "0";
@@ -1077,7 +1075,7 @@ function triggerCheerEffect(teamCode) {
   });
 }
 
-// 🌐 【方向一】：實時監聽全網奪冠預測熱度榜（圖表進度條化渲染）
+// 🌐 實時監聽全網奪冠預測熱度榜（圖表進度條化渲染）
 db.ref("predict_stats").on("value", (snapshot) => {
   const predictData = snapshot.val() || {};
   const rankGrid = document.getElementById("predictGrid");
@@ -1116,7 +1114,6 @@ db.ref("predict_stats").on("value", (snapshot) => {
     `;
     rankGrid.appendChild(itemDiv);
     
-    // 微延遲觸發過渡動畫效果
     setTimeout(() => {
       const fillEl = document.getElementById(`barFill_${index}`);
       if(fillEl) fillEl.style.width = percentage + "%";
@@ -1128,39 +1125,39 @@ db.ref("predict_stats").on("value", (snapshot) => {
 db.ref("friendly_news").on("value", (snapshot) => {
   const data = snapshot.val();
   
-  // 🛠️ 【自動重置刷新核心】：自動校準覆蓋為最新的真實 6月19日 完賽與實時混戰局勢（完美解決重置覆蓋 Bug）
-  if (!data || !data.results || data.results[0].home !== "加拿大" || data.results.length < 5) {
+  // 🛠️ 【最新核心數據初始化與自動覆蓋校準器】
+  if (!data || !data.results || data.results[0].home !== "蘇格蘭" || data.results.length < 6) {
     const freshFriendlyData = {
-      description: "2026年美加墨世界盃分組賽激戰連場！在香港時間6月18日至19日早上，分組賽第一輪賽事已全部收官，同時第二輪的生死大戰也正式打響。以下為根據FIFA官方數據結算的最新戰果與各組詳細形勢：",
+      description: "2026年美加墨世界盃分組賽次輪火熱進行！在香港時間6月19日至20日，A組、B組、C組和D組上演了多場事關出線命運的生死大戰。東道主美國與加拿大雙雙在主場大捷，墨西哥則在焦點戰中力克韓國；傳統強隊蘇格蘭則爆冷不敵摩洛哥。以下為根據FIFA官方數據結算的最新戰果與分組形勢：",
       results: [
-        { date: "6月19日 早上", home: "加拿大", homeCode: "ca", score: "5 - 0", away: "卡塔爾", awayCode: "qa" },
+        { date: "6月20日 早上", home: "蘇格蘭", homeCode: "gb-sct", score: "0 - 1", away: "摩洛哥", awayCode: "ma" },
+        { date: "6月20日 凌晨", home: "美國", homeCode: "us", score: "2 - 0", away: "澳洲", awayCode: "au" },
+        { date: "6月19日 上午", home: "墨西哥", homeCode: "mx", score: "1 - 0", away: "韓國", awayCode: "kr" },
+        { date: "6月19日 早上", home: "加拿大", homeCode: "ca", score: "6 - 0", away: "卡塔爾", awayCode: "qa" },
         { date: "6月19日 凌晨", home: "瑞士", homeCode: "ch", score: "4 - 1", away: "波斯尼亞", awayCode: "ba" },
-        { date: "6月19日 凌晨", home: "捷克", homeCode: "cz", score: "1 - 1", away: "南非", awayCode: "za" },
-        { date: "6月18日 中午", home: "烏茲別克", homeCode: "uz", score: "1 - 3", away: "哥倫比亞", awayCode: "co" },
-        { date: "6月18日 早上", home: "加納", homeCode: "gh", score: "1 - 0", away: "巴拿馬", awayCode: "pa" },
-        { date: "6月18日 凌晨", home: "英格蘭", homeCode: "gb-eng", score: "4 - 2", away: "克羅地亞", awayCode: "hr" },
-        { date: "6月18日 凌晨", home: "葡萄牙", homeCode: "pt", score: "1 - 1", away: "剛果民主", awayCode: "cd" }
+        { date: "6月19日 凌晨", home: "捷克", homeCode: "cz", score: "1 - 1", away: "南非", awayCode: "za" }
       ],
       timeline: [
-        { type: "stadium", time: "🏟️ B組次輪看板 (加拿大 5-0 卡塔爾)", body: "東道主狂轟濫炸！加拿大在溫哥華主場火力全開，賴林16分鐘先開紀錄，明星前鋒 **喬納森·戴維（Jonathan David）** 上半場更是梅開二度。配合卡塔爾吞下兩紅與一記烏龍球，目前楓葉軍團正以 5 球絕對優勢全線血洗！" },
-        { type: "goal", time: "B組次輪 補時 - 老將沙卡點射定江山", body: "瑞士 4-1 大勝波赫！十字軍在洛杉磯體育場大開殺戒，末段由老將 **沙卡（Granit Xhaka）** 於補時第7分鐘穩穩罰入十二碼鎖定最終勝局，全取 3 分高居 B 組榜首！" },
-        { type: "goal", time: "A組次輪 83' - 莫哥拿十二碼絕平", body: "捷克 1-1 戰平南非！捷克憑沙迪歷克在開賽6分鐘閃擊破門；但下半場頑強的南非在第83分鐘博得點球，由 **莫哥拿（Teboho Mokoena）** 操刀主罰命中，熱血絕平！" },
-        { type: "stadium", time: "🏟️ 首輪收官看板 (美斯戴帽與三獅火力全開)", body: "I至L組首輪圓滿落幕。美斯戴帽率阿根廷 3-0 完勝；英格蘭在 4-2 的進攻大戰中擊退克羅地亞；哥倫比亞 3-1 擊敗烏茲別克強勢登頂！葡萄牙則 1-1 被剛果民主共和國頑強逼平爆出大冷門。" }
+        { type: "stadium", time: "🏟️ 波士頓體育場 (觀眾人數: 68,500人)", body: "北非雄獅全取3分！摩洛哥頂住蘇格蘭整場的高空轟炸，憑藉鋼鐵般的整體防守與犀利反擊，以 1-0 險勝對手，成功斬獲首場小組賽勝利！", imgUrl: "" },
+        { type: "goal", time: "D組次輪 完賽 - 美利堅取得連勝", body: "東道主美國隊在西雅圖體育場牢牢控制局勢，防線密不透風，進攻端兩度撕裂對手，最終以 2-0 完勝「袋鼠兵團」澳洲，兩戰全勝在D組傲視群雄！", imgUrl: "" },
+        { type: "goal", time: "A組次輪 50分鐘 / 路易斯·羅莫", body: "東道主榜首之爭勝出！墨西哥在瓜達拉哈拉體育場迎戰韓國，憑藉 **路易斯·羅莫（Luis Romo）** 在第50分鐘的致命一擊，門前推射破門，1-0 力克太極虎，喜迎兩連勝！", imgUrl: "" },
+        { type: "redcard", time: "B組次輪 上半場 / 卡塔爾隊", body: "加國歷史性狂勝！加拿大在溫哥華主場火力全開，卡塔爾隊上半場連領兩面紅牌崩盤，加拿大最終以 6-0 狂勝對手，刷新隊史世界盃最大勝仗紀錄！", imgUrl: "" }
       ],
       upcoming_list: [
-        "<b>🌍 Group A (A組) 次輪戰況</b>：捷克與南非戰平後各積 1 分，出線仍留有一線生機。同組首輪獲勝的墨西哥與韓國即將在稍後（香港時間 09:00）展開榜首正面交鋒！",
-        "<b>💥 Group B (B組) 瑞士加拿大領跑</b>：瑞士憑藉大勝積 4 分暫時領跑，而加拿大在比賽末段展現出恐怖統治力，完場後也將與瑞士同積 4 分，將小組推向兩強出線形勢！",
-        "<b>📅 今日稍後及明日焦點賽程預告</b>：第二輪分組賽的熱火持續蔓延，多場生死大戰即將上演：<br>• 6月19日 09:00 (A組次輪) 墨西哥 vs 韓國 (榜首之爭)<br>• 6月20日 03:00 (D組次輪) 美國 vs 澳洲 (東道主再臨！)<br>• 6月20日 06:00 (C組次輪) 蘇格蘭 vs 摩洛哥<br>• 6月20日 08:30 (C組次輪) 巴西 vs 海地 (森巴軍團不容有失)"
+        "<b>🇲🇽 Group A (A組)</b>：墨西哥兩連勝鎖定出線主動權，韓國仍以 3 分位居次席。捷克與南非各積 1 分仍留存最後懸念。",
+        "<b>🇨🇦 Group B (B組)</b>：加拿大憑藉 6-0 狂勝收穫的恐怖淨勝球差（+6）反超瑞士登頂！美加墨東道主在本屆賽事至今表現極其強勁。",
+        "<b>🇲🇦 Group C (C組)</b>：摩洛哥與蘇格蘭同積 3 分。同組巴西與海地的次輪賽事將在今日稍後上演，森巴軍團本輪必須全取 3 分！",
+        "<b>🇺🇸 Group D (D組)</b>：美國兩連勝強勢領跑，土耳其對巴拉圭的賽果將決定本組次席的爭奪戰。"
       ]
     };
     db.ref("friendly_news").set(freshFriendlyData);
     return;
   }
 
-  // 1. 渲染導言簡介
+  // 1. 渲染導言描述
   document.getElementById("friendlyDesc").innerText = data.description || "";
 
-  // 2. 渲染焦點賽果表格（已全面整合主客隊國旗與 RWD 手機自適應並排顯示標籤）
+  // 2. 渲染焦點賽果表格
   const resultsBody = document.getElementById("friendlyResultsBody");
   resultsBody.innerHTML = "";
   if (data.results) {
@@ -1169,14 +1166,14 @@ db.ref("friendly_news").on("value", (snapshot) => {
       tr.innerHTML = `
         <td style="color: #9ca3af; font-family: monospace;">${r.date}</td>
         <td>
-          <div class="table-team-cell" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <div class="table-team-cell">
             <img src="https://flagcdn.com/w80/${r.homeCode}.png" style="width: 24px; height: 16px; object-fit: cover; border-radius: 2px;">
             <span style="font-weight: bold; font-size: 14px;">${r.home}</span>
           </div>
         </td>
         <td><span class="score-badge">${r.score}</span></td>
         <td>
-          <div class="table-team-cell" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <div class="table-team-cell">
             <span style="font-weight: bold; font-size: 14px;">${r.away}</span>
             <img src="https://flagcdn.com/w80/${r.awayCode}.png" style="width: 24px; height: 16px; object-fit: cover; border-radius: 2px;">
           </div>
@@ -1186,7 +1183,7 @@ db.ref("friendly_news").on("value", (snapshot) => {
     });
   }
 
-  // 3. ✨ 動態高級渲染流線時間軸與實況事件簿
+  // 3. 動態渲染流線時間軸與實況事件簿
   const timelineContainer = document.getElementById("friendlyTimelineContainer");
   timelineContainer.innerHTML = "";
   if (data.timeline) {
@@ -1216,7 +1213,7 @@ db.ref("friendly_news").on("value", (snapshot) => {
     });
   }
 
-  // 4. 渲染分析簡評
+  // 4. 渲染局勢觀察簡評
   const upcomingList = document.getElementById("friendlyUpcomingList");
   upcomingList.innerHTML = "";
   if (data.upcoming_list) {
